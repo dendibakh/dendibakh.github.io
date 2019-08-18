@@ -1,0 +1,78 @@
+HW tracing feature.
+sending packets.
+Very compressed format.
+
+<5% overhead. Overhead for compute-bound application might come from lots of branches -> more data to log. Overhead for memory-bound application might come from the fact that PT pushes a lot of data to DRAM.
+
+Not only flow of execution but also timings. Cycle count info. But also time stamp information which allows to align the event with some other event in the system and easy to compare to wall clock time. All timings are sent in a separate packets.
+Once PT are enabled SW tools start writing packets to DRAM. PT will bundle up to 6 conditional branches before it will emit a packet.
+Info collected by SW decoder. IP and others. Decoder need binary file, in order to reconstruct the execution flow of the program. Very powerful for debugging.
+
+Static events in the program (like an unconditional branches) are simply ignored, because it's obvious where the program will go. So PT feature needs to encode is conditional branches. For example, for conditional branches we need to encode whether it was taken. In case of indirect branches or calls address is recorded.
+Certain special mode changes are also captured (read more elsewhere).
+
+Tpically it's around 0.6 bytes per instruction. So if we have 1B instructions, we would have ...
+
+Also we can filter IP ranges, so there are things we can opt-in and opt-out of tracing to limit the bandwith. We can only trace single function or single loop.
+
+So we can reconstruct exact instruction flow.
+
+Create a picture:
+
+push
+mov
+je
+mov
+add
+cmp
+je .label
+mov
+.label:
+call (edx) // virtual function call
+
+PT trace:
+Not taken
+Taken
+Address
+
+Highlight executed instructions.
+
+Instruction data is perfectly accurate.
+Timing information is less accurate.
+
+Usages:
+Postmortems.
+Performance glitches which are not statistically significant.
+Replacing the call stack.
+How much time we spent waiting spinning on a lock attempt.
+We can immideatly tell if some code path was never executed. Sort of prove theory quickly.
+We can detect changes of frequency.
+And more...
+
+Be prepared to have 100 MB/s of data. So typical use case might not be similar to profiling. But rather attaching just for the period of when the glitch happend. (circular buufer)
+
+Can be configured to update timings every cycle. But likley it will not increase our accuracy greatly, since timings will be send only for conditional branches.
+
+On BDW we had only time stamp information, but since Skylake & Goldmont every packet has also cycle count from the previous packet.
+
+We do not tracing program on a BB basis. This would increase overhead much. BB are usually across 5 instructions.
+
+We can get up to 6 conditional branches in the packet encoded.
+
+LBR can only get timing for taken branches while PT encodes conditional branches regardlessly.
+
+Debugging:
+Can get an instruction history listing. Dump control flow trace and see what instructions lead you here.
+Reverse step.
+
+Profiling:
+Perf analysis is much more fine-grained since all our traces are pricese. We didn't missed a sample. All the clocktick with PT analysis is precise.
+In Vtune you can zoom in and filter-in. And you'll have much more detailed view on what was going on in that timeframe. In comparison with traditional sampling where you will have only few samples. You will not have representative distribution. Very usefull for glitches. 
+
+This technology does not depend on the interupts (PMI) which other PerfMon features (like PEBS and LBR) do. Much more useful for real-time systems, because you don't need to interupt the CPU to get out the data. This is definetly a shift from using PMI tracing into something new.
+
+Put the links to Bruce Dawson's articles.
+
+Power event trace.
+
+For initial analysis you can start with traditional sampling and then zoom in using PT.
