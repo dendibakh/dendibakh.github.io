@@ -60,6 +60,14 @@ $ perf record -e intel_pt/cyc=1/u ./a.out
 $ perf report -D > trace.dump
 ```
 
+```
+.  000073b3:  2d 98 8c                                        TIP 0x8c98
+.  000073b6:  13                                              CYC 0x2
+.  000073b7:  c0                                              TNT TNNNNN (6)
+.  000073b8:  43                                              CYC 0x8
+.  000073b9:  b6                                              TNT NTTNTT (6)
+```
+
 ```bash
 $ perf script --ns --itrace=i1t -F +insn | ../xed -F insn: -I -64 > script.xed
 ```
