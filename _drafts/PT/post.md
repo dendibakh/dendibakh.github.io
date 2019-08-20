@@ -1,4 +1,8 @@
-Many ways to do performance analysis with Intel Processor Traces.
+---
+layout: post
+title: Many ways to do performance analysis with Intel Processor Traces.
+categories: [tools, performance analysis]
+---
 
 Describe how traditional sampling/instrumentation works.
 
@@ -12,25 +16,11 @@ Similar to sampling techniques it does not require any modifications to the sour
 
 Create a picture:
 
-push
-mov
-je
-mov
-add
-cmp
-je .label
-mov
-.label:
-call (edx) // virtual function call
-
-PT trace:
-Not taken
-Taken
-Address
+![](/img/posts/IntelPT/encoding.jpg){: .center-image-width-60 }
 
 Info collected by SW decoder. IP and others. Decoder need binary file, in order to reconstruct the execution flow of the program. Very powerful for debugging.
 
-Create a picture: Highlight executed instructions.
+![](/img/posts/IntelPT/decoding.jpg){: .center-image-width-60 }
 
 So we can reconstruct exact instruction flow.
 
@@ -45,15 +35,15 @@ Also we can filter IP ranges, so there are things we can opt-in and opt-out of t
 
 Not only flow of execution can be traced but also timings. Cycle count info. But also time stamp information which allows to align the event with some other event in the system and easy to compare to wall clock time. All timings are sent in a separate packets.
 
+![](/img/posts/IntelPT/timings.jpg){: .center-image-width-60 }
+
 PT will bundle up to 6 conditional branches before it will emit a timing packet. As you can see instruction data is perfectly accurate but timing information is less accurate.
 
 Can be configured to update timings every cycle. But likley it will not increase our accuracy greatly, since timings will be send only for conditional branches.
 
-**picture**
-
 ### Usages
 
-Here are some the cases when PT can be a freat use:
+Here are some of the cases when PT can be a great use:
 
 1. **Postmortem analysis**. Provides the call stack information which is always valid even if the stack is corrupted.
 2. **Analyze performance glitches** which are not statistically significant.
@@ -100,7 +90,10 @@ Power event trace.
 
 There is similar kind of technique used in Windows ETW traces which can be used for analyzing performance glitches. Bruce Dawson has a lot of interesting articles on his [blog](https://randomascii.wordpress.com/). He has ETW traces turned on `24/7` on his machines which allows him to capture what was going on in the last minute or so. By analyzing those postmortem traces he was able to root cause many interesting bugs including [this](https://randomascii.wordpress.com/2012/09/04/windows-slowdown-investigated-and-identified/), [this](https://randomascii.wordpress.com/2016/03/08/power-wastage-on-an-idle-laptop/) or [this](https://randomascii.wordpress.com/2018/08/16/24-core-cpu-and-i-cant-type-an-email-part-one/).
 
-
+Links:
+* https://lwn.net/Articles/648154/
+* https://sites.google.com/site/intelptmicrotutorial/
+* https://software.intel.com/en-us/blogs/2013/09/18/processor-tracing
 
 To add:
 
