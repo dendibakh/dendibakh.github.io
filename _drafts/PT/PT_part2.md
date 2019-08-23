@@ -1,3 +1,11 @@
+### Postmortem debugging 
+
+**Come up with an example**
+
+Can get an instruction history listing. Dump control flow trace and see what instructions lead you here.
+Reverse step.
+
+
 example from [LWN article by Andi Kleen](https://lwn.net/Articles/648154/):
 ```
 int main() {

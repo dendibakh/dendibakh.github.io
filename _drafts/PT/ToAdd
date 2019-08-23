@@ -1,0 +1,11 @@
+To add:
+
+Power event trace.
+
+It is great for analyzing cold paths.
+
+The only things that is missing is printf style debugging. This is probably the only significant reason why you would want to instrument your code manually.
+
+Put the link for library for collecting traces. Will be useful in Windows context.
+
+Just as a final note I want to say that for most of my daily work at Intel, PT is rather an overkill and traditional approach works just fine. But still I recall a number of cases where using Intel PT would expedite the analysis and exactly one case where I did use it. :)

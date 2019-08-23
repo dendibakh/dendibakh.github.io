@@ -1,3 +1,9 @@
+### Using PT for profiling
+
+**compare perf record with -e intel_pt**
+
+### Analyzing glitches
+
 Just to demonstrate it's power I created a small example in which I will calculate the [sum of the first N natural numbers](https://cseweb.ucsd.edu/groups/tatami/kumo/exs/sum/). There will intentionally be fast and slow path to do that. Here is the code:
 
 ```cpp
@@ -54,18 +60,6 @@ sys	    0m0.000s
 
 ```bash
 $ perf record -e intel_pt/cyc=1/u ./a.out
-```
-
-```bash
-$ perf report -D > trace.dump
-```
-
-```
-.  000073b3:  2d 98 8c                                        TIP 0x8c98
-.  000073b6:  13                                              CYC 0x2
-.  000073b7:  c0                                              TNT TNNNNN (6)
-.  000073b8:  43                                              CYC 0x8
-.  000073b9:  b6                                              TNT NTTNTT (6)
 ```
 
 ```bash
