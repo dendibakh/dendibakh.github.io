@@ -46,11 +46,13 @@ Interrupt-based sampling introduces skids on modern processors. That means that 
 
 Let's take a look at the example:
 ![](/img/posts/PEBS_LBR/Interrupt-base-sampling.png){: .center-image }
+**UPD:** *Read more details in great [article](https://travisdowns.github.io/blog/2019/08/20/interrupts.html) about interrupts by Travis Down.*
+
 Let's assume that on retirement of `instr1` we have an overflow of the counter that samples "instruction retired" events. Because of latency in the microarchitecture between the generation of events and the generation of interrupts on overflow, it is sometimes difficult to generate an interrupt close to an event that caused it. So by the time the interrupt is generated our IP has gone further by a number of instructions. When we reconstruct register state in interrupt service routine, we have slightly inaccurate data.
 
 ### Processor Event-Based Sampling (PEBS)
 
-The problem with the skids is possible to mitigate by having the processor itself store the instruction pointer (along with other information) in a designated buffer in memory – no interrupts are issued for each sample and the instruction pointer is off only by a single instruction, at most. This needs to be supported by the hardware, and is typically available only for a subset of supported events – this capability is called Processor Event-Based Sampling (PEBS) on Intel processors. You can also see people call it Precise Event-Based Sampling, but according to Intel manuals, first word is "Processor" not "Precise". But it basically means the same thing.
+The problem with the [skids]({{ site.url }}/blog/2018/08/29/Understanding-performance-events-skid) is possible to mitigate by having the processor itself store the instruction pointer (along with other information) in a designated buffer in memory – no interrupts are issued for each sample and the instruction pointer is off only by a single instruction, at most. This needs to be supported by the hardware, and is typically available only for a subset of supported events – this capability is called Processor Event-Based Sampling (PEBS) on Intel processors. You can also see people call it Precise Event-Based Sampling, but according to Intel manuals, first word is "Processor" not "Precise". But it basically means the same thing.
 
 ![](/img/posts/PEBS_LBR/Event_Based_Sampling.png){: .center-image }
 
@@ -103,6 +105,8 @@ Last Branch Record Top-of-Stack (TOS) Pointer — contains a pointer to the MSR 
 There are two important usages for LBR as mentioned in [Intel® 64 and IA-32 Architectures Optimization Reference Manual, Chapter B.3.3.4](https://software.intel.com/en-us/articles/intel-sdm):
 1. **Collecting Call Counts and Function Arguments**. If the LBRs are captured for PMIs triggered by the BR_INST_RETIRED.NEAR_CALL event, then the call count per calling function can be determined by simply using the last entry in LBR. As the PEBS IP will equal the last target IP in the LBR, it is the entry point of the calling function. Similarly, the last source in the LBR buffer was the call site from within the calling function. If the full PEBS record is captured as well, then for functions with limited numbers of arguments on 64-bit OS’s, you can sample both the call counts and the function arguments.
 2. **Basic Block Execution Counts**. This is rather complicated to explain, so I refer a reader for the manual to read more about this.
+3. **UPD: [Precise timing of machine code]({{ site.url }}/blog/2019/04/03/Precise-timing-of-machine-code-with-Linux-perf).**
+4. **UPD: [Estimating branch probability]({{ site.url }}/blog/2019/05/06/Estimating-branch-probability).**
 
 From a user perspective LBR can be used for collecting call-graph information even if you compiled your app without frame pointers (controlled by compiler option '-fomit-frame-pointer', ON by default):
 ```
