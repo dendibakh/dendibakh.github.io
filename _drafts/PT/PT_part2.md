@@ -13,7 +13,7 @@ categories: [tools]
 
 ------
 
-In the [first part]({{ site.url }}/blog/2019/08/23/Intel-Processor-Trace) of my series about Intel Processor Traces (PT) I showed the underlying mechanics of the HW feature and talked a bit about it's main use cases. In this article I will go into one of areas where PT can provide additional value, which is debugging.
+In the [first part]({{ site.url }}/blog/2019/08/23/Intel-Processor-Trace) of my series about Intel Processor Traces (PT) I showed the underlying mechanics of the HW feature and talked a bit about its main use cases. In this article I will go into one of areas where PT can provide additional value, which is debugging.
 
 ### Postmortem debugging 
 
@@ -53,12 +53,12 @@ Well, that's better than nothing, still doesn't give any clue what exactly the p
 
 Intel PT can provide a little bit more insights. I used [simple-pt](https://github.com/andikleen/simple-pt) to collect the traces [^1]. Please refer to `simple-pt` documentation[^2] for how to build and use it.
 
-I built the program like this:
+Source code for this example is available on my [github](https://github.com/dendibakh/dendibakh.github.io/tree/master/_posts/code/IntelPT/postmortem). I built the program like this:
 ```bash
 $ gcc a.cpp -g -o app
 ```
 
-The command below collects the traces. By dafult `simple-pt` saves the traces into 2MB circular buffer. This means new traces overwrite the old ones. So, even for long running applications we can have a trace of what was happening just before the crash:
+The command below collects the traces. By default `simple-pt` saves the traces into 2MB circular buffer. This means new traces overwrite the old ones. So, even for long running applications we can have a trace of what was happening just before the crash:
 ```bash
 $ sudo sptcmd -K --cyc 1 taskset -c 0 ./app
 ```
@@ -68,7 +68,7 @@ After we collected the traces we can decode them using command: [^3]
 $ sudo sptdecode -s ptout.sideband --pt ptout.0 -i -t | xed -F insn: -A -64 > dump.txt
 ```
 
-If we now look into the `dump.txt`, right at the bottom we will se something like:
+If we now look into the `dump.txt`, right at the bottom we will see something like:
 
 ```
 <...>
@@ -121,7 +121,7 @@ ret
 ud2
 ```
 
-Let's build the program and make sure it's crashing:
+Source code for this example is available on my [github](https://github.com/dendibakh/dendibakh.github.io/tree/master/_posts/code/IntelPT/stack_corruption). Let's build the program and make sure it's crashing:
 
 ```bash
 $ gcc a.c -c -g
