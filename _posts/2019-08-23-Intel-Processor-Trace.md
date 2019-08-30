@@ -87,7 +87,7 @@ As you can see PT will bundle up to 6 conditional branches before it will emit a
 
 Here are some of the cases when PT can be a great use:
 
-1. **Postmortem analysis**. PT provides the call stack information which is *always* valid even if the stack is corrupted. *More to come in Part2.*
+1. **Postmortem analysis**. PT provides the call stack information which is *always* valid even if the stack is corrupted. See [part2]({{ site.url }}/blog/2019/08/30/Intel-PT-part2): "Enhance debugging experience" for more details.
 2. **Analyze performance glitches** which are not statistically significant[^5]. *More to come in Part3.*
 3. **Having better accuracy when profiling**. PT can be a data provider for profiling tools. *More to come in Part4.*
 4. **Introspect execution of the program**. For example:
@@ -100,7 +100,7 @@ Here are some of the cases when PT can be a great use:
 2. LBR can only get timing (see [Precise timing of machine code with LBR]({{ site.url }}/blog/2019/04/03/Precise-timing-of-machine-code-with-Linux-perf)) for taken branches while PT encodes conditional branches regardless.
 3. LBR stack is limited to 32 last taken branches, while Intel PT can collect call stacks of unlimited depth[^6].
 4. Intel PT produces much more data than LBR and decoding it might take a while.
-5. This technology does not depend on the PMI interrupts[^2] which other PerfMon features like PEBS and LBR do. This makes Intel PT much more useful for real-time systems, because you don't need to interrupt the CPU to get out the data. This is definitely a shift from using PMI tracing into something new.
+5. Intel PT does not depend on the PMI interrupts[^2] which other PerfMon features like PEBS and LBR do. This makes Intel PT much more useful for real-time systems, because you don't need to interrupt the CPU to get out the data. This is definitely a shift from using PMI tracing into something new.
 
 ### References and links
 
