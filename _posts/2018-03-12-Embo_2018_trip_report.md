@@ -4,6 +4,11 @@ title: Embo 2018 trip report.
 categories: [personal]
 ---
 
+------
+**Subscribe to my [mailing list]({{ page.url }}#mc_embed_signup) and support me on [Patreon](https://www.patreon.com/dendibakh).**
+
+------
+
 ### It was a great pleasure to be with embo 2018.
 
 I really enjoyed being on [embo++ conference](https://www.embo.io/) this year. It was 2nd edition which was held in Bochum(Germany) from 8-12 March 2018. Everything was well organized starting from picking every attendee from the underground station to the quality and amount of food and drinks provided to us.

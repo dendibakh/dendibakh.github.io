@@ -4,6 +4,11 @@ title: Basics of profiling with perf.
 categories: [beginner friendly, tools]
 ---
 
+------
+**Subscribe to my [mailing list]({{ page.url }}#mc_embed_signup) and support me on [Patreon](https://www.patreon.com/dendibakh).**
+
+------
+
 In this post I want to go back to the basic things of profiling with perf. I want to show what's happening when you type `perf record`. We all know that it somehow shows us the hotspots and where our application spend most of the time. That's great, but how it's doing it? Let's find out.
 
 Before reading this post I suggest you to familiarize yourself with my two previous posts about [PMU counters and profiling basics]({{ site.url }}/blog/2018/06/01/PMU-counters-and-profiling-basics) and [Advanced profiling topics. PEBS and LBR]({{ site.url }}/blog/2018/06/08/Advanced-profiling-topics-PEBS-and-LBR). Especially with what is *counting* and *sampling*.

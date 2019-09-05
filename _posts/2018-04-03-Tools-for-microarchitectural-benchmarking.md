@@ -8,6 +8,11 @@ categories: [tools, performance analysis]
 * TOC
 {:toc}
 
+------
+**Subscribe to my [mailing list]({{ page.url }}#mc_embed_signup) and support me on [Patreon](https://www.patreon.com/dendibakh).**
+
+------
+
 I did a fair amount of low level experiments during the recent months and I tried different tools for making such experiments. In this post I just want to bring a qiuck summary for those tools in one place.
 
 **Disclaimer: I have no intention to compare different tools.**

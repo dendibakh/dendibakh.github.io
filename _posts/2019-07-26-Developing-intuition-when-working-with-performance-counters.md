@@ -4,6 +4,11 @@ title: Developing intuition when working with performance counters.
 categories: [performance analysis]
 ---
 
+------
+**Subscribe to my [mailing list]({{ page.url }}#mc_embed_signup) and support me on [Patreon](https://www.patreon.com/dendibakh).**
+
+------
+
 For developers that track performance of their application it is a usual thing that we might see performance degradations and gains during development life cycle. And once we see such perf changes, collecting basic performance metrics for both versions and comparing them is a perfectly valid way to proceed. However, there are road blocks along the way, of which you've better know in advance, so keep on reading.
 
 **Example.** Suppose we have two version of the same application. Let's call them `A` and `B`. Say, there was some source code change which yield performance degradation of 5%. I.e. the binary A performs 5% better than binary B. We collected performance counters and there are no particular outliers besides the difference in LLC cache-misses:

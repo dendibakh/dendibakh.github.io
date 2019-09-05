@@ -8,6 +8,11 @@ categories: [performance analysis, tools]
 * TOC
 {:toc}
 
+------
+**Subscribe to my [mailing list]({{ page.url }}#mc_embed_signup) and support me on [Patreon](https://www.patreon.com/dendibakh).**
+
+------
+
 This post aims to help people that want to better understand performance bottlenecks in their application. There are many existing [methodolgies to do performance anlysis](http://www.brendangregg.com/methodology.html), but not so many of them are robust and formal. When I was just starting with performance work I usually just profiled the app and tried to grasp through the hotspots of the benchmark hoping to find something there. This often lead to random experiments with unrolling, vectorization, inlining, you name it. I'm not saying it's always a loosing strategy. Sometimes you can be lucky to get big performance boost from random experiments. But usually you need to have very good intuition and luck :).
 
 In this post I show more formal way to do performance analysis. It's called [Top-down Microarchitecture Analysis Method (TMAM)](http://www.intel.com/content/www/us/en/architecture-and-technology/64-ia-32-architectures-optimization-manual.html) (Intel® 64 and IA-32 Architectures Optimization Reference Manual, Appendix B.1). In this metodology we try to detect what was stalling our execution starting from the high-level components (like Front End, Back End, Retiring, Branch predictor) and narrowing down the source of performance inefficiencies. 

@@ -4,6 +4,11 @@ title: I am relocating to the US.
 categories: [personal]
 ---
 
+------
+**Subscribe to my [mailing list]({{ page.url }}#mc_embed_signup) and support me on [Patreon](https://www.patreon.com/dendibakh).**
+
+------
+
 I'm about to start a new chapter in my career and life. I'm relocating to the US in a few days. Right now I want to say `Thank you` to Poland and say `Hello` to US.
 
 For those who know me: don't worry, I'm not changing job. I'm still staying with Intel and will be doing basically the same things I do now. But there was a business need for a company to move my project from Poland to US.

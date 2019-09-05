@@ -8,6 +8,11 @@ categories: [microarchitecture]
 * TOC
 {:toc}
 
+------
+**Subscribe to my [mailing list]({{ page.url }}#mc_embed_signup) and support me on [Patreon](https://www.patreon.com/dendibakh).**
+
+------
+
 Let me start this post with a question: "Do you think number of executed(retired) instructions is a good metric for measuring performance of your application?".
 
 Well, it is a decent proxy, but not an one-to-one match to the timings of the benchmark. And in this post I will show when it can be the case.

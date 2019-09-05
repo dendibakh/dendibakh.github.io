@@ -8,6 +8,11 @@ categories: [microarchitecture]
 * TOC
 {:toc}
 
+------
+**Subscribe to my [mailing list]({{ page.url }}#mc_embed_signup) and support me on [Patreon](https://www.patreon.com/dendibakh).**
+
+------
+
 In this post I will discussed another interesting feature of Intel processor that is called *store forwarding*.
 
 ### Store to load forwarding

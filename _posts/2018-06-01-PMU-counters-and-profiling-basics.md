@@ -8,6 +8,11 @@ categories: [beginner friendly, performance analysis]
 * TOC
 {:toc}
 
+------
+**Subscribe to my [mailing list]({{ page.url }}#mc_embed_signup) and support me on [Patreon](https://www.patreon.com/dendibakh).**
+
+------
+
 One way of analyzing performance of an application is instrumenting and then running it. Instrumenting means source code modification in such a way that allows us to grab some information about how our app executes. For example, we can measure number of calls for particular function, number of loop interations, etc. Theoretically, with this approach we can profile our application right within the application itself. However, it is not really the desired way to do it, because it is very time consuming, require recompilation each time we want to collect new metrics, and brings runtime overhead and noise in the measurements.
 
 We all know that, no surprise. The other way is to use profiling tools like perf and Vtune that will collect statistics without instrumenting the binary. I'm using those profiling tools very extensively but understanding how they work came to me not so long time ago. In this article I will try to uncover some basic principles of how those tools work.

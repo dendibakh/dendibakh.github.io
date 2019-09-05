@@ -8,6 +8,10 @@ categories: [optimizations, compilers]
 * TOC
 {:toc}
 
+------
+**Subscribe to my [mailing list]({{ page.url }}#mc_embed_signup) and support me on [Patreon](https://www.patreon.com/dendibakh).**
+
+------
 
 I spent a large amount of time in 2018 working on optimizations that try to improve layout of machine code. I decided to share what it is and show some basic types of such transformations.
 

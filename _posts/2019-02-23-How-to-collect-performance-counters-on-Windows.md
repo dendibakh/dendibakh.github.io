@@ -8,6 +8,11 @@ categories: [tools, performance analysis, windows]
 * TOC
 {:toc}
 
+------
+**Subscribe to my [mailing list]({{ page.url }}#mc_embed_signup) and support me on [Patreon](https://www.patreon.com/dendibakh).**
+
+------
+
 I was asked a couple of times by my subscribers how to do microarchitectural analysis on Windows? To be honest I never had that problem before. Guess why? Because I work at Intel and of course I have the license to use [Intel® VTune™ Amplifier](https://software.intel.com/en-us/vtune). I can't fully feel the pain of the people who are doing performance related work on windows and don't have access to Vtune or [AMD CodeAnalyst](https://en.wikipedia.org/wiki/AMD_CodeAnalyst). Since it wasn't my problem I didn't make any efforts towards it. Finally I was browsing through [Bartek's coding blog](https://www.bfilipek.com/) and found the article [Curious case of branch performance](https://www.bfilipek.com/2017/05/curius-case-of-branch-performance.html). To me that seemed like a case that can be easily proven just by running `perf stat` if we were on Linux. But since we are on Windows... it's not that simple.
 
 In this article I want to present one way how you can collect [PMU counters]({{ site.url }}/blog/2018/06/01/PMU-counters-and-profiling-basics) without Intel® VTune™ Amplifier. I took almost all the info from Bruce Dawson's [blog](https://randomascii.wordpress.com/). He wrote and [article](https://randomascii.wordpress.com/2016/11/27/cpu-performance-counters-on-windows/) which I want to expand and make it more of a step-by-step process. So, all the credit goes to Bruce here, because i didn't invent this. If you want to try it yourself, I suggest you first reproduce the example described in Bruce's article (link to [github](https://github.com/google/UIforETW/tree/master/LabScripts/ETWPMCDemo) with sources and scripts).

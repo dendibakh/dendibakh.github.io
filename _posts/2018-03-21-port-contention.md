@@ -8,6 +8,11 @@ categories: [microarchitecture]
 * TOC
 {:toc}
 
+------
+**Subscribe to my [mailing list]({{ page.url }}#mc_embed_signup) and support me on [Patreon](https://www.patreon.com/dendibakh).**
+
+------
+
 I continue writing about performance of the processors and today I want to show some examples of issues that can arise in the CPU backend. In particular today's topic will be CPU ports contention.
 
 Modern processors have multiple execution units. For example, in SandyBridge family there are 6 execution ports:

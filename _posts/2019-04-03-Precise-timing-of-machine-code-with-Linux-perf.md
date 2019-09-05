@@ -8,6 +8,11 @@ categories: [tools, performance analysis]
 * TOC
 {:toc}
 
+------
+**Subscribe to my [mailing list]({{ page.url }}#mc_embed_signup) and support me on [Patreon](https://www.patreon.com/dendibakh).**
+
+------
+
 I feel like writing these days, so powered by this feeling I decided to share another quite useful technique that I sometimes use. Today I will show how you can utilize Intel [LBR]({{ site.url }}/blog/2018/06/08/Advanced-profiling-topics-PEBS-and-LBR) (Last Branch Record) feature to do cycle-based timing of the code blocks. Knowing precisely how much cycles it took to execute certain number of assembly instructions, how great that would be? Want to know how? Keep on reading and you will learn. Just to tease you, look at this desired report:
 ```
   0000000000400618   movb  $0x0, (%rbp,%rdx,1) 

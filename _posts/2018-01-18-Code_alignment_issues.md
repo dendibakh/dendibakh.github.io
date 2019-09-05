@@ -8,6 +8,11 @@ categories: [tuning]
 * TOC
 {:toc}
 
+------
+**Subscribe to my [mailing list]({{ page.url }}#mc_embed_signup) and support me on [Patreon](https://www.patreon.com/dendibakh).**
+
+------
+
 ### Introduction
 
 How hard it is to benchmark the simple function like that?

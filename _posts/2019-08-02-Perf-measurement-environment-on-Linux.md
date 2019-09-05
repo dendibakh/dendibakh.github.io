@@ -9,7 +9,7 @@ categories: [performance analysis, tools]
 {:toc}
 
 ------
-**Subscribe to my [mailing list]({{ page.url }}#mc_embed_signup) to get more updates from me!**
+**Subscribe to my [mailing list]({{ page.url }}#mc_embed_signup) and support me on [Patreon](https://www.patreon.com/dendibakh).**
 
 ------
 

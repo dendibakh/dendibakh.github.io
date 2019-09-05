@@ -9,7 +9,7 @@ categories: [tools]
 {:toc}
 
 ------
-**Subscribe to my [mailing list]({{ page.url }}#mc_embed_signup) to get more updates from me!**
+**Subscribe to my [mailing list]({{ page.url }}#mc_embed_signup) and support me on [Patreon](https://www.patreon.com/dendibakh).**
 
 ------
 
@@ -89,8 +89,7 @@ In this example you can see how Intel PT can tell us the last instructions that 
 
 Logs still are very useful because you can print some values in them. Until `PTWRITE` instruction came out there was no way of dumping data in processor traces. Traces were only useful for determining control flow. But in recent CPUs we have `PTWRITE` instruction that allows writing values into the PT packets[^7]. According to [Intel SD Manual](https://software.intel.com/en-us/articles/intel-sdm):
 
-> This instruction reads data in the source operand and sends it to the Intel Processor Trace hardware to be encoded
-in a PTW packet.
+> This instruction reads data in the source operand and sends it to the Intel Processor Trace hardware to be encoded in a PTW packet.
 
 I haven't used `PTWRITE` in practice, but I assume that every time you want to print something new you need to recompile the binary. Though you need to do the same when using logs.
 
@@ -231,4 +230,4 @@ make install
 [^4]: Note however that the last instruction that caused the division exception is not shown in the trace.
 [^5]: Although perf is able to emit source code location for the corresponding assembly code. Use: `perf record -e intel_pt/cyc=1/u ...` and then `perf script -F +srcline ... `.
 [^6]: Check the [first part]({{ site.url }}/blog/2019/08/23/Intel-Processor-Trace) of this series for information about runtime overhead.
-[^7]: See the [first part]({{ site.url }}/blog/2019/08/23/Intel-Processor-Trace) of this series for information about Intel PT packets7
+[^7]: See the [first part]({{ site.url }}/blog/2019/08/23/Intel-Processor-Trace) of this series for information about Intel PT packets.

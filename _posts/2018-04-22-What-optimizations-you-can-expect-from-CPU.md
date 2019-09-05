@@ -8,6 +8,11 @@ categories: [microarchitecture]
 * TOC
 {:toc}
 
+------
+**Subscribe to my [mailing list]({{ page.url }}#mc_embed_signup) and support me on [Patreon](https://www.patreon.com/dendibakh).**
+
+------
+
 Compilers are known for doing all sorts of cool optimizations on the source code, generating very efficient assembly code. You can expect that there will be no useless computations in the compiled code. Even if you leave those inefficiencies, most major compilers will optimize everything away. Moreover, compilers are aware (to some degree) about microarchitectural details of the target CPU. So, it may seems that compiler is the one who is in charge for performance, but it's not.
 
 Modern high-end CPUs are also known to be really greedy when it comes for performance, and they also do amazing job at running assembly code super-fast. In this post I tried to show what optimizations you can rely on, and what patterns are still beyond CPU capabilities.
