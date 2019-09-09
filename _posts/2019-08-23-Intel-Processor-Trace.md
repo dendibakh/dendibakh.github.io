@@ -88,7 +88,7 @@ As you can see PT will bundle up to 6 conditional branches before it will emit a
 Here are some of the cases when PT can be a great use:
 
 1. **Postmortem analysis**. PT provides the call stack information which is *always* valid even if the stack is corrupted. See [part2]({{ site.url }}/blog/2019/08/30/Intel-PT-part2): "Enhance debugging experience" for more details.
-2. **Analyze performance glitches** which are not statistically significant[^5]. *More to come in Part3.*
+2. **Analyze performance glitches** which are not statistically significant[^5]. See [part3]({{ site.url }}/blog/2019/09/06/Intel-PT-part3): "Analyzing performance glitches" for more details.
 3. **Having better accuracy when profiling**. PT can be a data provider for profiling tools. *More to come in Part4.*
 4. **Introspect execution of the program**. For example:
 * We can immediately  tell if some code path was never executed. Sort of prove theory quickly.
