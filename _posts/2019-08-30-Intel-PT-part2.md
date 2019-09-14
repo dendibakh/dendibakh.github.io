@@ -13,7 +13,15 @@ categories: [tools]
 
 ------
 
-In the [first part]({{ site.url }}/blog/2019/08/23/Intel-Processor-Trace) of my series about Intel Processor Traces (PT) I showed the underlying mechanics of this HW feature and talked a bit about its main use cases. In this article I will go into one of areas where PT can provide additional value, which is debugging.
+In the [first part]({{ site.url }}/blog/2019/08/23/Intel-Processor-Trace) of my series about Intel Processor Traces (PT) I showed the underlying mechanics of this HW feature and talked a bit about its main use cases.
+
+Here is the list of all parts in the series of posts about Intel PT:
+1. Part1: [Introduction to Intel Processor Trace]({{ site.url }}/blog/2019/08/23/Intel-Processor-Trace).
+2. Part2: Better debugging experience with Intel PT (this article).
+3. Part3: [Analyzing performance glitches with Intel PT]({{ site.url }}/blog/2019/09/06/Intel-PT-part3).
+4. Part4: [Better profiling experience with Intel PT]({{ site.url }}/blog/2019/09/13/Intel-PT-part4).
+
+In this article I will go into one of areas where PT can provide additional value, which is debugging.
 
 ### Postmortem debugging 
 

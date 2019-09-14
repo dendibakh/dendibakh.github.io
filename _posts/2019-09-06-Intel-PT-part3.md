@@ -15,6 +15,12 @@ categories: [tools]
 
 This is the third part of my series about Intel Processor Traces (PT). In the [first part]({{ site.url }}/blog/2019/08/23/Intel-Processor-Trace) of this series I showed the underlying mechanics of this HW feature. In the [second part]({{ site.url }}/blog/2019/08/30/Intel-PT-part2) I showed 2 ways how PT can enhance your debugging experience. 
 
+Here is the list of all parts in the series of posts about Intel PT:
+1. Part1: [Introduction to Intel Processor Trace]({{ site.url }}/blog/2019/08/23/Intel-Processor-Trace).
+2. Part2: [Better debugging experience with Intel PT]({{ site.url }}/blog/2019/08/30/Intel-PT-part2).
+3. Part3: Analyzing performance glitches with Intel PT (this article).
+4. Part4: [Better profiling experience with Intel PT]({{ site.url }}/blog/2019/09/13/Intel-PT-part4).
+
 In this article we will focus more on the performance side of this CPU feature.
 
 ### Analyzing performance glitches

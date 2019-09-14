@@ -13,6 +13,8 @@ categories: [tools, performance analysis]
 
 ------
 
+**This is the series of articles that consists of multiple parts. See [below]({{ page.url }}#usages) for links to other parts.**
+
 The oldest method for doing performance analysis is the code instrumentation. We all did it many times. Remember when you insert some `printf` statement in the beginning of the function just to count the number of times the function was called? Ha, me too. This is the easiest and likely the most precise and verbose technique to analyze performance application. Yet code instrumentation has serious disadvantages. In particular, large overhead and need to recompile the app every time we want to count something different. People do not use manual code instrumentation this days very often. However, automated code instrumentation is still used, for example in PGO[^1].
 
 During the years new methods for doing performance analysis have been developed. One of them is based on interrupts (PMI[^2]). The easiest way to look at it is the following. If you use a debugger and will stop the program every second and record the place where you stop, you will get a collection of the samples which will tell you where your program spends time the most. This is the over simplified description of what profiling tools are doing. Read more about the underlying mechanics here: [PMU counters and profiling basics]({{ site.url }}/blog/2018/06/01/PMU-counters-and-profiling-basics), [Basics of profiling with perf]({{ site.url }}/blog/2018/08/26/Basics-of-profiling-with-perf).
@@ -89,7 +91,7 @@ Here are some of the cases when PT can be a great use:
 
 1. **Postmortem analysis**. PT provides the call stack information which is *always* valid even if the stack is corrupted. See [part2]({{ site.url }}/blog/2019/08/30/Intel-PT-part2): "Enhance debugging experience" for more details.
 2. **Analyze performance glitches** which are not statistically significant[^5]. See [part3]({{ site.url }}/blog/2019/09/06/Intel-PT-part3): "Analyzing performance glitches" for more details.
-3. **Having better accuracy when profiling**. PT can be a data provider for profiling tools. *More to come in Part4.*
+3. **Having better accuracy when profiling**. PT can be a data provider for profiling tools. See [part4]({{ site.url }}/blog/2019/09/13/Intel-PT-part4): "Better profiling experience" for more details.
 4. **Introspect execution of the program**. For example:
 * We can immediately  tell if some code path was never executed. Sort of prove theory quickly.
 * How much time we spent waiting while spinning on a lock attempt.
