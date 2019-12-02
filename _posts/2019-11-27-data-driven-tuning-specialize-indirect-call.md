@@ -54,11 +54,11 @@ original case:    2.87
 specialized case: 1.99
 ```
 
-That's a 44% speedup. Not bad! It definitely deserves our attention. Code example and scripts to build the benchmark can be downloaded from my [github](https://github.com/dendibakh/dendibakh.github.io/tree/master/_posts/DataDriven/devirt).
+That's a 44% speedup. Not bad! It definitely deserves our attention. Code example and scripts to build the benchmark can be downloaded from my [github](https://github.com/dendibakh/dendibakh.github.io/tree/master/_posts/code/DataDriven/devirt).
 
 ### Why it is faster?
 
-In order to make analysis easier, I modified the code presented in the beginning of the article. I generated 10000 random pointers to a function. In the hot loop I iterate over them 100000 times. That makes 10<sup>9</sup> iterations. While the code is changed the ideas is still the same. See the code on my [github](https://github.com/dendibakh/dendibakh.github.io/tree/master/_posts/DataDriven/devirt) for exact implementation.
+In order to make analysis easier, I modified the code presented in the beginning of the article. I generated 10000 random pointers to a function. In the hot loop I iterate over them 100000 times. That makes 10<sup>9</sup> iterations. While the code is changed the ideas is still the same. See the code on my [github](https://github.com/dendibakh/dendibakh.github.io/tree/master/_posts/code/DataDriven/devirt) for exact implementation.
 
 Let's look at the hot path for both cases:
 
@@ -125,7 +125,7 @@ Specialized case is a little bit trickier. I found that hot path executes 2.8 cy
 
 If someone is interested in exact details of how I measured it, shoot me an email.
 
-*Important thing to consider*: In my code example every function that gets called through `fp` is just one line of code (multiply by some prime number). Given that, this is the extreme case where this transformation shines the most. **Improvement will certainly drop with the amount of code you add to every "foo" function**. In my tests I stopped seeing performance gains after adding more than 15 multiplications in each called function (see charts below)[^3]. Again, see code on my [github](https://github.com/dendibakh/dendibakh.github.io/tree/master/_posts/DataDriven/devirt) if you want to see exact implementation of the benchmark.
+*Important thing to consider*: In my code example every function that gets called through `fp` is just one line of code (multiply by some prime number). Given that, this is the extreme case where this transformation shines the most. **Improvement will certainly drop with the amount of code you add to every "foo" function**. In my tests I stopped seeing performance gains after adding more than 15 multiplications in each called function (see charts below)[^3]. Again, see code on my [github](https://github.com/dendibakh/dendibakh.github.io/tree/master/_posts/code/DataDriven/devirt) if you want to see exact implementation of the benchmark.
 
 ### Related thoughts
 

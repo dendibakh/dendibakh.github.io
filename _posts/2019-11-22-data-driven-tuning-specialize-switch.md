@@ -75,7 +75,7 @@ specialized case:
 
 *Important thing to consider*: Here the extreme case is shown, where this transformation shines the most. **Improvement will certainly drop with the amount of code you add to process each instruction**.
 
-Code example and scripts to build the benchmark can be downloaded from my [github](https://github.com/dendibakh/dendibakh.github.io/tree/master/_posts/DataDriven/spec-switch).
+Code example and scripts to build the benchmark can be downloaded from my [github](https://github.com/dendibakh/dendibakh.github.io/tree/master/_posts/code/DataDriven/spec-switch).
 
 Timings on Intel Xeon E5-2643 v4 + gcc 4.8.5 (sec):
 
