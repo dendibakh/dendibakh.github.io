@@ -4,16 +4,12 @@ title: How sport helps me to recharge.
 categories: [personal]
 ---
 
-**Contents:**
-* TOC
-{:toc}
-
 ------
-**Subscribe to my [mailing list]({{ page.url }}#mc_embed_signup) to get more updates from me!**
+**Subscribe to my [mailing list]({{ page.url }}#mc_embed_signup) and support me on [Patreon](https://www.patreon.com/dendibakh).**
 
 ------
 
-This post is not what I usually blog about. :) I regularly write about technical stuff, not about personal life and fitness. But damn, sometimes it's okay to change something. Anyway, keep on reading, but remember I warned you, there will be zero technical value in this post.
+This post is not what I usually blog about. :) I regularly write about technical stuff, not about personal life and fitness. But damn, sometimes it's okay to change something. **Anyway, keep on reading, but remember I warned you, there will be zero technical value in this post.**
 
 One reader of my blog wrote to me: "Hey, I found your Instagram account and thought it's not you, there are so many sports photos." Well, yeah, that's true. Sports was always a part of my live. I don't remember a single week I haven't been exercising. Maybe except when I was sick. And over the past few years I started feeling how I essentially can't live without going for a little running workout or playing soccer.
 
@@ -25,7 +21,7 @@ Additionally, I always listen audiobooks while running. I have [Audible](https:/
 
 ![](/img/posts/sports/run.jpg){: .center-image-width-40 }
 
-There is one good thing about daily sport commitments. I believe it trains our mind in doing things that do not necessary bring you joy and happiness. It develops confidence and discipline. And not just in sports but in my daily job as well. During the years I made such an observation, that I tend to procrastinate more when I miss my physical exercises.
+There is one good thing about daily sport commitments. **I believe it trains our mind in doing things that do not necessary bring you joy and happiness. It develops confidence and discipline**. And not just in sports but in my daily job as well. During the years I made such an observation, that I tend to procrastinate more when I miss my physical exercises.
 
 Everything what I wrote is not new, I know. But if I could inspire at least one reader to make sport activities a daily routine, I will consider it a success.
 
