@@ -13,7 +13,15 @@ categories: [tools, performance analysis]
 
 ------
 
-This article is a continuation of a [first part]({{ site.url }}/blog/2019/10/05/Performance-Analysis-Of-MT-apps) of what hopefully will become a series of posts about performance analysis of multithreaded (MT) applications. As discussed in first part, usually the reason that prevents MT app from scaling linearly is communication between threads. Today I will try to expand this topic in more details.
+This article is a continuation of a [first part]({{ site.url }}/blog/2019/10/05/Performance-Analysis-Of-MT-apps) of what hopefully will become a series of posts about performance analysis of multithreaded (MT) applications. 
+
+Other parts of the series can be found here:
+
+1. Performance analysis of multithreaded applications ([link]({{ site.url }}/blog/2019/10/05/Performance-Analysis-Of-MT-apps)).
+2. How to find expensive locks in multithreaded application (this article).
+3. Detecting false sharing with Data Address Profiling (this article).
+
+As discussed in [first part]({{ site.url }}/blog/2019/10/05/Performance-Analysis-Of-MT-apps), usually the reason that prevents MT app from scaling linearly is communication between threads. Today I will try to expand this topic in more details.
 
 In particular, the question I will try to answer today is: **how to find the code where threads spend the most time waiting and which code paths lead to it?**
 

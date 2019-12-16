@@ -17,6 +17,12 @@ Modern CPUs are getting more and more cores each year. As of 2019 you can buy fr
 
 Most of the articles in my blog so far were focused on the performance of a single core, completely ignoring the entire spectrum of multithreaded applications (MT app). I decided to fill this gap and write a **beginner-friendly article** showing how one can quickly jump into analyzing performance of the MT app. Sure, there is a lot of details which is impossible to cover in one article. Here I just want to touch ground on performance analysis of MT apps, give you the checklist and the set of tools which you can use. But be sure, there will be more of it on my blog, just stay tuned.
 
+This is a series of articles. Other parts of the series can be found here:
+
+1. Performance analysis of multithreaded applications (this article).
+2. How to find expensive locks in multithreaded application ([link]({{ site.url }}/blog/2019/10/12/MT-Perf-Analysis-part2)).
+3. Detecting false sharing with Data Address Profiling (link).
+
 As usual, I provide my articles with examples, so let me start with the benchmark which we will be working on.
 
 ### Benchmark under the test
