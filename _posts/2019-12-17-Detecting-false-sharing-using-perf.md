@@ -15,9 +15,9 @@ categories: [tools, performance analysis]
 
 This article is a continuation of my series of posts about performance analysis of multithreaded (MT) applications. Other parts of the series can be found here:
 
-1. Performance analysis of multithreaded applications ([link]({{ site.url }}/blog/2019/10/05/Performance-Analysis-Of-MT-apps)).
-2. How to find expensive locks in multithreaded application ([link]({{ site.url }}/blog/2019/10/12/MT-Perf-Analysis-part2)).
-3. Detecting false sharing with Data Address Profiling (this article).
+1. [Performance analysis of multithreaded applications]({{ site.url }}/blog/2019/10/05/Performance-Analysis-Of-MT-apps).
+2. [How to find expensive locks in multithreaded application]({{ site.url }}/blog/2019/10/12/MT-Perf-Analysis-part2).
+3. [Detecting false sharing with Data Address Profiling]({{ site.url }}/blog/2019/12/17/Detecting-false-sharing-using-perf) (this article).
 
 Today we will touch on false sharing a bit and how to detect it, but mostly this article will be dedicated to one interesting performance monitoring feature which is called Data Address Profiling (DLA). If you visit this blog post and want to know how to find out if you have false sharing in your application but don't care about the underlying mechanism of "how", you probably want to jump into this [blog post](https://joemario.github.io/blog/2016/09/01/c2c-blog/). If you are interested in the DLA feature and want to know how else it can be useful, keep on reading this article.
 

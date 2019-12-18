@@ -19,9 +19,9 @@ Most of the articles in my blog so far were focused on the performance of a sing
 
 This is a series of articles. Other parts of the series can be found here:
 
-1. Performance analysis of multithreaded applications (this article).
-2. How to find expensive locks in multithreaded application ([link]({{ site.url }}/blog/2019/10/12/MT-Perf-Analysis-part2)).
-3. Detecting false sharing with Data Address Profiling (link).
+1. [Performance analysis of multithreaded applications]({{ site.url }}/blog/2019/10/05/Performance-Analysis-Of-MT-apps) (this article).
+2. [How to find expensive locks in multithreaded application]({{ site.url }}/blog/2019/10/12/MT-Perf-Analysis-part2).
+3. [Detecting false sharing with Data Address Profiling]({{ site.url }}/blog/2019/12/17/Detecting-false-sharing-using-perf).
 
 As usual, I provide my articles with examples, so let me start with the benchmark which we will be working on.
 

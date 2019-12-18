@@ -17,9 +17,9 @@ This article is a continuation of a [first part]({{ site.url }}/blog/2019/10/05/
 
 Other parts of the series can be found here:
 
-1. Performance analysis of multithreaded applications ([link]({{ site.url }}/blog/2019/10/05/Performance-Analysis-Of-MT-apps)).
-2. How to find expensive locks in multithreaded application (this article).
-3. Detecting false sharing with Data Address Profiling (this article).
+1. [Performance analysis of multithreaded applications]({{ site.url }}/blog/2019/10/05/Performance-Analysis-Of-MT-apps).
+2. [How to find expensive locks in multithreaded application]({{ site.url }}/blog/2019/10/12/MT-Perf-Analysis-part2) (this article).
+3. [Detecting false sharing with Data Address Profiling]({{ site.url }}/blog/2019/12/17/Detecting-false-sharing-using-perf).
 
 As discussed in [first part]({{ site.url }}/blog/2019/10/05/Performance-Analysis-Of-MT-apps), usually the reason that prevents MT app from scaling linearly is communication between threads. Today I will try to expand this topic in more details.
 
