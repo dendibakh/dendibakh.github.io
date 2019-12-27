@@ -13,9 +13,9 @@ categories: [performance analysis]
 
 ------
 
-When doing performance improvements in our code, we need a way to prove that we actually made it better. Or when we commit a regular code change we want to make sure performance did not regress. Typically, we do this by 1) measure the baseline performance, 2) measure performance of the modified program and 3) compare them with each other.
+When doing performance improvements in our code, we need a way to prove that we actually made it better. Or when we commit a regular code change, we want to make sure performance did not regress. Typically, we do this by 1) measure the baseline performance, 2) measure performance of the modified program and 3) compare them with each other.
 
-Here is the exact scenario for this article: compare performance of two different versions of the same **functional** program. For example, we have a program that recursively calculates fibonacci numbers and we decided to rewrite it in an iterative fashion. Both are functionally correct and yeild the same numbers. Now we need to compare two programs for performance.
+Here is the exact scenario for this article: compare performance of two different versions of the same **functional** program. For example, we have a program that recursively calculates Fibonacci numbers and we decided to rewrite it in an iterative fashion. Both are functionally correct and yield the same numbers. Now we need to compare two programs for performance.
 
 It is very much recommended to get not just a single measurement, but to run the benchmark multiple times. So, we have N measurements for the baseline and N measurements for the modified version of the program. Now we need a way to compare those 2 sets of measurements to decide which one is faster. 
 
