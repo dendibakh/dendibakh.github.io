@@ -1,6 +1,6 @@
 ---
 layout: post
-title: How to compare performance measurements and see which is faster.
+title: Benchmarking&#58 compare measurements and check which is faster.
 categories: [performance analysis]
 ---
 
@@ -82,15 +82,15 @@ That's why it is essential to know the distribution of the benchmark you are wor
 
 ### Interestingness threshold
 
-When comparing two versions of the same program, some flactuation in performance is inevitable. Imagine, we have a nightly performance testing in place. And quite often you will see performance variations as developers commit their changes. Sometimes small performance degradations can arise even without code changes due to HW instability, I/O, environment, etc. Sometimes even a harmless code change can trigger performance variation of your benchmark. Example of such HW effect can be found in my earlier article [Code placement issues]({{ site.url }}/blog/2018/01/18/Code_alignment_issues).
+When comparing two versions of the same program, some fluctuation in performance is inevitable. Imagine, we have a nightly performance testing in place. And quite often you will see performance variations as developers commit their changes. Sometimes small performance degradations can arise even without code changes due to HW instability, I/O, environment, etc. Sometimes even a harmless code change can trigger performance variation of your benchmark. Example of such HW effect can be found in my earlier article [Code placement issues]({{ site.url }}/blog/2018/01/18/Code_alignment_issues).
 
 Since usually we cannot do much about instability described above, it would be good to filter somehow the noise from the real regressions resulted from a bad code change. The last thing we want is to be bothered with everyday performance changes of 0.5% up or down. Understanding whether regression comes from a bad code change or from other sources can be quite time consuming, especially if it a small regression (<2%).
 
-To deal with such kind of issues we need to define some threshold which we will use to filter small performance variation. For example, if we set the interestingness threshold to 2%, it means that every performance change below it will be considered as noise and can be ignored. Keep in mind, that by using such a criteria, sometimes you can ignore the real performance regressions. This is a business decision to make and is a trade-off. On the one hand you want to save your time and avoid analyzing small regressions that often are just noise. On the other hand you might miss the bad code change.
+To deal with such kind of issues we need to define some threshold which we will use to filter small performance variation. For example, if we set the interestingness threshold to 2%, it means that every performance change below it will be considered as noise and can be ignored. Keep in mind, that by using such a criterion, sometimes you can ignore the real performance regressions. This is a business decision to make and is a trade-off. On the one hand you want to save your time and avoid analyzing small regressions that often are just noise. On the other hand, you might miss the bad code change.
 
 The actual value of this threshold usually depends on 1) how much you care about performance regressions/improvements and 2) how flaky your benchmark is. For compute bound workloads I see people set their threshold in the range from 2% to 5%.
 
-Be sure to track absolute numbers as well, not just ratios. E.g. if you have 4 consequtive 1.5% regressions, they will all be filtered by the interestingness threshold, but they will sum up to 6% over a 4 days. You don't want to skip such long-term degradation, so make sure you track the absolute numbers from time to time to see the trend in which performance of your benchmark is going.
+Be sure to track absolute numbers as well, not just ratios. E.g. if you have 4 consecutive 1.5% regressions, they will all be filtered by the interestingness threshold, but they will sum up to 6% over 4 days. You don't want to skip such long-term degradation, so make sure you track the absolute numbers from time to time to see the trend in which performance of your benchmark is going.
 
 ### Conclusion and practical advices
 
