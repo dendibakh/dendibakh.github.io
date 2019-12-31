@@ -75,6 +75,11 @@ ul.contestlist li {line-height: 30px; }
     margin: 0 auto;
     width: 30%;
 }
+.center-image-width-35-no-block
+{
+    margin: 0 auto;
+    width: 35%;
+}
 .center-image-width-40
 {
     margin: 0 auto;
