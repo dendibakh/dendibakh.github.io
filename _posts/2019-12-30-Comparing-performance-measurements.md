@@ -13,6 +13,8 @@ categories: [performance analysis]
 
 ------
 
+**UPD. on Jan 6th 2020 after comments from readers.**
+
 When doing performance improvements in our code, we need a way to prove that we actually made it better. Or when we commit a regular code change, we want to make sure performance did not regress. Typically, we do this by 1) measure the baseline performance, 2) measure performance of the modified program and 3) compare them with each other.
 
 Here is the exact scenario for this article: compare performance of two different versions of the same **functional** program. For example, we have a program that recursively calculates Fibonacci numbers and we decided to rewrite it in an iterative fashion. Both are functionally correct and yield the same numbers. Now we need to compare two programs for performance.
@@ -60,17 +62,17 @@ When we compare performance of two versions of the program, we really want to co
 
 Now, going back to our first example... Remember I wrote that taking average is a bad choice? But why? Mathematically, it is the best choice the one could make if not considering that there could be... Outliers. We know the underlying nature of the environment we are working in and it suggests us that the rightmost sample (`1000s`) is likely to be an outlier. The issue with the average is that it accounts for outliers which we should be removing first. Minimum is free from taking into account right hand side outliers, which allows to have smaller number of iterations. Median is resistant to both left- and right-hand side outliers, but sometimes does not give the most accurate comparisons.
 
-That said, on practice minimum works well for right-skewed distributions, e.g. compute-bound workloads. However, there are cases when minimum can also be a bad choice. For example:[^5]
+That said, on practice minimum works well for right-skewed distributions, e.g. compute-bound workloads. However, there are cases when minimum can also be a bad choice. For example:
 
-![](/img/posts/ProcessMeas/normal-dist.jpg){: .center-image-width-60 }
+![](/img/posts/ProcessMeas/minimum-wrong.jpg){: .center-image-width-60 }
 
-In this scenario Minimum is an outlier itself. Dah! I know, I might confused you at this point and you want to ask...
+In this scenario both `A` and `B` versions have the same minimum value, but we clearly can see that usually `A` is faster. Dah! I know, I might confused you at this point and you want to ask...
 
 ### So, which one to pick?
 
 It turns out that there is no right or wrong answer. There is no easy way to compare distributions. And it is not always easy to do. We can only hypothesize that some version of a program is faster than the other, because the measurement set is endless. We can always produce additional sample which could be way faster than all the previous. We can only say that **we think** the version A is faster than version B with some probability P. You see, it gets complicated really quickly...
 
-So, what do you do? You look at the distribution.
+So, what do you do? You look at the distribution.[^5]
 
 ![](/img/posts/ProcessMeas/comp-dist.jpg){: .center-image-width-45-no-block } ![](/img/posts/ProcessMeas/box-plot.jpg){: .center-image-width-35-no-block }
 
@@ -94,16 +96,12 @@ Be sure to track absolute numbers as well, not just ratios. E.g. if you have 4 c
 
 ### Conclusion and practical advices
 
-Let me repeat the caveat in case you jumped directly to conclusions and skipped the whole article. :)
-
-If you ask any data scientist, (s)he will tell you that you should **not** rely on a single metric (min/mean/median, etc.). However, the classic statistical methods don't always work well in performance world which makes the problem of automation harder. Likely manual intervention is needed in this case which makes it very time consuming. If you have nightly performance testing in place and multiple benchmarks in a suite, you can't compare them manually every day, so automation is needed. I think sometimes you can (and should) allow yourself to drive less accurate conclusions from the measurements in order to save your precious time. If you decide to go without automation, likely box plot is your best friend here. Alternatively you can compare distributions by representing them with at least 3 numbers: { [Q1](https://en.wikipedia.org/wiki/Quartile); median ; [Q3](https://en.wikipedia.org/wiki/Quartile) }.
-
 Below are the practical advices. They may not work for every possible scenario, but I hope will work well in practice.
 
-1. Do the visualization once for your benchmark and see which measurement is the most representative.
-2. For compute-bound applications take the minimum if you cannot afford collecting many samples. Take median if you want to be on a safe side (when you think distribution is not 100% right-skewed).
-3. If you can afford rich collection of samples (at least 30) it's okay to compare means (averages) but only if the [standard error](https://en.wikipedia.org/wiki/Standard_error) is small. You can also adjust the number of iterations dynamically by checking standard error after each collected sample. I.e. you collect samples until you get standard error lie in a certain range.
-4. Alternatively, you can fix the number of iterations but go through the process of removing outliers, which I will not discuss in this article. After which you can again consider comparing means. However, you cannot always remove outliers. For example, if you are benchmarking latency of a web service request, you might care a lot about outliers if you have time limits for processing each request.
+1. No single metric is perfect.
+2. If you can afford rich collection of samples (at least 30) it's okay to compare means (averages) but only if the [standard error](https://en.wikipedia.org/wiki/Standard_error) is small. You can also adjust the number of iterations dynamically by checking standard error after each collected sample. I.e. you collect samples until you get standard error lie in a certain range.
+3. If you have a small number of benchmark iterations consider taking minimum or median, because the mean can be spoiled by outliers. Alternatively, you can go through the process of removing outliers, which I will not discuss in this article. After that you can again consider comparing means. However, there are cases when you cannot remove outliers. For example, if you are benchmarking latency of a web service request, you might care a lot about outliers if you have time limits for processing each request.
+4. To be on a safe side, plot the distributions and let the readers drive their own conclusions. If you decide to go without automation, likely box/violin plots are your best friends here. Alternatively you can compare distributions by representing them with at least 3 numbers: { [Q1](https://en.wikipedia.org/wiki/Quartile); median ; [Q3](https://en.wikipedia.org/wiki/Quartile) }.
 5. Define the interestingness threshold for your measurements.
 
 ### Bonus: Bimodal distribution
