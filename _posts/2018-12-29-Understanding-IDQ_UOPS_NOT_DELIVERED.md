@@ -122,7 +122,7 @@ According to our mental model we should be wasting 3 slots to deliver uops to RA
             232128      LSD.CYCLES_4_UOPS
 ```
 
-We can see that half of the time RAT was stalled (likely because it was full) and another half of the time LSD was active and delivered some amount of uops. We can already guess that number because we know how much total slots we waisted (`IDQ_UOPS_NOT_DELIVERED.CORE`). Each second cycle LSD delivered 2 uops which also means that each second cycle `IDQ_UOPS_NOT_DELIVERED.CORE` was increased by 2. Given that the number of cycles the backend was requesting uops is 5 * 10^8 and we waisted 2 slots on each of them, we confirmed the number for `IDQ_UOPS_NOT_DELIVERED.CORE` (10^9).
+We can see that half of the time RAT was stalled (likely because it was full) and another half of the time LSD was active and delivered some amount of uops. We can already guess that number because we know how many total slots we wasted (`IDQ_UOPS_NOT_DELIVERED.CORE`). Each second cycle LSD delivered 2 uops which also means that each second cycle `IDQ_UOPS_NOT_DELIVERED.CORE` was increased by 2. Given that the number of cycles the backend was requesting uops is 5 * 10^8 and we wasted 2 slots on each of them, we confirmed the number for `IDQ_UOPS_NOT_DELIVERED.CORE` (10^9).
 
 I must say that I expected to see one uop delivered each cycle instead of 2 uops each second cycle. I'm not entirely sure why that's the case. It proves that real CPU design is much more complicated than my mental model. :)
 
@@ -144,7 +144,7 @@ Another way to do this is to use subcounters of `IDQ_UOPS_NOT_DELIVERED`:
          500685038      IDQ_UOPS_NOT_DELIVERED.CYCLES_FE_WAS_OK                                     (66,77%)
 ```
 
-Looking at those numbers we can say how much cycles we were delivering specific number of uops to the RAT (and there is no back-end stall):
+Looking at those numbers we can say how many cycles we were delivering specific number of uops to the RAT (and there is no back-end stall):
 
 ```
 Cycles with 0 uop delivered = IDQ_UOPS_NOT_DELIVERED.CYCLES_0_UOP_DELIV.CORE
@@ -168,7 +168,7 @@ If we sum up all those numbers we will receive the number of cycles spent. I'm p
 
 ### Conclusion
 
-Here you have usefull tool which you can use to better understand performance issues you might have. It's very interesting to see sometimes cases where just making small changes makes a huge impact on IDQ_UOPS_NOT_DELIVERED counters.
+Here you have useful tool which you can use to better understand performance issues you might have. It's very interesting to see sometimes cases where just making small changes makes a huge impact on IDQ_UOPS_NOT_DELIVERED counters.
 
 For big applications it's impossible to reason about the execution pattern of the benchmark just by looking at IDQ_UOPS_NOT_DELIVERED counters, but it might give you some interesting insights and further direction. When you made some changes in your application and want to analyze the effect, it's sometimes fruitful to compare the absolute numbers for IDQ_UOPS_NOT_DELIVERED counters. However, there should be a strong difference, couple of percents do not count. For particular application of using this counter take a look at my post [Code alignment issues]({{ site.url }}/blog/2018/01/18/Code_alignment_issues).
 
