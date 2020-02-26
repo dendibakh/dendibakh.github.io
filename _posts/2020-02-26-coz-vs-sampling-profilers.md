@@ -50,7 +50,7 @@ Next, I downloaded and built COZ according to the instructions specified [here](
 Then, in the c-ray Bash driver script, I prepended line 4 with `coz run ---` so that the full line reads:
 
 ```bash
-mdawson@labmach01:~$ coz run --- ./c-ray-mt -t $RT_THREADS -s 3840x2160 -r 16 -i sphfract -o output.ppm > /tmp/c-ray.out 2>&1
+coz run --- ./c-ray-mt -t $RT_THREADS -s 3840x2160 -r 16 -i sphfract -o output.ppm > /tmp/c-ray.out 2>&1
 ```
 
 Upon completion of a subsequent run of the benchmark, COZ created a file named `profile.coz` in my current working directory – this file that contains all of COZ’s performance estimations and the source code line numbers associated with them. Here’s the output after plotting `profile.coz`:
