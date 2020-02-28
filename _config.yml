@@ -14,5 +14,6 @@ description:  Performance optimizations and analysis in C/C++
 url:          https://easyperf.net
 enforce_ssl:  easyperf.net
 author:
+  name: Denis Bakhvalov
   twitter: dendibakh
 timezone: America/Los_Angeles
