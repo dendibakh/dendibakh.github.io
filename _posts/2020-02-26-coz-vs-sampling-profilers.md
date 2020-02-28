@@ -2,6 +2,7 @@
 layout: post
 title: Guest post&#58 COZ vs Sampling Profilers.
 categories: [performance analysis]
+author: Mark Dawson
 ---
 
 ------
