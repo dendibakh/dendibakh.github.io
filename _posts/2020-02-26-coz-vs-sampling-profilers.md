@@ -20,7 +20,6 @@ Take, for instance, a multithreaded application designed to react to favorable t
 [COZ](https://github.com/plasma-umass/coz) is a new kind of profiler that fills the gaps left behind by traditional software profilers. It uses a novel technique called “causal profiling”, whereby experiments are conducted during the runtime of an application by virtually speeding up segments of code to predict the effect of certain optimizations. It accomplishes these “virtual speedups” by inserting pauses that slow down all other concurrently running code. It’s actually quite clever. You can read all about it [here](https://arxiv.org/pdf/1608.03676v1.pdf). Let’s look at an example.
 
 I’ll use the [C-Ray benchmark](https://openbenchmarking.org/test/pts/c-ray), which is a simple ray tracer that spawns 16 threads per core (the number of recognized cores is configurable via the `NUM_CPU_CORES` environment variable) to generate a 1600 x 1200 image. The target machine comprises a dual-socket Skylake Gold 6154 CPU with 36 cores running CentOS 7.3.1611. I used the OS-bundled GCCv4.85 and added the flags `-g -fno-omit-frame-pointer -ldl`[^1] to the existing compilation flags (`-O3`) of the install script, `install.sh`. I also set `NUM_CPU_CORES` to ‘3’ to force a longer runtime that would give COZ sufficient experimentation time. Running install.sh compiles the program and creates a Bash driver script named c-ray. I executed it as follows:
-
 ```bash
 mdawson@labmach01:~$ ./c-ray
 ```
