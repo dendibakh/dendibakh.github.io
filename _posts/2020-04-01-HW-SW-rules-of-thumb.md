@@ -21,12 +21,12 @@ Here is my curated list of HW and SW rules of thumb, fun facts and quotes about 
 - Modern CPUs can correctly predict outcomes of 99% of the branches.
 - The bigger the core count of CPU the lower its frequency.
 - Modern superscalar CPU tries to find parallelism dynamically, but it is limited on what it can see by its branch predictor.
-- “Flat profiles are dying. Already dead for most programs. Larger and larger fraction of code runs freezingly cold, while hot spots run hotter. ... By the late 1990s for even performance sensitive code, optimizing compilers exceeded the performance of human experts. ... We come so close to optimal on most architectures that we can’t do much more without using NP complete algorithms instead of heuristics. We can only try to get little niggles here and there where the heuristics get slightly wrong answers. ... We found ourselves always running up against the same problem: the compiler needs to be in a dialog with the programmer; it needs to know properties of the data, and whether certain cases can arise, etc. And we couldn’t think of a good language in which to have such a dialog." (from "The death of optimizing compilers" http://cr.yp.to/talks/2015.04.16/slides-djb-20150416-a4.pdf).
+- “Flat profiles are dying. Already dead for most programs. Larger and larger fraction of code runs freezingly cold, while hot spots run hotter. ... By the late 1990s for even performance sensitive code, optimizing compilers exceeded the performance of human experts. ... We come so close to optimal on most architectures that we can’t do much more without using NP complete algorithms instead of heuristics. We can only try to get little niggles here and there where the heuristics get slightly wrong answers. ... We found ourselves always running up against the same problem: the compiler needs to be in a dialog with the programmer; it needs to know properties of the data, and whether certain cases can arise, etc. And we couldn’t think of a good language in which to have such a dialog." (from "[The death of optimizing compilers](http://cr.yp.to/talks/2015.04.16/slides-djb-20150416-a4.pdf)").
 - 0.75% CPU utilization is not idle system and may wake up CPU. [^1]
 
 Other interesting rules of thumbs and quotes:
 - Rob Pike's [5 Rules of Programming](https://users.ece.utexas.edu/~adnan/pike.html).
-- SW Engineering Candies: (Selected rules of thumb in SW engineering](https://www.sw-engineering-candies.com/blog-1/rules-of-thumb-in-software-engineering).
+- SW Engineering Candies: [Selected rules of thumb in SW engineering](https://www.sw-engineering-candies.com/blog-1/rules-of-thumb-in-software-engineering).
 - Embedded Artistry: [Embedded Rules of Thumb](https://embeddedartistry.com/blog/2018/04/26/embedded-rules-of-thumb/).
 
 Add your favorite rules of thumb and quotes in the comments.
