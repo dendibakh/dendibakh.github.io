@@ -33,15 +33,16 @@ foo:
 One_KB_of_nops
 # finish some irrelevant work
 
-mov     rax, QWORD [rdi + 0]
-mov     rax, QWORD [rdi + 10]
+mov     al, BYTE [rdi + 0]
+mov     al, BYTE [rdi + 10]
 
 # load that goes to DRAM
-mov     rax, QWORD [rdi + rsi]
+movzx   rax, BYTE [rdi + rsi]
 # introduce dependency chain
-mov     rax, QWORD [rdi + rax]
+mov     al, BYTE [rdi + rax]
 
-mov     rax, QWORD [rdi + 20]
+mov     al, BYTE [rdi + 20]
+
 
 xor rax, rax
 ret
