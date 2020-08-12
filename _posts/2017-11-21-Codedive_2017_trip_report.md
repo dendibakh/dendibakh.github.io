@@ -4,6 +4,11 @@ title: Code::Dive 2017 trip report.
 categories: [personal]
 ---
 
+------
+**Subscribe to my [mailing list](https://mailchi.mp/4eb73720aafe/easyperf), support me on [Patreon](https://www.patreon.com/dendibakh) or by PayPal [donation](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=TBM3NW8TKTT34&currency_code=USD&source=url).**
+
+------
+
 This is my third time [Code::dive](http://codedive.pl/) conference and I was really happy to be back to Wroclaw. To be back to this wonderful city, to my Nokia ex-colleagues and friends.
 
 This year it was again 2-day conference with 4 tracks and two 90-minute and three 60-minute session per day. As before this conference is completely free and open for everyone (you just need to register on time), so I'm really thankful to Nokia for such a great event!

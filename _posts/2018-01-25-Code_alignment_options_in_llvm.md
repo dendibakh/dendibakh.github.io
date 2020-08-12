@@ -9,10 +9,9 @@ categories: [compilers]
 {:toc}
 
 ------
-**Subscribe to my [mailing list]({{ page.url }}#mc_embed_signup) and support me on [Patreon](https://www.patreon.com/dendibakh).**
+**Subscribe to my [mailing list](https://mailchi.mp/4eb73720aafe/easyperf), support me on [Patreon](https://www.patreon.com/dendibakh) or by PayPal [donation](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=TBM3NW8TKTT34&currency_code=USD&source=url).**
 
 ------
-
 In my [previous post]({{ site.url }}/blog/2018/01/18/Code_alignment_issues) I discussed code alignment issues that could arise when you benchmarking your code. [Simon](https://twitter.com/TartanLlama) in the comments mentioned code alignment option '-align-all-nofallthru-blocks'. If we look at what description says about this option it's not clear what this option is doing. So, I decided to give some clear examples of what it's doing.
 
 In latest llvm (as of 25.01.2018) there are 3 machine-independent option for controling code alignment:

@@ -4,6 +4,11 @@ title: Small size optimization.
 categories: [C++, optimizations]
 ---
 
+------
+**Subscribe to my [mailing list](https://mailchi.mp/4eb73720aafe/easyperf), support me on [Patreon](https://www.patreon.com/dendibakh) or by PayPal [donation](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=TBM3NW8TKTT34&currency_code=USD&source=url).**
+
+------
+
 As Chandler Carruth said in his [talk at CppCon 2016](https://www.youtube.com/watch?v=vElZc6zSIXM&list=PLHTh1InhhwT7J5jl4vAhO1WvGHUUFgUQH&index=35), a lot of people underestimate the benefit of [Small Size Optimization](https://www.google.pl/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&cad=rja&uact=8&ved=0ahUKEwimkb-K-cTQAhVIDCwKHfx4CyIQFggdMAA&url=http%3A%2F%2Fnullprogram.com%2Fblog%2F2016%2F10%2F07%2F&usg=AFQjCNGWk5vqGN5Mf0Deu3XtDS98s8dAXA&sig2=ysMLY351GtM-Fw2pdShHAQ)(SSO).
 
 I decided to give a simple implementation of this idea. The problem in using `std::vector` is that as the number of elements grows memory allocations become more and more expensive. Not only that we need to find the memory for more elements, but we need also to move(copy) our elements to new location. Usually there are `log(N)` memory allocations, depending on the implementation of course.

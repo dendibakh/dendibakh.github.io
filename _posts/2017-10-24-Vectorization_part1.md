@@ -4,6 +4,11 @@ title: Vectorization part1. Intro.
 categories: [vectorization]
 ---
 
+------
+**Subscribe to my [mailing list](https://mailchi.mp/4eb73720aafe/easyperf), support me on [Patreon](https://www.patreon.com/dendibakh) or by PayPal [donation](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=TBM3NW8TKTT34&currency_code=USD&source=url).**
+
+------
+
 Recently I was working closely with analyzing different vectorization cases. So I decided to write a series of articles dedicated to this topic.
 
 This is the first post in this series, so let me start with some introduction info. [Vectorization](https://stackoverflow.com/questions/1422149/what-is-vectorization) is a form of [SIMD](https://en.wikipedia.org/wiki/SIMD) which allows to crunch multiple values in one CPU instruction.

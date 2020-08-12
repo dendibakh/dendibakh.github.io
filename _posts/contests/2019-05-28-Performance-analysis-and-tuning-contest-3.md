@@ -11,7 +11,7 @@ categories: contest
 Welcome to the 3rd edition of my performance analysis and tuning contest. If you see this post and haven't read my initial post about the [contest]({{ site.url }}/blog/2019/02/02/Performance-optimization-contest), I encourage you to read it first. 
 
 ------
-**Subscribe to my [mailing list]({{ page.url }}#mc_embed_signup) to participate!**
+**Subscribe to my [mailing list](https://mailchi.mp/4eb73720aafe/easyperf), support me on [Patreon](https://www.patreon.com/dendibakh) or by PayPal [donation](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=TBM3NW8TKTT34&currency_code=USD&source=url).**
 
 ------
 

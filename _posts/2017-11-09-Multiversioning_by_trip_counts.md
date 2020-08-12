@@ -4,6 +4,11 @@ title: Vectorization part6. Multiversioning by trip counts.
 categories: [vectorization]
 ---
 
+------
+**Subscribe to my [mailing list](https://mailchi.mp/4eb73720aafe/easyperf), support me on [Patreon](https://www.patreon.com/dendibakh) or by PayPal [donation](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=TBM3NW8TKTT34&currency_code=USD&source=url).**
+
+------
+
 In this post we will dig deep into the different type of multiversioning. This time we will look at creating multiple versions of the same loop that have different trip counts. If you haven't read [part 4: vectorization width]({{ site.url }}/blog/2017/11/02/Vectorization_width) yet I encourage you to do that, because we will use knowledge form this post a lot.
 
 In the post that I mentioned above I showed how it can be beneficial to optimize your function if you know the data you are working with. Specifically, in the section "Why we care about vectorization width?" I left off on the case when there are two different trip counts and you can't just optimize for one of it. Let's get back to this case. 

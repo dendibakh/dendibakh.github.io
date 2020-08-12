@@ -4,6 +4,11 @@ title: Vectorization part7. Tips for writing vectorizable code.
 categories: [vectorization]
 ---
 
+------
+**Subscribe to my [mailing list](https://mailchi.mp/4eb73720aafe/easyperf), support me on [Patreon](https://www.patreon.com/dendibakh) or by PayPal [donation](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=TBM3NW8TKTT34&currency_code=USD&source=url).**
+
+------
+
 This post is wrapping up the series. We just saw some really simple examples when vectorization either happens or not. But usually you have more complicated code. What to do in this case, how make use of vectorization capabilities of your CPU?
 
 To best answer this question I want to highlight the typical reasons for not vectorized code and guidlines for writing vectorizable code.

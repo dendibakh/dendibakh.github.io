@@ -8,6 +8,11 @@ categories: [contest]
 * TOC
 {:toc}
 
+------
+**Subscribe to my [mailing list](https://mailchi.mp/4eb73720aafe/easyperf), support me on [Patreon](https://www.patreon.com/dendibakh) or by PayPal [donation](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=TBM3NW8TKTT34&currency_code=USD&source=url).**
+
+------
+
 Recently I announced performance optimization contest in my recent [article]({{ site.url }}/blog/2019/02/02/Performance-optimization-contest). If you see this post and haven't read my initial post about the [contest]({{ site.url }}/blog/2019/02/02/Performance-optimization-contest), I recommend that you first read it. 
 
 Now it's time to start our first edition. I'm glad to say "Welcome" to every participant!

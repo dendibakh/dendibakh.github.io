@@ -4,6 +4,11 @@ title: Sentinels.
 categories: [C++, optimizations]
 ---
 
+------
+**Subscribe to my [mailing list](https://mailchi.mp/4eb73720aafe/easyperf), support me on [Patreon](https://www.patreon.com/dendibakh) or by PayPal [donation](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=TBM3NW8TKTT34&currency_code=USD&source=url).**
+
+------
+
 Today I would like to show one interesting techique for optimizing your algorithms. This technique is called sentinels.
 Sentinel is a special thing that marks the end of the sequence. The natural example here example is \'\0\' terminator for a C-string.
 

@@ -4,6 +4,11 @@ title: Vectorization part4. Vectorization Width.
 categories: [vectorization]
 ---
 
+------
+**Subscribe to my [mailing list](https://mailchi.mp/4eb73720aafe/easyperf), support me on [Patreon](https://www.patreon.com/dendibakh) or by PayPal [donation](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=TBM3NW8TKTT34&currency_code=USD&source=url).**
+
+------
+
 In my previous posts we have seen somewhat basic examples of loop vectorization. In this post we will go deeper in this fun stuff. In this post I will show multiple ways for the compiler to vectorize the same loop.
 
 Usually compiler knowns better if it is beneficial to do vectorization (vs. scalar). Or maybe scalar version with good unrolling factor will do a better job. Or maybe we can vectorize the loop and then do unrolling. Or maybe interleaving will help more (see below in this article for an example). OMG. So in base case you should let compiler do the job. Every decent compiler has internal cost model which it uses to make good decisions about vectorization/unrolling, etc.

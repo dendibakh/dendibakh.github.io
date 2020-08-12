@@ -4,6 +4,11 @@ title: Vectorization part5. Multiversioning by data dependency.
 categories: [vectorization]
 ---
 
+------
+**Subscribe to my [mailing list](https://mailchi.mp/4eb73720aafe/easyperf), support me on [Patreon](https://www.patreon.com/dendibakh) or by PayPal [donation](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=TBM3NW8TKTT34&currency_code=USD&source=url).**
+
+------
+
 Vectorization doesn't always come for free. In this post we will see what penalties we have to pay with vectorization.
 
 Without further ado let me show you example of the code:

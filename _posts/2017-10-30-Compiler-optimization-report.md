@@ -4,6 +4,11 @@ title: Vectorization part3. Compiler report.
 categories: [vectorization]
 ---
 
+------
+**Subscribe to my [mailing list](https://mailchi.mp/4eb73720aafe/easyperf), support me on [Patreon](https://www.patreon.com/dendibakh) or by PayPal [donation](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=TBM3NW8TKTT34&currency_code=USD&source=url).**
+
+------
+
 This post will be short but it is quite important to know about compiler optimization reports because it can save you a lot of time.
 Sometimes you want to know if your loop was vectorized or not, unrolled or not. If it was unrolled, what is the unrol factor? Was your function inlined? There is a hard way - by looking at the assembly. This can be a really hard if the function is big, or it has many loops that were also vectorized, or if compiler created multiple versions of the same loop, OMG.
 

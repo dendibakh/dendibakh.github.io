@@ -4,6 +4,11 @@ title: Code::Dive 2016 trip report.
 categories: [personal]
 ---
 
+------
+**Subscribe to my [mailing list](https://mailchi.mp/4eb73720aafe/easyperf), support me on [Patreon](https://www.patreon.com/dendibakh) or by PayPal [donation](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=TBM3NW8TKTT34&currency_code=USD&source=url).**
+
+------
+
 It's my second time I've beed on Code::Dive conference in Wroclaw.
 This year it was on 15-16 November. We had a really great speakers such as Chandler Carruth, Sean Parent and Mark Issacson.
 
