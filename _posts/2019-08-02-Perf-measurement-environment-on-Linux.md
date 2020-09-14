@@ -101,7 +101,7 @@ Here is how we can set it for all the cores:
 ```bash
 for i in /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
 do
-  echo performance > /sys/devices/system/cpu/cpu$i/cpufreq/scaling_governor
+  echo performance > $i
 done
 ```
 
