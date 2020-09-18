@@ -300,7 +300,7 @@ I made quite big amount of experiments with [uarch-bench](https://github.com/tra
 
 #### how to use it
 
-All the benchmarks are integrated in the main binary, so in order to write your own benchmark in assembly code you need to insert it into [x86_methods.asm](https://github.com/travisdowns/uarch-bench/blob/master/x86_methods.asm) and register it in [misc-benches.cpp](https://github.com/travisdowns/uarch-bench/blob/master/misc-benches.cpp):
+All the benchmarks are integrated in the main binary, so in order to write your own benchmark in assembly code you need to insert it into [x86-methods.asm](https://github.com/travisdowns/uarch-bench/blob/master/x86-methods.asm) and register it in [misc-benches.cpp](https://github.com/travisdowns/uarch-bench/blob/master/misc-benches.cpp):
 
 ```asm
 GLOBAL PortContention
