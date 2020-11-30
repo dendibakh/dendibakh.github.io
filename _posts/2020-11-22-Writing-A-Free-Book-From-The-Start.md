@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Writing a free book from the start.
+title: Writing a Free Book From the Start.
 categories: [personal]
 ---
 
