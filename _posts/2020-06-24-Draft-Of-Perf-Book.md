@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Draft of my perf book is ready!
-categories: [performance analysis]
+categories: [personal]
 ---
 
 ------

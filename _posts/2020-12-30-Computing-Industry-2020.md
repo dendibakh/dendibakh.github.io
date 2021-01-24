@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Computing industry at the end of 2020 as I see it.
+categories: [research]
 ---
 
 ------
