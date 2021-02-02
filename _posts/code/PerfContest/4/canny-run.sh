@@ -6,7 +6,7 @@ wget --no-clobber https://johnysswlab.com/downloads/221575.tar.gz
 tar -xf 221575.tar.gz
 
 CC=clang
-CFLAGS="-O3 -lm -g -ffast-math"
+CFLAGS="-O3 -ffast-math -march=core-avx2 -lm"
 
 ${CC} ${CFLAGS}  canny_source.c -o canny
 
