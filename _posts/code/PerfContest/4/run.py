@@ -109,7 +109,7 @@ if runOnly or buildAndRun:
         print("  run - Failed")
       
       outputFileName = str(os.path.join(submissionBuildDir, "221575.pgm_s_0.50_l_0.70_h_0.90.pgm"))
-      goldenFileName = str(os.path.join(saveCwd, "221575_golden.pgm"))
+      goldenFileName = str(os.path.join(saveCwd, "221575-out-golden.pgm"))
 
       valid = True
       try:
