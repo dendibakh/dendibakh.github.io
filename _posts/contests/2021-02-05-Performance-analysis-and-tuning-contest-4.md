@@ -23,7 +23,10 @@ The benchmark for the 4th edition is canny edge detection algorithm. The source 
 
 Canny is an image edge detector algorithm that exists for a long time. You can find more information about it in the [Wikipedia article](https://en.wikipedia.org/wiki/Canny_edge_detector), but they say an image is worth a thousand words, so here is before and after image so you can get the impression of how it works.
 
-TODO(insert image)
+![](/img/posts/PerfContent/4/221575-small.jpg){: .center-image-width-40-no-block }
+![](/img/posts/PerfContent/4/22157-canny.png{: .center-image-width-40-no-block }
+
+TODO(verify image)
 
 ### Quickstart
 
@@ -51,7 +54,7 @@ You may also find useful Denis' python [script](https://github.com/dendibakh/den
 
 We use CLANG for this experiment since it produced faster binary in my tests.
 
-Target machine for this edition of the contest is again Haswell CPU with 64-bit Linux. Although you can do your experiments on Windows since `cmake` is used for building the benchmark. If you choose Windows as a platform, here is the article that might be helpful: [How to collect CPU performance counters on Windows?]({{ site.url }}/blog/2019/02/23/How-to-collect-performance-counters-on-Windows).
+Target machine for this edition of the contest is again Skylake CPU with 64-bit Linux. Although you can do your experiments on Windows since `cmake` is used for building the benchmark. If you choose Windows as a platform, here is the article that might be helpful: [How to collect CPU performance counters on Windows?]({{ site.url }}/blog/2019/02/23/How-to-collect-performance-counters-on-Windows).
 
 ### Couple of hints
 
@@ -85,7 +88,7 @@ If the produced image is correct it will print `Validation successful`. A slight
 
 > __Disclaimer__: We will not use submissions for any commercial purposes. However, we can use the submissions for educational purposes.
 
-The baseline that I will be measuring against is 'clang -O3 -march=core-avx2').
+The baseline that I will be measuring against is 'clang -ffast-math -O3 -march=core-avx2').
 
 If you're willing to submit your work __subscribe to Denis' [mailing list]({{ page.url }}#mc_embed_signup)__ and then send all that you have via email.
 
