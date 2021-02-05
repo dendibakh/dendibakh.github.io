@@ -17,7 +17,7 @@ The benchmark for the 4th edition is canny edge detection algorithm. The source 
 
 Canny is an image edge detector algorithm that exists for a long time. You can find more information about it in the [Wikipedia article](https://en.wikipedia.org/wiki/Canny_edge_detector). They say an image is worth a thousand words, so here is the before and after image so you can get the impression of how it works.
 
-![](/img/posts/PerfContent/4/221575-small.jpg){: .center-image-width-40-no-block } ![](/img/posts/PerfContent/4/22157-canny.png){: .center-image-width-40-no-block }
+![](/img/posts/PerfContest/4/221575-small.jpg){: .center-image-width-40-no-block } ![](/img/posts/PerfContest/4/22157-canny.png){: .center-image-width-40-no-block }
 
 ### Quickstart
 
@@ -78,11 +78,11 @@ If the produced image is correct it will print `Validation successful`. A slight
 
 ### Submissions
 
-> __Disclaimer__: We will not use submissions for any commercial purposes. However, we can use the submissions for educational purposes.
+> We will not use submissions for any commercial purposes. However, we can use the submissions for educational purposes.
 
-The baseline we will be measuring against is Skylake client CPU (e.g. Intel Core i7-6700) with 64-bit Linux and Clang 10 compiler used with options '-ffast-math -O3 -march=core-avx2'.
+The baseline we will be measuring against is Skylake client CPU (e.g. Intel Core i7-6700) with 64-bit Linux and Clang 10 compiler used with options `-ffast-math -O3 -march=core-avx2`.
 
-We conduct performance challenges via Denis' mailing list, so it's a good idea to [subscribe](https://mailchi.mp/4eb73720aafe/easyperf) (if you haven't already) if you would like to submit your solution. The benchmark consists of a single file, so you can just send the modified `canny_source.c` source file via email to [Ivica](https://johnysswlab.com/contact/) or [Denis](https://easyperf.net/contact/). The general rules and guidelines for submissions are described here [here]({{ site.url }}/blog/2019/02/02/Performance-optimization-contest#q7-how-should-the-submission-look-like). We also ask you to provide textual description of all the transformations you have made. It will be much easier for us to analyze your submission. 
+We conduct performance challenges via Denis' mailing list, so it's a good idea to [subscribe](https://mailchi.mp/4eb73720aafe/easyperf) (if you haven't already) if you would like to submit your solution. The benchmark consists of a single file, so you can just send the modified `canny_source.c` source file via email to [Ivica](https://johnysswlab.com/contact/) or [Denis](https://easyperf.net/contact/). The general rules and guidelines for submissions are described [here]({{ site.url }}/blog/2019/02/02/Performance-optimization-contest#q7-how-should-the-submission-look-like). We also ask you to provide textual description of all the transformations you have made. It will be much easier for us to analyze your submission. 
 
 **We are collecting submissions until 28th February 2021.**
 
