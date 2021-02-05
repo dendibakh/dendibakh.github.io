@@ -30,6 +30,9 @@ $ cd perf_challenge4
 $ cd canny_baseline
 $ mkdir build
 $ cd build
+# cmake also honors the following env variables:
+# export CC=/usr/bin/clang
+# export CXX=/usr/bin/clang++
 $ cmake .. -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++
 $ make
 ```
@@ -43,7 +46,7 @@ If the program finished correctly, and the image it produced is good, you will s
 
 You may also find useful Denis' python [script](https://github.com/dendibakh/perf_challenge4/blob/master/run.py) for conducting multiple experiments. See the decription inside it.
 
-The target configuration for this challenge is Skylake CPU (e.g. Intel Core i7-6700) + 64-bit Linux (e.g. Ubuntu 20.04) + Clang 10. Although you are free to use whatever environment you have access to. It's fine if you solve the challenge on Intel, AMD, or ARM CPU. Also, you can do your experiments on Windows or Mac since `cmake` is used for building the benchmark. The reason why we define the target configuration is to have a unified way to assess all the submissions. In the end, it is not about getting the best score, but about practicing performance optimizations.
+The target configuration for this challenge is Skylake CPU (e.g. Intel Core i7-6700) + 64-bit Linux (e.g. Ubuntu 20.04) + Clang 10. Although you are free to use whatever environment you have access to. It's fine if you solve the challenge on Intel, AMD, or ARM CPU. Also, you can do your experiments on Windows[^1] or Mac since `cmake` is used for building the benchmark. The reason why we define the target configuration is to have a unified way to assess all the submissions. In the end, it is not about getting the best score, but about practicing performance optimizations.
 
 ### Couple of hints
 
@@ -90,3 +93,7 @@ If you know someone who might be interested in participating in this challenge, 
 Good luck and have fun!
 
 __P.S.__ I'm also open to your comments and suggestions. Especially if you have a proposal of a benchmark for the next edition of the challenge, please let me know. Finding a good benchmark isn't easy.
+
+---
+
+[^1]: Unfortunately, neither Denis nor Ivica work closely with Windows, so sorry, we have limited support for Windows. At least we know that it is possible to compile the source code with the MSVC compiler (19.28.29335) from Visual Studio 2019. But you need to fix cmake or add the optimizations options to the VS project yourself. We highly encourage you to contribute your changes back to the benchmark, so that other people will benefit from it.
