@@ -1,7 +1,7 @@
 ---
 layout: post
-title: Performance optimization contest &#35&#49.
-categories: [contest]
+title: Performance optimization challenge &#35&#49.
+categories: [challenge]
 ---
 
 **Contents:**

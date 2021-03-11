@@ -1,7 +1,7 @@
 ---
 layout: post
-title: How good of a performance optimizer you are? Contest!
-categories: [contest]
+title: How good of a performance optimizer you are? Challenge!
+categories: [challenge]
 ---
 
 **Contents:**

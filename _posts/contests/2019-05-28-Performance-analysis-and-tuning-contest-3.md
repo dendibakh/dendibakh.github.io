@@ -1,7 +1,7 @@
 ---
 layout: post
-title: Performance analysis and tuning contest &#35&#51.
-categories: contest
+title: Performance analysis and tuning challenge &#35&#51.
+categories: challenge
 ---
 
 **Contents:**

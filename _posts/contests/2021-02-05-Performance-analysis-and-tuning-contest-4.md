@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Performance analysis and tuning challenge &#35&#52.
-categories: contest
+categories: challenge
 author: Ivica Bogosavljevic
 ---
 
