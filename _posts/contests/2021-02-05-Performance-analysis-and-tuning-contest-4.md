@@ -539,13 +539,58 @@ We conditionally load to `*resultptr` depending on the set of conditions. We loa
 `*resultptr` = POSSIBLE_EDGE *((mag <= 0.0) & (mag2 < 0.0));
 ```
 
-This completely avoids branches. If we analyze the large set of nested ifs, we notice a pattern. The computations are always the same, there is only a difference which of the neighboring pixels we are processing...
-TODO(finish)
+This completely avoids branches. If we analyze the large set of nested ifs  TODO(Add link or source example), we notice a pattern. The computations are always the same, there is only a difference which of the neighboring pixels we are processing.
 
+The processing in each of the ifs body looks something like this:
 
-TODO
-* Remove useless code (replace division by multiplication)
-* Move to completely branchless
+```cpp
+z1 = *(magptr - A);
+z2 = *(magptr - B);
+
+mag1 = (X1 * m00 + Y1 * z1 + Z1 * z2)*xperp + (X2 * m00 + Y2 * z1 + Z2 * z2)*yperp;
+
+/* Right point */
+z1 = *(magptr + A);
+z2 = *(magptr + B);
+
+mag1 = (X1 * m00 + Y1 * z1 + Z1 * z2)*xperp + (X2 * m00 + Y2 * z1 + Z2 * z2)*yperp;
+```
+
+Where constants `A`, `B`, `X1`, `X2`, `Y1`, `Y2`, `Z1` and `Z2` depend on conditions `gx > 0`, `gy > 0` and `gx > gy`. 
+
+One of the ways to go branchles is to select values for the constants using a lookup table that indexes with conditions `gx > 0`, `gy > 0` or `gx > gy`. The example solutions can be found here TODO(Add link to peter coffman solutions) or here TODO(Add link to andrey evstyukhin solution).
+
+The last optimization in this function concerns the strength reduction. Here is an example:
+
+```cpp
+xperp = -(gx = *gxptr)/((float)m00);
+yperp = (gy = *gyptr)/((float)m00);
+...
+mag1 = (m00 - z1)*xperp + (z2 - z1)*yperp;
+...
+mag2 = (m00 - z1)*xperp + (z2 - z1)*yperp;
+...
+bool condition = ((mag1 > 0.0) | (mag2 > 0.0));
+```
+
+We first divide `gx` and `gy` by `m00` to get `xperp` and `yperp` and then we calculate `mag1` and `mag2` by using `xperp` and `yperp`. Finally we only check the sign of `mag1` and `mag2`, we are not interested in its actual value.
+
+We can substitute the division with multiplication like this:
+
+```cpp
+mag1 = (m00 - z1)*xperp + (z2 - z1)*yperp;
+// Multiply the whole expression by m00
+mag1 * m00 = (m00 - z1) * xperp * m00 + (z2 - z1) * yperp * m00
+mag1 * m00 = (z1 - m00) * gx + (z2 - z1) * gy 
+```
+
+From this point, our condition becomes a bit more complex:
+
+```cpp
+bool condition = (m00 < 0) ^ ((mag1 > 0.0) | (mag2 > 0.0))
+```
+
+Nevertheless, an evaluation of the condition and exlusive xor are much cheaper than the division operation.
 
 **apply_hysteresis**
 
