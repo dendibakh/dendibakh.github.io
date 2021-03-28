@@ -104,10 +104,10 @@ Video version of the summary for the challenge is available on [youtube](https:/
 ### Observations
 
 The profiler showed four functions dominating the profile: `gaussian_smooth`, `derivative_x_y`, `non_max_supp` and `apply_hysteresis`. It is possible to speed up each one of them. We brake down our summary into 4 parts which digs into particular function, and shows what it is doing and what our contestants did to make them faster.
-1. [Part 1]({{ site.url }}/blog/2021/03/27/Summary-of-contest-4-part1): `gaussian_smooth`.
-2. [Part 2]({{ site.url }}/blog/2021/03/27/Summary-of-contest-4-part2): `derivative_x_y`
-3. [Part 3]({{ site.url }}/blog/2021/03/27/Summary-of-contest-4-part3): `non_max_supp`
-4. [Part 4]({{ site.url }}/blog/2021/03/27/Summary-of-contest-4-part4): `apply_hysteresis`
+- [Part 1]({{ site.url }}/blog/2021/03/27/Summary-of-contest-4-part1): `gaussian_smooth`.
+- [Part 2]({{ site.url }}/blog/2021/03/27/Summary-of-contest-4-part2): `derivative_x_y`
+- [Part 3]({{ site.url }}/blog/2021/03/27/Summary-of-contest-4-part3): `non_max_supp`
+- [Part 4]({{ site.url }}/blog/2021/03/27/Summary-of-contest-4-part4): `apply_hysteresis`
 
 **Other ideas**
 
@@ -115,6 +115,23 @@ There were a few other ideas that didn't bring a large performance improvements,
 * **Buffer reuse**: the algorith was allocating some buffers where it can reuse some of the old buffers. Buffer reuse is a clever choice, it saves memory and this is good for performance.
 * **Use mmap to allocate large chunks of memory and preallocate the memory using MAP_POPULATE**: when you allocate memory with `malloc` or `new`, the operating system doesn't allocate all the memory in advance, because many programs allocating a lot of memory never actually use it. When your program first writes to the unallocated memory page, a `pagefault` happens and the operating system allocates the page that is missing. If you are allocating a large block of memory that you will write to only a few times but you are sure you will write each byte in the block, you can use `mmap` with `MAP_POPULATE` to allocate all the memory in advance, so no pagefaults happen when you are accessing the memory.
 
+### Score Table
+
+Here is the table taht summarizes submissions that we received:
+```
+time(s)  submission             timings for 10 consecutive runs (s)                            speedup
+([0.15, 'andrey_evstyukhin',    [0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.2 ]], ' + 1260.0%')
+([0.29, 'adam_folwarczny',      [0.29, 0.29, 0.29, 0.29, 0.29, 0.3,  0.3,  0.3,  0.3,  0.33]], ' + 603.45%')
+([0.4,  'peter_coffman',        [0.4,  0.4,  0.4,  0.4,  0.4,  0.4,  0.4,  0.4,  0.41, 0.42]], ' + 410.0%')
+([0.52, 'yiannis_papadopoulos', [0.52, 0.52, 0.52, 0.52, 0.52, 0.52, 0.52, 0.52, 0.52, 0.56]], ' + 292.31%')
+([0.58, 'goran_mitrovic',       [0.58, 0.58, 0.58, 0.58, 0.58, 0.58, 0.58, 0.58, 0.59, 0.62]], ' + 251.72%')
+([0.62, 'sasha_krassovsky',     [0.62, 0.63, 0.63, 0.63, 0.63, 0.63, 0.63, 0.63, 0.63, 0.67]], ' + 229.03%')
+([0.64, 'tomas_hudziec',        [0.64, 0.64, 0.64, 0.64, 0.64, 0.64, 0.65, 0.65, 0.65, 0.65]], ' + 218.75%')
+([1.4,  'pradeep_kumar',        [1.4,  1.45, 1.45, 1.46, 1.46, 1.47, 1.47, 1.48, 1.48, 1.51]], ' + 45.71%')
+([2.04, 'canny_baseline',       [2.04, 2.04, 2.05, 2.06, 2.06, 2.06, 2.06, 2.06, 2.12, 2.12]], ' + 0.0%')
+```
+
+TODO: measure Andrey Pechkurov's submission
 ---
 
 [^1]: Unfortunately, neither Denis nor Ivica work closely with Windows, so sorry, we have limited support for Windows. At least we know that it is possible to compile the source code with the MSVC compiler (19.28.29335) from Visual Studio 2019. But you need to fix cmake or add the optimizations options to the VS project yourself. We highly encourage you to contribute your changes back to the benchmark, so that other people will benefit from it.
