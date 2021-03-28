@@ -5,6 +5,10 @@ categories: challenge
 author: Ivica Bogosavljevic
 ---
 
+**Contents:**
+* TOC
+{:toc}
+
 The function `non_max_supp` was the most interesting one, at least according to me. Click here TODO(Add link) to see the full source code of the critical loop.
 
 The loop iterates over pixels row-wise. Inside the loop, for each pixel, the code performs the same operations. But the input values for the operation depend on the complex derivative values calculated in the previous step. Depending on the value of the derivatives, the code will perform the action on one of the eight neighboring pixels. Here is the full source code of the critical loop:
@@ -27,145 +31,37 @@ for(rowcount=1,magrowptr=mag+ncols+1,gxrowptr=gradx+ncols+1,
         yperp = (gy = *gyptr)/((float)m00);
       }
 
-      if(gx >= 0){
+      if(gx >= 0) {
         if(gy >= 0){
-                if (gx >= gy)
-                {  
-                    /* 111 */
-                    /* Left point */
-                    z1 = *(magptr - 1);
-                    z2 = *(magptr - ncols - 1);
-
-                    mag1 = (m00 - z1)*xperp + (z2 - z1)*yperp;
-                    
-                    /* Right point */
-                    z1 = *(magptr + 1);
-                    z2 = *(magptr + ncols + 1);
-
-                    mag2 = (m00 - z1)*xperp + (z2 - z1)*yperp;
-                }
-                else
-                {    
-                    /* 110 */
-                    /* Left point */
-                    z1 = *(magptr - ncols);
-                    z2 = *(magptr - ncols - 1);
-
-                    mag1 = (z1 - z2)*xperp + (z1 - m00)*yperp;
-
-                    /* Right point */
-                    z1 = *(magptr + ncols);
-                    z2 = *(magptr + ncols + 1);
-
-                    mag2 = (z1 - z2)*xperp + (z1 - m00)*yperp; 
-                }
-            }
-            else
-            {
-                if (gx >= -gy)
-                {
-                    /* 101 */
-                    /* Left point */
-                    z1 = *(magptr - 1);
-                    z2 = *(magptr + ncols - 1);
-
-                    mag1 = (m00 - z1)*xperp + (z1 - z2)*yperp;
-        
-                    /* Right point */
-                    z1 = *(magptr + 1);
-                    z2 = *(magptr - ncols + 1);
-
-                    mag2 = (m00 - z1)*xperp + (z1 - z2)*yperp;
-                }
-                else
-                {    
-                    /* 100 */
-                    /* Left point */
-                    z1 = *(magptr + ncols);
-                    z2 = *(magptr + ncols - 1);
-
-                    mag1 = (z1 - z2)*xperp + (m00 - z1)*yperp;
-
-                    /* Right point */
-                    z1 = *(magptr - ncols);
-                    z2 = *(magptr - ncols + 1);
-
-                    mag2 = (z1 - z2)*xperp  + (m00 - z1)*yperp; 
-                }
-            }
+          if (gx >= gy){  
+            // calculate mag1 and mag2
+          } else {    
+            // calculate mag1 and mag2
+          }
+        } else {
+          if (gx >= -gy){
+            // calculate mag1 and mag2
+          } else {    
+            // calculate mag1 and mag2
+          }
         }
-        else
-        {
-            if ((gy = *gyptr) >= 0)
-            {
-                if (-gx >= gy)
-                {          
-                    /* 011 */
-                    /* Left point */
-                    z1 = *(magptr + 1);
-                    z2 = *(magptr - ncols + 1);
-
-                    mag1 = (z1 - m00)*xperp + (z2 - z1)*yperp;
-
-                    /* Right point */
-                    z1 = *(magptr - 1);
-                    z2 = *(magptr + ncols - 1);
-
-                    mag2 = (z1 - m00)*xperp + (z2 - z1)*yperp;
-                }
-                else
-                {
-                    /* 010 */
-                    /* Left point */
-                    z1 = *(magptr - ncols);
-                    z2 = *(magptr - ncols + 1);
-
-                    mag1 = (z2 - z1)*xperp + (z1 - m00)*yperp;
-
-                    /* Right point */
-                    z1 = *(magptr + ncols);
-                    z2 = *(magptr + ncols - 1);
-
-                    mag2 = (z2 - z1)*xperp + (z1 - m00)*yperp;
-                }
-            }
-            else
-            {
-                if (-gx > -gy)
-                {
-                    /* 001 */
-                    /* Left point */
-                    z1 = *(magptr + 1);
-                    z2 = *(magptr + ncols + 1);
-
-                    mag1 = (z1 - m00)*xperp + (z1 - z2)*yperp;
-
-                    /* Right point */
-                    z1 = *(magptr - 1);
-                    z2 = *(magptr - ncols - 1);
-
-                    mag2 = (z1 - m00)*xperp + (z1 - z2)*yperp;
-                }
-                else
-                {
-                    /* 000 */
-                    /* Left point */
-                    z1 = *(magptr + ncols);
-                    z2 = *(magptr + ncols + 1);
-
-                    mag1 = (z2 - z1)*xperp + (m00 - z1)*yperp;
-
-                    /* Right point */
-                    z1 = *(magptr - ncols);
-                    z2 = *(magptr - ncols - 1);
-
-                    mag2 = (z2 - z1)*xperp + (m00 - z1)*yperp;
-                }
-            }
-        } 
+      } else {
+        if ((gy = *gyptr) >= 0) {
+          if (-gx >= gy) { 
+            // calculate mag1 and mag2
+          } else {
+            // calculate mag1 and mag2
+          }
+        } else {
+          if (-gx > -gy) {
+            // calculate mag1 and mag2
+          } else {
+            // calculate mag1 and mag2
+          }
+        }
+      } 
 
         /* Now determine if the current point is a maximum point */
-
         if ((mag1 > 0.0) || (mag2 > 0.0))
         {
             *resultptr = (unsigned char) NOEDGE;
@@ -184,6 +80,8 @@ for(rowcount=1,magrowptr=mag+ncols+1,gxrowptr=gradx+ncols+1,
 The above code is quite verbose, but can be basically divided into three parts. The first part loads the common values `m0`, `gx`, `gy`, `xperp` and `yperp`. The second part on lines TODO performs the calculation dependiong on the values of `gx` and `gy`. The third part writes into the resulting array depending on the calculated values `mag1` and `mag2`.
 
 This nested loop suffers from a large amount of branch mispredictions, which can be confirmed with `perf`. Any attemp in reducing the number of branches will result in better performance. Branches in this case prevent auto-vectorizatiotion, since compilers do not know how to deal with them.
+
+### Reducing the number of branches
 
 One of the way to reduce number of branches in case of nested branches is to replace nested branches with conditionally joined expression. E.g:
 
@@ -207,7 +105,11 @@ if (gx > 0 & gy > 0 & gx >= 0) {
 
 The above three branches are not equivalent. The first example, condition `gy > 0` will be evaluated only if `gx > 0`. In the optimized version, all three conditions are evaluated before the branch is evaluated as a whole. When condition evaluation is cheap (which is normally the case with simple artihmetic conditions), the second solution will be faster. Please note that we are joining the condition with arithmetic `&`, not `&&`, since only when they are joined with `&` will they be evaluated all together.
 
-The above approach will decrease the number of branches, but not eliminate them. We can go completely branches by replacing them with arithmetics. Consider this part of the code:
+The above approach will decrease the number of branches, but not eliminate them. 
+
+### Replace branches with arithmetics.
+
+We can go completely branchless by replacing them with arithmetics. Consider this part of the code:
 
 ```cpp
 #define NOEDGE 255
@@ -226,7 +128,7 @@ else
 }
 ```
 
-We conditionally load to `*resultptr` depending on the set of conditions. We load `NOEDGE` if condition `((mag > 0.0) || (mag2 >= 0.0))`, otherwise we load `POSSIBLE_EDGE`. Or to say it the other way around, we load `POSSIBLE_EDGE` if condition `((mag <= 0.0) & (mag2 < 0.0))` is 1. So we can write:
+We conditionally store to `*resultptr` depending on the set of conditions. We store `NOEDGE` if condition `((mag > 0.0) || (mag2 >= 0.0))`, otherwise we store `POSSIBLE_EDGE`. Or to say it the other way around, we store `POSSIBLE_EDGE` if condition `((mag <= 0.0) & (mag2 < 0.0))` is 1. So we can write:
 
 ```cpp
 `*resultptr` = POSSIBLE_EDGE *((mag <= 0.0) & (mag2 < 0.0));
@@ -252,6 +154,8 @@ mag1 = (X1 * m00 + Y1 * z1 + Z1 * z2)*xperp + (X2 * m00 + Y2 * z1 + Z2 * z2)*ype
 Where constants `A`, `B`, `X1`, `X2`, `Y1`, `Y2`, `Z1` and `Z2` depend on conditions `gx > 0`, `gy > 0` and `gx > gy`. 
 
 One of the ways to go branchles is to select values for the constants using a lookup table that indexes with conditions `gx > 0`, `gy > 0` or `gx > gy`. The example solutions can be found here TODO(Add link to peter coffman solutions) or here TODO(Add link to andrey evstyukhin solution).
+
+### Substitute division with multiplication
 
 The last optimization in this function concerns the strength reduction. Here is an example:
 

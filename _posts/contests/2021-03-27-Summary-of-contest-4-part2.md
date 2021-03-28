@@ -5,9 +5,15 @@ categories: challenge
 author: Ivica Bogosavljevic
 ---
 
+**Contents:**
+* TOC
+{:toc}
+
 Function `derivative_x_y` also consists of two loops that are processing the image. The first loop nest processes the image row-wise and the second column-wise.
 
 As far as performance is concerned, the first loop nest has a sequential memory access pattern and from the performance point of view there is nothing that needs to be done there. CLANG auto-vectorized the loop nest, and from the performance point of view, nothing needs to be done there. You can click here TODO(Add link) to see the source code of the first loop nest.
+
+### Loop interchange for achieving sequential memory accesses.
 
 The second loop nest is more problematic. We are giving its source code here:
 

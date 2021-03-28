@@ -5,7 +5,15 @@ categories: challenge
 author: Ivica Bogosavljevic
 ---
 
-The function `gaussian_smooth` (TODO: Add code to the baseline in the repository) consists of two loop nests. Here is the source code of the first loop nest:
+**Contents:**
+* TOC
+{:toc}
+
+The function `gaussian_smooth` (TODO: Add code to the baseline in the repository) consists of two loop nests. 
+
+### Multiversioning of loop nest 1.
+
+Here is the source code of the first loop nest:
 
 ```cpp
 for(r=0;r<rows;r++){
@@ -27,7 +35,7 @@ The access pattern for the arrays in the innermost loop is good, it is always th
 
 The problem is the trip count of the innermost loop: it is low. Vectorization doesn't pay off in that case.
 
-One of the proposed solution was to multiversion a loop. In our case, `center` had value 2. We can create two versions of the loop nest, one where the value of `center` is known at compile time, and another one where it isn't. The compilers are very efficient at unrolling the loop with compile-time known trip count. Here is the solution:
+One of the proposed solution was to multiversion a loop. In our case, `center` had value 2. This can be found if you instrument the code and print the number of times a variable is equal to a certain value. We can create two versions of the loop nest, one where the value of `center` is known at compile time, and another one where it isn't. Keep in mind that it is not alway beneficial to do. If for some workload, `center` is never equal to 2, we end up pessimizing the performance of the program. Once we do such multiversioning, we expose a loop with compile-time known trip count, which compilers can easily unroll. Here is the solution:
 
 ```cpp
 if (center == 2) {
@@ -37,8 +45,8 @@ if (center == 2) {
         sum = 0.0;
         for(cc=(-2);cc<=2;cc++){
           if(((c+cc) >= 0) && ((c+cc) < cols)){
-              dot += (float)image[r*cols+(c+cc)] * kernel[center+cc];
-              sum += kernel[center+cc];
+              dot += (float)image[r*cols+(c+cc)] * kernel[2+cc];
+              sum += kernel[2+cc];
           }
         }
         tempim[r*cols+c] = dot/sum;
@@ -62,6 +70,8 @@ if (center == 2) {
 ```
 
 The above approach is quite crude, we could have used C macros to achieve similar things with less copying. BUt the basic idea is there.
+
+### Interchange in loop nest 1.
 
 Another approach is to do the loop interchange. If we could exchange the loop over `cc` and loop over `c`, we would get the innermost loop with a high trip count. Loop interchange is possible if two loops are perfectly nested, which is not our case. However, with a trick they can become perfectly nested.
 
@@ -104,6 +114,8 @@ for(r=0;r<rows;r++){
 ```
 
 Loop over `c` and loop over `cc` are now perfectly nested and they can be interchanged.
+
+### Interchange in loop nest 2.
 
 The second loop nest looks similar to the first one:
 

@@ -5,6 +5,10 @@ categories: challenge
 author: Ivica Bogosavljevic
 ---
 
+**Contents:**
+* TOC
+{:toc}
+
 Function `apply_hysteresis` consists of several loops, out of which only two have a measurable impact on performance and we will deal with them. The first loop belongs to the class of _histogram computation loops_ and looks like this:
 
 ```cpp
