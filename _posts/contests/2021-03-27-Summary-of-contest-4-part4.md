@@ -23,7 +23,7 @@ for(r=0,pos=0;r<rows;r++){
 }
 ```
 
-The above code will suffer from both large data cache miss rate (because of the random access to array `hist`) and large amount of branch misspredictions. There isn't much we can do related to the data cache miss rate, but we can get rid of the branch missprediction very simply, by doing:
+The above code will suffer from both a large data cache miss rate (because of the random access to array `hist`) and a large number of branch mispredictions. There isn't much we can do related to the data cache miss rate, but we can get rid of the branch misprediction very simply, by doing:
 
 ```cpp
 hist[mag[pos]]+= (edge[pos] == POSSIBLE_EDGE);
@@ -73,10 +73,10 @@ void follow_edges(unsigned char *edgemapptr, short *edgemagptr, short lowval,
 
 The function is recursive. There are several optimizations that can be done on recursive functions:
 * Decrease the number of parameters passed to the function
-* Move read only stack allocated parameters to global memory
+* Move read-only stack-allocated parameters to global memory
 * Make the function tail-recursive (not possible in this case)
 
-This function allocates array `x` and `y` in each invocation, but they are read only. Changing the type from `int` to `static int` will decrease the size of function's stack frame and save a few instructions.
+This function allocates arrays `x` and `y` in each invocation, but they are read-only. Changing the type from `int` to `static int` will decrease the size of the function's stack frame and save a few instructions.
 
 In this code, we are changing all pixels with `POSSIBLE_EDGE` to `EDGE` if certain conditions are fulfilled. In the later loop (not shown here), all the pixels which are `POSSIBLE_EDGE` are converted into `NOEDGE`. We can do some preprocessing before we do `follow_edge` loop to decrease the number of parameters we need to pass to `follow_edge`. With the preprocessing, our two loops look like this:
 
@@ -99,9 +99,9 @@ In this code, we are changing all pixels with `POSSIBLE_EDGE` to `EDGE` if certa
 
 This decreases the work that needs to be done in `follow_edges` as well. 
 
-Another idea is to convert `follow_edges` to a non-recursive function, but in this case our contestants noticed that this didn't have any performance impact. 
+Another idea is to convert `follow_edges` to a non-recursive function, but in this case, our contestants noticed that this didn't have any performance impact. 
 
 A third possibility would be to inline `follow_edge` in itself once. Nobody did it so we didn't follow this through.
 
-For this test we used CLANG compiler, but Intel's compiler has a nice feature where it can vectorize a function using OpenMP SIMD directive `#pragma omp declare simd`. It would be interesting to measure the performance impact of vectorization of this loop, but unfortunatelly we didn't use it in our tests.
+For this test, we used the CLANG compiler, but Intel's compiler has a nice feature where it can vectorize a function using OpenMP SIMD directive `#pragma omp declare simd`. It would be interesting to measure the performance impact of vectorization of this loop, but unfortunately, we didn't use it in our tests.
 

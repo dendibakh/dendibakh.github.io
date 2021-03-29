@@ -11,7 +11,7 @@ author: Ivica Bogosavljevic
 
 Function `derivative_x_y` also consists of two loops that are processing the image. The first loop nest processes the image row-wise and the second column-wise.
 
-As far as performance is concerned, the first loop nest has a sequential memory access pattern and from the performance point of view there is nothing that needs to be done there. CLANG auto-vectorized the loop nest, and from the performance point of view, nothing needs to be done there. You can click here TODO(Add link) to see the source code of the first loop nest.
+As far as performance is concerned, the first loop nest has a sequential memory access pattern and from the performance point of view, there is nothing that needs to be done there. CLANG auto-vectorized the loop nest, and from the performance point of view, nothing needs to be done there. You can click here TODO(Add link) to see the source code of the first loop nest.
 
 ### Loop interchange for achieving sequential memory accesses.
 
@@ -63,6 +63,6 @@ for(c=0;c<cols;c++){
 }
 ```
 
-The last step is to interchange the loops over `c` and loops over `r` and with this, the accesses to arrays `delta_y` and `smoothedim` becomes sequential.
+The last step is to interchange the loops over `c` and loops over `r` and with this, the accesses to arrays `delta_y` and `smoothedim` become sequential.
 
 One contestant noticed that it is convenient to keep the arrays `delta_x` and `delta_y` as positive values, since this simplifies the processing in the function `non_max_supp`. A simple `abs(smoothedim[index+cols] - smoothedim[index-cols])` while processing the data in the loop does the trick.

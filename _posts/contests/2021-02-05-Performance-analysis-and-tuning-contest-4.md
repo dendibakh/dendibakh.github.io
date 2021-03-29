@@ -103,7 +103,7 @@ Video version of the summary for the challenge is available on [youtube](https:/
 
 ### Observations
 
-The profiler showed four functions dominating the profile: `gaussian_smooth`, `derivative_x_y`, `non_max_supp` and `apply_hysteresis`. It is possible to speed up each one of them. We brake down our summary into 4 parts which digs into particular function, and shows what it is doing and what our contestants did to make them faster.
+The profiler showed four functions dominating the profile: `gaussian_smooth`, `derivative_x_y`, `non_max_supp` and `apply_hysteresis`. It is possible to speed up each one of them. We break down our summary into 4 parts which dig into a particular function and show what it is doing and what our contestants did to make them faster.
 - [Part 1]({{ site.url }}/blog/2021/03/27/Summary-of-contest-4-part1): `gaussian_smooth`: loop multiversioning, loop interchange to achieve vectorization and sequential memory accesses.
 - [Part 2]({{ site.url }}/blog/2021/03/27/Summary-of-contest-4-part2): `derivative_x_y`: loop interchange for achieving sequential memory accesses.
 - [Part 3]({{ site.url }}/blog/2021/03/27/Summary-of-contest-4-part3): `non_max_supp`: reducing the number of branches, replace branches with arithmetics.
@@ -111,13 +111,13 @@ The profiler showed four functions dominating the profile: `gaussian_smooth`, `d
 
 **Other ideas**
 
-There were a few other ideas that didn't bring a large performance improvements, nevertheless we mention them here for completeness:
-* **Buffer reuse**: the algorith was allocating some buffers where it can reuse some of the old buffers. Buffer reuse is a clever choice, it saves memory and this is good for performance.
-* **Use mmap to allocate large chunks of memory and preallocate the memory using MAP_POPULATE**: when you allocate memory with `malloc` or `new`, the operating system doesn't allocate all the memory in advance, because many programs allocating a lot of memory never actually use it. When your program first writes to the unallocated memory page, a `pagefault` happens and the operating system allocates the page that is missing. If you are allocating a large block of memory that you will write to only a few times but you are sure you will write each byte in the block, you can use `mmap` with `MAP_POPULATE` to allocate all the memory in advance, so no pagefaults happen when you are accessing the memory.
+There were a few other ideas that didn't bring large performance improvements, nevertheless, we mention them here for completeness:
+* **Buffer reuse**: the algorithm was allocating some buffers where it can reuse some of the old buffers. Buffer reuse is a clever choice, it saves memory and this is good for performance.
+* **Use `mmap` to allocate large chunks of memory and preallocate the memory using MAP_POPULATE**: when you allocate memory with `malloc` or `new`, the operating system doesn't allocate all the memory in advance, because many programs allocating a lot of memory never actually use it. When your program first writes to the unallocated memory page, a pagefault happens and the operating system allocates the page that is missing. If you are allocating a large block of memory that you will write to only a few times but you are sure you will write each byte in the block, you can use `mmap` with `MAP_POPULATE` to allocate all the memory in advance, so no pagefaults happen when you are accessing the memory.
 
 ### Score Table
 
-Here is the table taht summarizes submissions that we received:
+Here is the table that summarizes submissions that we received:
 ```
 time(s)  submission             timings for 10 consecutive runs (s)                            speedup
 ([0.15, 'Andrey_Evstyukhin',    [0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.2 ]], ' + 1260.0%')

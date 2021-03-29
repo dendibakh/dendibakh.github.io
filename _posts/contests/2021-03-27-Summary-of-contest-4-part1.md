@@ -31,7 +31,7 @@ for(r=0;r<rows;r++){
 }
 ```
 
-The access pattern for the arrays in the innermost loop is good, it is always the sequential pattern. Everytime the loop counter `cc` in the innermost loop increases by one, the index into the `image` and `kernel` increases by one.
+The access pattern for the arrays in the innermost loop is good, it is always the sequential pattern. Every time the loop counter `cc` in the innermost loop increases by one, the index into the `image` and `kernel` increases by one.
 
 The problem is the trip count of the innermost loop: it is low. Vectorization doesn't pay off in that case.
 
@@ -69,11 +69,11 @@ if (center == 2) {
 }
 ```
 
-The above approach is quite crude, we could have used C macros to achieve similar things with less copying. BUt the basic idea is there.
+The above approach is quite crude, we could have used C macros to achieve similar things with less copying. But the basic idea is there.
 
 ### Interchange in loop nest 1.
 
-Another approach is to do the loop interchange. If we could exchange the loop over `cc` and loop over `c`, we would get the innermost loop with a high trip count. Loop interchange is possible if two loops are perfectly nested, which is not our case. However, with a trick they can become perfectly nested.
+Another approach is to do the loop interchange. If we could exchange the loop over `cc` and loop over `c`, we would get the innermost loop with a high trip count. Loop interchange is possible if two loops are perfectly nested, which is not our case. However, with a trick, they can become perfectly nested.
 
 ```cpp
 for(r=0;r<rows;r++){
@@ -113,7 +113,7 @@ for(r=0;r<rows;r++){
 }
 ```
 
-Loop over `c` and loop over `cc` are now perfectly nested and they can be interchanged.
+Loops over `c` and `cc` are now perfectly nested and they can be interchanged.
 
 ### Interchange in loop nest 2.
 
@@ -135,7 +135,7 @@ for(c=0;c<cols;c++){
 }
 ```
 
-The access pattern in the innermost loop is bad this time. Access to the array `tempim` is with a stride `cols`. Everytime the value of `rr` increases by one we are accessing the elements which is `cols` places away from the previous element. This access pattern is bad from the performance point of view. To get rid of it, we would need to do a complex loop interchange to move the loop over `c` to the innermost position.
+The access pattern in the innermost loop is bad this time. Access to the array `tempim` is with a stride `cols`. Every time the value of `rr` increases by one we are accessing the elements which are `cols` places away from the previous element. This access pattern is bad from the performance point of view. To get rid of it, we would need to do a complex loop interchange to move the loop over `c` to the innermost position.
 
 To do this, we first interchange the loop over `c` and the loop over `r`. Then we interchange the loop over `c` and loop over `rr`. The final solution looks like this:
 

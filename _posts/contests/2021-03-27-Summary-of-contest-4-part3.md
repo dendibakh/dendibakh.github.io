@@ -77,9 +77,9 @@ for(rowcount=1,magrowptr=mag+ncols+1,gxrowptr=gradx+ncols+1,
   }
 ```
 
-The above code is quite verbose, but can be basically divided into three parts. The first part loads the common values `m0`, `gx`, `gy`, `xperp` and `yperp`. The second part on lines TODO performs the calculation dependiong on the values of `gx` and `gy`. The third part writes into the resulting array depending on the calculated values `mag1` and `mag2`.
+The above code is quite verbose but can be basically divided into three parts. The first part loads the common values `m0`, `gx`, `gy`, `xperp`, and `yperp`. The second part on lines TODO performs the calculation depending on the values of `gx` and `gy`. The third part writes into the resulting array depending on the calculated values `mag1` and `mag2`.
 
-This nested loop suffers from a large amount of branch mispredictions, which can be confirmed with `perf`. Any attemp in reducing the number of branches will result in better performance. Branches in this case prevent auto-vectorizatiotion, since compilers do not know how to deal with them.
+This nested loop suffers from a large number of branch mispredictions, which can be confirmed with `perf`. Any attempt in reducing the number of branches will result in better performance. Branches in this case prevent auto-vectorization since compilers do not know how to deal with them.
 
 ### Reducing the number of branches
 
@@ -103,7 +103,7 @@ if (gx > 0 & gy > 0 & gx >= 0) {
 }
 ```
 
-The above three branches are not equivalent. The first example, condition `gy > 0` will be evaluated only if `gx > 0`. In the optimized version, all three conditions are evaluated before the branch is evaluated as a whole. When condition evaluation is cheap (which is normally the case with simple artihmetic conditions), the second solution will be faster. Please note that we are joining the condition with arithmetic `&`, not `&&`, since only when they are joined with `&` will they be evaluated all together.
+The above three branches are not equivalent. The first example, condition `gy > 0` will be evaluated only if `gx > 0`. In the optimized version, all three conditions are evaluated before the branch is evaluated as a whole. When condition evaluation is cheap (which is normally the case with simple arithmetic conditions), the second solution will be faster. Please note that we are joining the condition with arithmetic `&`, not `&&`, since only when they are joined with `&` will they be evaluated altogether.
 
 The above approach will decrease the number of branches, but not eliminate them. 
 
@@ -134,7 +134,7 @@ We conditionally store to `*resultptr` depending on the set of conditions. We st
 `*resultptr` = POSSIBLE_EDGE *((mag <= 0.0) & (mag2 < 0.0));
 ```
 
-This completely avoids branches. If we analyze the large set of nested ifs  TODO(Add link or source example), we notice a pattern. The computations are always the same, there is only a difference which of the neighboring pixels we are processing.
+This completely avoids branches. If we analyze the large set of nested ifs  TODO(Add link or source example), we notice a pattern. The computations are always the same, there is only a difference in which of the neighboring pixels we are processing.
 
 The processing in each of the ifs body looks something like this:
 
@@ -153,7 +153,7 @@ mag1 = (X1 * m00 + Y1 * z1 + Z1 * z2)*xperp + (X2 * m00 + Y2 * z1 + Z2 * z2)*ype
 
 Where constants `A`, `B`, `X1`, `X2`, `Y1`, `Y2`, `Z1` and `Z2` depend on conditions `gx > 0`, `gy > 0` and `gx > gy`. 
 
-One of the ways to go branchles is to select values for the constants using a lookup table that indexes with conditions `gx > 0`, `gy > 0` or `gx > gy`. The example solutions can be found here TODO(Add link to peter coffman solutions) or here TODO(Add link to andrey evstyukhin solution).
+One of the ways to go branchless is to select values for the constants using a lookup table that indexes with conditions `gx > 0`, `gy > 0` or `gx > gy`. The example solutions can be found here TODO(Add link to peter coffman solutions) or here TODO(Add link to andrey evstyukhin solution).
 
 ### Substitute division with multiplication
 
@@ -170,7 +170,7 @@ mag2 = (m00 - z1)*xperp + (z2 - z1)*yperp;
 bool condition = ((mag1 > 0.0) | (mag2 > 0.0));
 ```
 
-We first divide `gx` and `gy` by `m00` to get `xperp` and `yperp` and then we calculate `mag1` and `mag2` by using `xperp` and `yperp`. Finally we only check the sign of `mag1` and `mag2`, we are not interested in its actual value.
+We first divide `gx` and `gy` by `m00` to get `xperp` and `yperp` and then we calculate `mag1` and `mag2` by using `xperp` and `yperp`. Finally, we only check the sign of `mag1` and `mag2`, we are not interested in its actual value.
 
 We can substitute the division with multiplication like this:
 
@@ -187,4 +187,4 @@ From this point, our condition becomes a bit more complex:
 bool condition = (m00 < 0) ^ ((mag1 > 0.0) | (mag2 > 0.0))
 ```
 
-Nevertheless, an evaluation of the condition and exlusive xor are much cheaper than the division operation.
+Nevertheless, an evaluation of the condition and exclusive xor is much cheaper than the division operation.
