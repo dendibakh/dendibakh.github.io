@@ -9,7 +9,7 @@ author: Ivica Bogosavljevic
 * TOC
 {:toc}
 
-The function `gaussian_smooth` (TODO: Add code to the baseline in the repository) consists of two loop nests. 
+The function `gaussian_smooth` consists of two loop nests ([code](https://github.com/dendibakh/perf_challenge4/blob/master/canny_baseline/canny_source.c#L426)). 
 
 ### Multiversioning of loop nest 1.
 

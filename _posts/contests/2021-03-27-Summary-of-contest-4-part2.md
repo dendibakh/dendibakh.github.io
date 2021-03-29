@@ -11,7 +11,7 @@ author: Ivica Bogosavljevic
 
 Function `derivative_x_y` also consists of two loops that are processing the image. The first loop nest processes the image row-wise and the second column-wise.
 
-As far as performance is concerned, the first loop nest has a sequential memory access pattern and from the performance point of view, there is nothing that needs to be done there. CLANG auto-vectorized the loop nest, and from the performance point of view, nothing needs to be done there. You can click here TODO(Add link) to see the source code of the first loop nest.
+As far as performance is concerned, the first loop nest has a sequential memory access pattern and from the performance point of view, there is nothing that needs to be done there. CLANG auto-vectorized the loop nest, and from the performance point of view, nothing needs to be done there. You can click [here](https://github.com/dendibakh/perf_challenge4/blob/master/canny_baseline/canny_source.c#L389) to see the source code of the first loop nest.
 
 ### Loop interchange for achieving sequential memory accesses.
 
