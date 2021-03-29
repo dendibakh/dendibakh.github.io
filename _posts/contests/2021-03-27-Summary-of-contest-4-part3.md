@@ -107,7 +107,7 @@ The above three branches are not equivalent. The first example, condition `gy > 
 
 The above approach will decrease the number of branches, but not eliminate them. 
 
-### Replace branches with arithmetics.
+### Replacing branches with arithmetics.
 
 We can go completely branchless by replacing them with arithmetics. Consider this part of the code:
 

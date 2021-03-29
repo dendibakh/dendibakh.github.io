@@ -9,7 +9,11 @@ author: Ivica Bogosavljevic
 * TOC
 {:toc}
 
-Function `apply_hysteresis` consists of several loops, out of which only two have a measurable impact on performance and we will deal with them. The first loop belongs to the class of _histogram computation loops_ and looks like this:
+Function `apply_hysteresis` consists of several loops, out of which only two have a measurable impact on performance and we will deal with them. 
+
+### Replacing branches with arithmetics.
+
+The first loop belongs to the class of _histogram computation loops_ and looks like this:
 
 ```cpp
 for(r=0,pos=0;r<rows;r++){
@@ -19,13 +23,15 @@ for(r=0,pos=0;r<rows;r++){
 }
 ```
 
-The above code will suffer from both large data cache miss rate (because of the random access to array `hist`) and large amound of branch misspredictions. There isn't much we can do related to the data cache miss rate, but we can get rid of the branch missprediction very simply, by doing:
+The above code will suffer from both large data cache miss rate (because of the random access to array `hist`) and large amount of branch misspredictions. There isn't much we can do related to the data cache miss rate, but we can get rid of the branch missprediction very simply, by doing:
 
 ```cpp
 hist[mag[pos]]+= (edge[pos] == POSSIBLE_EDGE);
 ```
 
 The above code is equivalent to `if(edge[pos] == POSSIBLE_EDGE) hist[mag[pos]]++` but 1.5 times faster.
+
+### Optimizing recursive function calls.
 
 A second loop with a performance impact is following:
 
@@ -72,7 +78,7 @@ The function is recursive. There are several optimizations that can be done on r
 
 This function allocates array `x` and `y` in each invocation, but they are read only. Changing the type from `int` to `static int` will decrease the size of function's stack frame and save a few instructions.
 
-In this code, we are changing all pixels with `POSSIBLE_EDGE` to `EDGE` if certain conditions are fulfilled. In the later loop (not given here), for all pixels which are `POSSIBLE_EDGE` we convert the to `NOEDGE`. We can do some preprocessing before we do `follow_edge` loop to decrease the number of parameters we need to pass to `follow_edge`. With the preprocessing, our two loops look like this:
+In this code, we are changing all pixels with `POSSIBLE_EDGE` to `EDGE` if certain conditions are fulfilled. In the later loop (not shown here), all the pixels which are `POSSIBLE_EDGE` are converted into `NOEDGE`. We can do some preprocessing before we do `follow_edge` loop to decrease the number of parameters we need to pass to `follow_edge`. With the preprocessing, our two loops look like this:
 
 ```cpp
   for(r=0,pos=0;r<rows;r++){
