@@ -104,10 +104,10 @@ Video version of the summary for the challenge is available on [youtube](https:/
 ### Observations
 
 The profiler showed four functions dominating the profile: `gaussian_smooth`, `derivative_x_y`, `non_max_supp` and `apply_hysteresis`. It is possible to speed up each one of them. We brake down our summary into 4 parts which digs into particular function, and shows what it is doing and what our contestants did to make them faster.
-- [Part 1]({{ site.url }}/blog/2021/03/27/Summary-of-contest-4-part1): `gaussian_smooth`.
-- [Part 2]({{ site.url }}/blog/2021/03/27/Summary-of-contest-4-part2): `derivative_x_y`
-- [Part 3]({{ site.url }}/blog/2021/03/27/Summary-of-contest-4-part3): `non_max_supp`
-- [Part 4]({{ site.url }}/blog/2021/03/27/Summary-of-contest-4-part4): `apply_hysteresis`
+- [Part 1]({{ site.url }}/blog/2021/03/27/Summary-of-contest-4-part1): `gaussian_smooth`: loop multiversioning, loop interchange to achieve vectorization and sequential memory accesses.
+- [Part 2]({{ site.url }}/blog/2021/03/27/Summary-of-contest-4-part2): `derivative_x_y`: loop interchange for achieving sequential memory accesses.
+- [Part 3]({{ site.url }}/blog/2021/03/27/Summary-of-contest-4-part3): `non_max_supp`: reducing the number of branches, replace branches with arithmetics.
+- [Part 4]({{ site.url }}/blog/2021/03/27/Summary-of-contest-4-part4): `apply_hysteresis`: replacing branches with arithmetics, optimizing recursive function calls.
 
 **Other ideas**
 
