@@ -120,18 +120,18 @@ There were a few other ideas that didn't bring a large performance improvements,
 Here is the table taht summarizes submissions that we received:
 ```
 time(s)  submission             timings for 10 consecutive runs (s)                            speedup
-([0.15, 'andrey_evstyukhin',    [0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.2 ]], ' + 1260.0%')
-([0.29, 'adam_folwarczny',      [0.29, 0.29, 0.29, 0.29, 0.29, 0.3,  0.3,  0.3,  0.3,  0.33]], ' + 603.45%')
-([0.4,  'peter_coffman',        [0.4,  0.4,  0.4,  0.4,  0.4,  0.4,  0.4,  0.4,  0.41, 0.42]], ' + 410.0%')
-([0.52, 'yiannis_papadopoulos', [0.52, 0.52, 0.52, 0.52, 0.52, 0.52, 0.52, 0.52, 0.52, 0.56]], ' + 292.31%')
-([0.58, 'goran_mitrovic',       [0.58, 0.58, 0.58, 0.58, 0.58, 0.58, 0.58, 0.58, 0.59, 0.62]], ' + 251.72%')
-([0.62, 'sasha_krassovsky',     [0.62, 0.63, 0.63, 0.63, 0.63, 0.63, 0.63, 0.63, 0.63, 0.67]], ' + 229.03%')
-([0.64, 'tomas_hudziec',        [0.64, 0.64, 0.64, 0.64, 0.64, 0.64, 0.65, 0.65, 0.65, 0.65]], ' + 218.75%')
-([1.4,  'pradeep_kumar',        [1.4,  1.45, 1.45, 1.46, 1.46, 1.47, 1.47, 1.48, 1.48, 1.51]], ' + 45.71%')
+([0.15, 'Andrey_Evstyukhin',    [0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.2 ]], ' + 1260.0%')
+([0.29, 'Adam_Folwarczny',      [0.29, 0.29, 0.29, 0.29, 0.29, 0.3,  0.3,  0.3,  0.3,  0.33]], ' + 603.45%')
+([0.4,  'Peter_Coffman',        [0.4,  0.4,  0.4,  0.4,  0.4,  0.4,  0.4,  0.4,  0.41, 0.42]], ' + 410.0%')
+([0.52, 'Yiannis_Papadopoulos', [0.52, 0.52, 0.52, 0.52, 0.52, 0.52, 0.52, 0.52, 0.52, 0.56]], ' + 292.31%')
+([0.58, 'Goran_Mitrovic',       [0.58, 0.58, 0.58, 0.58, 0.58, 0.58, 0.58, 0.58, 0.59, 0.62]], ' + 251.72%')
+([0.62, 'Sasha_Krassovsky',     [0.62, 0.63, 0.63, 0.63, 0.63, 0.63, 0.63, 0.63, 0.63, 0.67]], ' + 229.03%')
+([0.64, 'Tomas_Hudziec',        [0.64, 0.64, 0.64, 0.64, 0.64, 0.64, 0.65, 0.65, 0.65, 0.65]], ' + 218.75%')
+([0.84, 'Andrey_Pechkurov',     [0.84, 0.85, 0.85, 0.85, 0.85, 0.85, 0.85, 0.85, 0.85, 0.85]], ' + 202.38%')
+([1.4,  'Pradeep_Kumar',        [1.4,  1.45, 1.45, 1.46, 1.46, 1.47, 1.47, 1.48, 1.48, 1.51]], ' + 45.71%')
 ([2.04, 'canny_baseline',       [2.04, 2.04, 2.05, 2.06, 2.06, 2.06, 2.06, 2.06, 2.12, 2.12]], ' + 0.0%')
 ```
 
-TODO: measure Andrey Pechkurov's submission
 ---
 
 [^1]: Unfortunately, neither Denis nor Ivica work closely with Windows, so sorry, we have limited support for Windows. At least we know that it is possible to compile the source code with the MSVC compiler (19.28.29335) from Visual Studio 2019. But you need to fix cmake or add the optimizations options to the VS project yourself. We highly encourage you to contribute your changes back to the benchmark, so that other people will benefit from it.
