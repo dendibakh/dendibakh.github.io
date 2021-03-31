@@ -35,7 +35,7 @@ The access pattern for the arrays in the innermost loop is good, it is always th
 
 The problem is the trip count of the innermost loop: it is low. Vectorization doesn't pay off in that case.
 
-One of the proposed solution was to multiversion a loop. In our case, `center` had value 2. This can be found if you instrument the code and print the number of times a variable is equal to a certain value. We can create two versions of the loop nest, one where the value of `center` is known at compile time, and another one where it isn't. Keep in mind that it is not alway beneficial to do. If for some workload, `center` is never equal to 2, we end up pessimizing the performance of the program. Once we do such multiversioning, we expose a loop with compile-time known trip count, which compilers can easily unroll. Here is the solution:
+One of the proposed solution was to multiversion a loop. In our case, `center` had value 2. You don't get this information from the profiler, but simply by printing the value of the `center` on the screen. We can create two versions of the loop nest, one where the value of `center` is known at compile time, and another one where it isn't. Keep in mind that it is not alway beneficial to do. If for some workload, `center` is never equal to 2, we end up pessimizing the performance of the program. Once we do such multiversioning, we expose a loop with compile-time known trip count, which compilers can easily unroll. Here is the solution:
 
 ```cpp
 if (center == 2) {

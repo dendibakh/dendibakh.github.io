@@ -78,7 +78,7 @@ The function is recursive. There are several optimizations that can be done on r
 
 This function allocates arrays `x` and `y` in each invocation, but they are read-only. Changing the type from `int` to `static int` will decrease the size of the function's stack frame and save a few instructions.
 
-In this code, we are changing all pixels with `POSSIBLE_EDGE` to `EDGE` if certain conditions are fulfilled. In the later loop (not shown here), all the pixels which are `POSSIBLE_EDGE` are converted into `NOEDGE`. We can do some preprocessing before we do `follow_edge` loop to decrease the number of parameters we need to pass to `follow_edge`. With the preprocessing, our two loops look like this:
+In this code, we are changing all pixels with `POSSIBLE_EDGE` to `EDGE` if certain conditions are fulfilled. In the later loop (not shown here), all the remaining pixels which are `POSSIBLE_EDGE` are converted into `NOEDGE`. To decrease the amount of work in the critical loop, we can first convert all pixels with `mag[pos] <= lowthreshold` to `NOEDGE`. With this preprocessing we've decreased the number of pixels with `POSSIBLE_EDGE` and our ciritcal and complex loop has less work to do. Here how it looks in code:
 
 ```cpp
   for(r=0,pos=0;r<rows;r++){
@@ -96,8 +96,6 @@ In this code, we are changing all pixels with `POSSIBLE_EDGE` to `EDGE` if certa
       }
    }
 ```
-
-This decreases the work that needs to be done in `follow_edges` as well. 
 
 Another idea is to convert `follow_edges` to a non-recursive function, but in this case, our contestants noticed that this didn't have any performance impact. 
 

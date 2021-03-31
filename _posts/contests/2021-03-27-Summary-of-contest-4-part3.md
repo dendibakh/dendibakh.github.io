@@ -134,7 +134,7 @@ We conditionally store to `*resultptr` depending on the set of conditions. We st
 `*resultptr` = POSSIBLE_EDGE *((mag <= 0.0) & (mag2 < 0.0));
 ```
 
-This completely avoids branches. If we analyze the large set of nested `if`s  TODO(Add link or source example), we notice a pattern. The computations are always the same, there is only a difference in which of the neighboring pixels we are processing.
+This completely avoids branches. If we analyze the large set of nested `if`s  (link to the [source](https://github.com/dendibakh/perf_challenge4/blob/master/canny_baseline/canny_source.c#L736)), we notice a pattern. The computations are always the same, there is only a difference in which of the neighboring pixels we are processing.
 
 The processing in each of the ifs body looks something like this:
 

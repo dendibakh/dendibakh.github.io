@@ -98,8 +98,7 @@ __P.S.__ I'm also open to your comments and suggestions. Especially if you have 
 
 ## _Updated 27th March 2021_
 
-TODO(Write an introduction about the submission.)
-Video version of the summary for the challenge is available on [youtube](https://www.youtube.com/watch?v=xvnFfl9LctM).
+Our contestants have really put quite an effort in the challenge. After the challenge we organized a follow-up sessions, where we discussed the changes contestants made, their experiences and the performance gains. Video version of the summary for the challenge is available on [youtube](https://www.youtube.com/watch?v=xvnFfl9LctM).
 
 ### Observations
 
