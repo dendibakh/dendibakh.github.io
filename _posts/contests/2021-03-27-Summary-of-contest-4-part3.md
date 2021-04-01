@@ -128,13 +128,13 @@ else
 }
 ```
 
-We conditionally store to `*resultptr` depending on the set of conditions. We store `NOEDGE` if condition `((mag > 0.0) || (mag2 >= 0.0))`, otherwise we store `POSSIBLE_EDGE`. Or to say it the other way around, we store `POSSIBLE_EDGE` if condition `((mag <= 0.0) & (mag2 < 0.0))` is 1. So we can write:
+We conditionally store to `*resultptr` depending on the set of conditions. We store `NOEDGE` if condition `((mag > 0.0) || (mag2 >= 0.0))`, otherwise we store `POSSIBLE_EDGE`. Or to say it the other way around, we store `POSSIBLE_EDGE` if condition `((mag <= 0.0) & (mag2 < 0.0))` is 1. So we can rewrite it with:
 
 ```cpp
-`*resultptr` = POSSIBLE_EDGE *((mag <= 0.0) & (mag2 < 0.0));
+*resultptr = ((mag <= 0.0) & (mag2 < 0.0)) ? POSSIBLE_EDGE : NOEDGE;
 ```
 
-This completely avoids branches. If we analyze the large set of nested `if`s  (link to the [source](https://github.com/dendibakh/perf_challenge4/blob/master/canny_baseline/canny_source.c#L736)), we notice a pattern. The computations are always the same, there is only a difference in which of the neighboring pixels we are processing.
+If we analyze the large set of nested `if`s  (link to the [source](https://github.com/dendibakh/perf_challenge4/blob/master/canny_baseline/canny_source.c#L736)), we notice a pattern. The computations are always the same, there is only a difference in which of the neighboring pixels we are processing.
 
 The processing in each of the ifs body looks something like this:
 
