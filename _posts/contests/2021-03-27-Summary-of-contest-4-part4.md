@@ -2,7 +2,7 @@
 layout: post
 title: Summary for performance challenge &#35&#52. Part 4.
 categories: challenge
-author: Ivica Bogosavljevic
+author: Ivica Bogosavljevic from johnysswlab.com
 ---
 
 **Contents:**
