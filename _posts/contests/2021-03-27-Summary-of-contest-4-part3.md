@@ -153,7 +153,7 @@ mag1 = (X1 * m00 + Y1 * z1 + Z1 * z2)*xperp + (X2 * m00 + Y2 * z1 + Z2 * z2)*ype
 
 Where constants `A`, `B`, `X1`, `X2`, `Y1`, `Y2`, `Z1` and `Z2` depend on conditions `gx > 0`, `gy > 0` and `gx > gy`. 
 
-One of the ways to go branchless is to select values for the constants using a lookup table that indexes with conditions `gx > 0`, `gy > 0` or `gx > gy`. The example solutions can be found here TODO(Add link to peter coffman solutions) or [here](https://github.com/dendibakh/perf_challenge4/blob/master/Andrey_Evstyukhin/canny_source.c#L661).
+One of the ways to go branchless is to select values for the constants using a lookup table that indexes with conditions `gx > 0`, `gy > 0` or `gx > gy`. The example solutions can be found [here](https://github.com/dendibakh/perf_challenge4/blob/master/Peter_Coffman/canny_source.c#L693) or [here](https://github.com/dendibakh/perf_challenge4/blob/master/Andrey_Evstyukhin/canny_source.c#L661).
 
 ### Substitute division with multiplication
 
