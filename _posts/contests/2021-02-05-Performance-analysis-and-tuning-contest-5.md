@@ -93,7 +93,7 @@ TODO finish talk about the tools
 
 ### The memory allocation problem
 
-One of the things that will keep popping up in the profiler is the amount of time spent in `malloc` and `free`. Kaldi code extensively uses linked lists, and this puts a huge pressure on the system allocator.
+One of the things that will keep popping up in the profiler is the amount of time spent in `malloc` and `free`. Kaldi code extensively uses linked lists, for each node in the linked list there is a call to `malloc` and this puts a huge pressure on the system allocator.
 
 One way to resolve this is to replace the system allocator with a faster one. You can try it to see how it goes (you can use `LD_PRELOAD` to replace the system allocator as explained [here](https://johnysswlab.com/the-price-of-dynamic-memory-allocation/)). The consequence is that the program runs faster since (a) allocation is faster so it spends less time allocating memory and (b) data locality is better so there is a smaller amount of data cache misses.
 
@@ -107,22 +107,49 @@ Custom allocator has for one type has several benefits: it decreases data fragme
 
 ### Increasing data locality
 
-An important task you need to solve as part of this challenge is to increase data locality. Increasing data locality (which you can measure by observing the data cache hit rate) will result in performance increase, under the assumption you are not executing much more instructions to achieve better data locality.
+An important task you need to solve as part of this challenge is to increase data locality and therefore decrease data cache miss rate. Increasing data locality (which you can measure by observing the data cache hit rate) will result in performance increase, under the assumption you are not executing much more instructions to achieve better data locality.
 
 ### Decrease structure size
 
-By decreasing the structure size you automatically increase data locality, since TODO finish.
+In case of our classes `Token` and `ForwardingLink`, the smaller the size of the class, the better the performance of the program. There are several ways to decrease the size of a class, here are a few ideas:
+* Remove rarely used data fields to other classes.
+* Get rid of pointers. Many memory bound programs run faster if the program is compiled for a 32 bit architecture, because these architecture use smaller pointers. A way to decrease the size of a pointer on a 64 bit machine is not to used them at all, instead you can allocate from an array and keep an index into array instead of pointer. For example, you can use `std::vector` for memory allocation and keep the index in the array instead of pointer.
+* Use smaller types.
 
+### Use custom linked list
 
-3. Find performance headroom in the hot code:
-  * Make sure the data is accessed sequentially in the innermost loop of the hot code. If the data is accessed with a constant stride, you can try different techniques like loop exchange (exchange inner and outer loop), loop tilling, etc. to move towards sequential accesses.
-  * Make sure the innermost loop has a high trip count. This will allow compiler optimizations like loop unrolling, vectorization, etc. to speed up the code processing.
-  * Move all loop-invariant code outside of the loop. Make the innermost loop as compact as possible. 
-  * Run your code through the [TMA]({{ site.url }}/blog/2019/02/09/Top-Down-performance-analysis-methodology) or Intel's VTune profiler to understand which line of code causes the CPU to get stalled (due to cache misses, branch mispredictions, etc.)
-4. Fix the issue, build the benchmark, run it and compare against the baseline.
-5. Repeat steps 2-5.
+The main problem with traversing a linked list are data cache misses. Every usage of `->` operator typically results in a data cache miss. 
 
-Canny is a typical image processing algorithm that runs through the image, sometimes row-wise, sometimes column-wise, and processes pixels. Processing is done in several stages. Collecting the performance profile will help you focus on the right functions; collecting information about stalled cycles will help you understand why that code is slow.
+Linked lists are very flexible data structures, but this flexibility comes at the price of slow access. Traversing a vector can be an order of a magnitude faster than traversing a linked list of the same size. So most of the optimizations related to linked lists actually revolve around implementing them using a vector.
+
+If you are ready to give up on some of the flexibility offered by a linked list, you can benefit from a huge speed improvements.
+
+* Linked list where you push elements only at the beginning or end of the list can be efficiently implemented using vectors (example: `std::dequeue`)
+* Linked list where you are pushing elements only at the beginning or end of the list, but you are removing random elements can also be implemented using vectors. In this case, when deleting, you mark the deleted elements of the linked list in the vactor, and you skip over them during iteration. You will also want to implement a "compact" operation on such a data structure, which moves used elements of the vector to empty positions and restores an ordering as in a vector. After "compact" operation, iteration through linked list becomes as fast as iteration through a vector.
+* [Unrolled linked lists](https://en.wikipedia.org/wiki/Unrolled_linked_list): linked lists that store more than one element in a node are much more cache friendly that linked lists that store only one. In one of our [earlier experiments](https://johnysswlab.com/make-your-programs-run-faster-by-better-using-the-data-cache/#linkedlist), traversing a linked list with two elements in a node was two times faster than traversing a regular linked list.
+* Specialize for your data: if most of the linked lists in your program are really small, you can specialize for it using [small size optimizations](https://johnysswlab.com/the-price-of-dynamic-memory-allocation/#small-size-optimizations).
+
+On the internet you can find several implementations of linked lists that claim to be faster than regular linked lists. However, bear in mind that although this can be true for a general case, it is not necessarily so four your specific case. For example, there is an [implementation of STL](https://github.com/electronicarts/EASTL) that focuses on performance done by game  developer EA. They claim that their implementation is faster than regular STL implementation, if this is the case it is up to you to discover.
+
+### Don't process unused data
+
+If you are traversing a linked list, and you come accross a piece of data that doesn't require processing, your program lost time. The idea is not to access unused data at all.
+
+Linked list node consists of a piece of data, and a pointer to a next node, typicall called `next`. You can add another pointer, called `skip`, that you can use to skip over unused nodes. When you need the whole list, you iterate over `next`, when you need just to modify relevant parts of the list, you iterate over `skip` pointers.
+
+### Copy data
+
+When accessing data indirectly, using `->` operator, you are likely to have a data cache miss. One of the ways to fiy this is to keep a copy a data in the same class, in order to avoid using the `->` operator and additional cost. 
+
+But bear in mind that if you have two copies of the data, and the data is changed in one place, you will need to update copies everywhere. Therefore, this approach works for data that once set, doesn't change.
+
+### Prefetch data
+
+An important technique for speeding up accesses is data prefetching. Many CPUs have prefetch instruction, which you can use to tell the CPU to load the data from the main memory to the cache memory.
+
+If you know that you are going to need a certain piece of the data, you can use `__builtin_prefetch` on GCC and CLANG to request it, so it is already in the cache when you access it. Denis gave an explanation of this technique in his book (TODO: Add link). Prefetching can be used to implement very fast data structures, as explained [here](https://johnysswlab.com/use-explicit-data-prefetching-to-faster-process-your-data-structure/).
+
+### General Recommendations
 
 I also have a few general hints:
 - **Do not try to understand the whole algorithm**. For some people, it's crucial to understand how every piece of code works. For the purposes of optimizing it will be wasted effort. There are CPU benchmarks with thousands LOC (like [SPEC2017](http://spec.org/cpu2017/)) it's absolutely impossible to understand them in a reasonable time. What you need to familiarize yourself with, are hotspots. That's it. You most likely need to understand one function/loop which is not more than 100 LOC.
@@ -134,13 +161,13 @@ __See the Q&A post about what optimizations are [allowed]({{ site.url }}/blog/20
 
 ### Validation
 
-If the produced image is correct it will print `Validation successful`. A slight tolerance between the reference output image and the image produced by your algorithm is allowed in order to fully exploit the hardware's resources.
+TODO
 
 ### Submissions
 
-> We will not use submissions for any commercial purposes. However, we can use the submissions for educational purposes.
+> We will not use submissions for any commercial purposes. However, a good and maintainable solution can be merged back to Kaldi source tree.
 
-The baseline we will be measuring against is Skylake client CPU (e.g. Intel Core i7-6700) with 64-bit Linux and Clang 10 compiler used with options `-ffast-math -O3 -march=core-avx2`.
+The baseline we will be measuring against is TODO (Which CPU. Maybe add ARM Raspberry Pi as well) with 64-bit Linux and Clang 10 compiler used with options `-ffast-math -O3 -march=core-avx2`.
 
 We conduct performance challenges via Denis' mailing list, so it's a good idea to [subscribe](https://mailchi.mp/4eb73720aafe/easyperf) (if you haven't already) if you would like to submit your solution. The benchmark consists of a single file, so you can just send the modified `canny_source.c` source file via email to [Ivica](https://johnysswlab.com/contact/) or [Denis](https://easyperf.net/contact/). The general rules and guidelines for submissions are described [here]({{ site.url }}/blog/2019/02/02/Performance-optimization-contest#q7-how-should-the-submission-look-like). We also ask you to provide textual description of all the transformations you have made. It will be much easier for us to analyze your submission. 
 
