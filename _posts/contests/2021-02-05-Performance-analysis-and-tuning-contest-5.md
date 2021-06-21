@@ -177,6 +177,12 @@ An important technique for speeding up accesses is data prefetching. Many CPUs h
 
 If you know that you are going to need a certain piece of the data, you can use `__builtin_prefetch` on GCC and CLANG to request it, so it is already in the cache when you access it. Denis gave an explanation of this technique in his book (TODO: Add link). Prefetching can be used to implement very fast data structures, as explained [here](https://johnysswlab.com/use-explicit-data-prefetching-to-faster-process-your-data-structure/).
 
+### Reuse data in the data cache
+
+Every piece of data accessed by your program will be loaded to the data cache and it will stay there for some time. If you need to access the same data again, it is better to do it sooner than later.
+
+For example, if you have N linked lists that you are accessing M times, you can try different access patterns: access them in groups of 5 lists 5 times, and then move on to the next list. When you are processing data in this way, the data needs to be loaded to the data cache only the first time, the access for remaining four times is much faster. 
+
 ### General Recommendations
 
 I also have a few general hints:
@@ -187,7 +193,7 @@ If you feel you're stuck, don't hesitate to ask questions or look for support on
 
 ### Validation
 
-The results must match the baseline. There shouldn't be any memory leaks (check with Valgrind). To compare to the baseline:
+The results must match the baseline. There shouldn't be any memory leaks (check with gperftools). To compare to the baseline, run:
 
 TODO
 
