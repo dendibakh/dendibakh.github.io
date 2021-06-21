@@ -44,7 +44,7 @@ $ make depend -j8
 $ make -j8
 ```
 
-The first time you build kaldi it can take a lot of time to compile everything. Later, when doing incremental builds, just run `make -j8`. If your added or removed headers (changed dependencies), you should also run `make depend -j8` before `make -j8`.
+The first time you build kaldi it can take a lot of time to compile everything, so it is a good idea to let it compile and go do something else. Later, when doing incremental builds, just run `make -j8`. If your added or removed headers (changed dependencies), you should also run `make depend -j8` before `make -j8`.
 
 ## Downloading and running the test
 
@@ -53,17 +53,16 @@ Under the assumption you are in `kaldi/src` directory, to download the test you 
 ```bash
 wget https://johnysswlab.com/downloads/test-speed.zip
 unzip test-speed.zip
-cd test-speed
-TODO finish
 ```
 
 To run the test, execute:
 
 ```bash
-TODO Add
+cd test-speed
+../online2bin/online2-wav-nnet3-latgen-faster --word-symbol-table=graph/words.txt --config=conf/model.conf am/final.mdl graph/HCLG.fst ark:test.utt2spk scp:test.scp ark:/dev/null
 ```
 
-TO verify the result of the change:
+To verify the result of the change:
 
 ```bash
 TODO
@@ -79,17 +78,46 @@ To limit the scope of the changes, you are allowed to:
 
 You are not allowed to modify the compilation flags, modify configuration files, etc. Please note that this rule is not written in stone, if you believe that for good performance it is necessary to change other files as well, let us know and we can agree to change this rule.
 
+This task is tough and you will want to cooperate with other participants. We created a DISCORD channel to faciliate cooperation, and we will be answering all questions there. Join the channel if you wish to cooperate. TODO Add link.
 
-The target configuration for this challenge is TODO Skylake CPU (e.g. Intel Core i7-6700) + 64-bit Linux (e.g. Ubuntu 20.04) + Clang 10. Although you are free to use whatever environment you have access to. It's fine if you solve the challenge on Intel, AMD, or ARM CPU. Also, you can do your experiments on Windows[^1] or Mac since `cmake` is used for building the benchmark. The reason why we define the target configuration is to have a unified way to assess all the submissions. In the end, it is not about getting the best score, but about practicing performance optimizations.
+The target configuration for this challenge is TODO (Denis: let's take a newer CPU and also include for example ARM on Raspberry PI) Skylake CPU (e.g. Intel Core i7-6700) + 64-bit Linux (e.g. Ubuntu 20.04) + Clang 10. Although you are free to use whatever environment you have access to. It's fine if you solve the challenge on Intel, AMD, or ARM CPU. Also, you can do your experiments on Windows[^1] or Mac since `cmake` is used for building the benchmark. The reason why we define the target configuration is to have a unified way to assess all the submissions. In the end, it is not about getting the best score, but about practicing performance optimizations.
 
 ## Couple of hints
 
 ### The tools
 
-1. Collect the baseline. You can use `time`, my personal preference is `multitime` which available in the repositories.
-2. Find the hotspot. The default choice would be `perf record`, but again, Intel's Advisor or Intel's VTune profiler are my go-to choices, especially for less experienced engineers who are still trying to get a feel on performance tuning. In Denis' book "Performance Tuning on Modern CPUs" there is a really nice explanation on how to use `pmu-tools`.
-TODO finish talk about the tools
+To measure the program's runtime, you can prefix the command with `time` or `multitime`, like this:
 
+```bash
+multitime -n 5 ../online2bin/online2-wav-nnet3-latgen-faster --word-symbol-table=graph/words.txt --config=conf/model.conf am/final.mdl graph/HCLG.fst ark:test.utt2spk scp:test.scp ark:/dev/null
+```
+
+You compare the runtime of your modification against the runtime of the original code. The faster your program, the better you are at optimizing.
+
+To find the hotspots (i.e. functions that take the most time), you will need to use the profiler. There are many profilers available: `perf` which is very common on Linux or Intel's VTUNE which works on Intel's chips only. Intel's VTUNE is a GUI, it is very useful and convinient both for beginners and experts. Alternatively, you can use `perf` in combination with `speedscope`, as described [here](https://johnysswlab.com/speedscope-visualize-what-your-program-is-doing-and-where-it-is-spending-time/).
+
+After having found the functions that are performance bottlenecks, the fun starts. One part of your work is to make sure that the CPU doesn't do unnecessary work, or think of the ways to skip unnecessary work. This automatically translates to better performance since the number of instruction is lower.
+
+Another important way of making code run faster are optimizations for the CPU. The profiler tells you that the function is slow, but it doesn't tell you why. Are these data cache misses, branch prediction misses, instruction cache misses? To find out, you will need to use a special profiler that can read hardware performance counters and tell you that.
+
+Profilers that can read this kind of data are CPU specific, since each vendor and CPU family has a different set of counters. On Intel, you can use Intel's VTUNE in Microarchitectural Analysis mode to get this information. Also, `pmu-tools` is another alternative (excellent information in Denis' book TODO link). On AMD, there is uProf compiler.
+
+Alternartively, you can use `likwid-perfctr` to read information from the hardware performance timers. This tool is open source and works with many types of CPUs from different vendors. Link to more information about `likwid-perfctr` is [here](https://johnysswlab.com/hardware-performance-counters-the-easy-way-quickstart-likwid-perfctr/).
+
+### What to measure?
+
+The tools can read many data from the hardware performance counters, but most of it is not interesting to you.
+
+As you will see later, the code we are investigating mostly suffers from data cache misses. Important measurements about this type of code include:
+* Cycles count: number of cycles CPU used to execute your code. This corresponds to execution time. You want to see a decrease in cycles count for your program because the program then runs faster. 
+* Instructions count: number of executed instructions. You will see, when you do your changes, this number can go up or down. But, sometimes even with an increase in instruction count your program may still run faster.
+* Cycles per Instructions (Instructions per Cycle): modern CPUs can execute more than one instruction per cycle. In the case of memory bound program, CPI will typically be high, because the CPU often needs to wait for the data from the main memory and the CPU is not doing anything useful at that time. Pay attention to CPI: the smaller the number, the more efficient the code.
+
+Additional metrics:
+* Data cache misses: smaller the miss count, the better the performance. There are L1, L2 and L3 data caches, you should focus on L3 first since data cache misses are most expensive there.
+* Memory accesses: the number of time the CPU had to do a memory access is the number of time it didn't find the data it needed in the data caches.
+
+Please note that these metrics are correlated with one another in strange ways. Everytime you do some modifications on the code, the instruction count goes up or down. If the change is useful, data cache misses might go down together with cycles count, or instructions count might go down together with cycles count.
 
 ### The memory allocation problem
 
@@ -155,11 +183,11 @@ I also have a few general hints:
 - **Do not try to understand the whole algorithm**. For some people, it's crucial to understand how every piece of code works. For the purposes of optimizing it will be wasted effort. There are CPU benchmarks with thousands LOC (like [SPEC2017](http://spec.org/cpu2017/)) it's absolutely impossible to understand them in a reasonable time. What you need to familiarize yourself with, are hotspots. That's it. You most likely need to understand one function/loop which is not more than 100 LOC.
 - **You have a specific workload for which you optimize the benchmark**. You don't need to optimize it for any other input/workload. The main principle behind [Data-oriented design](https://en.wikipedia.org/wiki/Data-oriented_design) is that you know the data of your application.
 
-If you feel you're stuck, don't hesitate to ask questions or look for support elsewhere. I don't have much time to answer every question promptly, but I will do my best. You can send questions to me directly using the [contact form on my web site](https://johnysswlab.com/contact/) or to [Denis](https://easyperf.net/contact/).
-
-__See the Q&A post about what optimizations are [allowed]({{ site.url }}/blog/2019/02/02/Performance-optimization-contest#q5-what-optimizations-are-allowed) and what [not]({{ site.url }}/blog/2019/02/02/Performance-optimization-contest#q6-whats-not-allowed).__
+If you feel you're stuck, don't hesitate to ask questions or look for support on our discord (TODO link). Me and other participants will do our best to answer your questions.
 
 ### Validation
+
+The results must match the baseline. There shouldn't be any memory leaks (check with Valgrind). To compare to the baseline:
 
 TODO
 
@@ -171,7 +199,7 @@ The baseline we will be measuring against is TODO (Which CPU. Maybe add ARM Rasp
 
 We conduct performance challenges via Denis' mailing list, so it's a good idea to [subscribe](https://mailchi.mp/4eb73720aafe/easyperf) (if you haven't already) if you would like to submit your solution. The benchmark consists of a single file, so you can just send the modified `canny_source.c` source file via email to [Ivica](https://johnysswlab.com/contact/) or [Denis](https://easyperf.net/contact/). The general rules and guidelines for submissions are described [here]({{ site.url }}/blog/2019/02/02/Performance-optimization-contest#q7-how-should-the-submission-look-like). We also ask you to provide textual description of all the transformations you have made. It will be much easier for us to analyze your submission. 
 
-**We are collecting submissions until 28th February 2021.**
+**We are collecting submissions until 2nd August 2021.**
 
 ### Spread the word
 
