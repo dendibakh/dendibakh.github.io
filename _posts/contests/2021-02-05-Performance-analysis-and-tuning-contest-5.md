@@ -78,7 +78,7 @@ To limit the scope of the changes, you are allowed to:
 
 You are not allowed to modify the compilation flags, modify configuration files, etc. Please note that this rule is not written in stone, if you believe that for good performance it is necessary to change other files as well, let us know and we can agree to change this rule.
 
-This task is tough and you will want to cooperate with other participants. We created a DISCORD channel to facilitate cooperation, and we will be answering all questions there. Join the channel if you wish to cooperate. TODO Add link.
+This task is tough and you will want to cooperate with other participants. We created a discord channel to facilitate cooperation, and we will be answering all questions there. Join the channel using this [link](https://discord.gg/VjACqGzHgS).
 
 The target configuration for this challenge is TODO (Denis: let's take a newer CPU and also include for example ARM on Raspberry PI) Skylake CPU (e.g. Intel Core i7-6700) + 64-bit Linux (e.g. Ubuntu 20.04) + Clang 10. Although you are free to use whatever environment you have access to. It's fine if you solve the challenge on Intel, AMD, or ARM CPU. Also, you can do your experiments on Windows[^1] or Mac since `cmake` is used for building the benchmark. The reason why we define the target configuration is to have a unified way to assess all the submissions. In the end, it is not about getting the best score, but about practicing performance optimizations.
 
@@ -189,7 +189,7 @@ I also have a few general hints:
 - **Do not try to understand the whole algorithm**. For some people, it's crucial to understand how every piece of code works. For the purposes of optimizing it will be wasted effort. There are CPU benchmarks with thousands LOC (like [SPEC2017](http://spec.org/cpu2017/)) it's absolutely impossible to understand them in a reasonable time. What you need to familiarize yourself with, are hotspots. That's it. You most likely need to understand one function/loop which is not more than 100 LOC.
 - **You have a specific workload for which you optimize the benchmark**. You don't need to optimize it for any other input/workload. The main principle behind [Data-oriented design](https://en.wikipedia.org/wiki/Data-oriented_design) is that you know the data of your application.
 
-If you feel you're stuck, don't hesitate to ask questions or look for support on our discord (TODO link). Me and other participants will do our best to answer your questions.
+If you feel you're stuck, don't hesitate to ask questions or look for support on our [discord](https://discord.gg/VjACqGzHgS). Me and other participants will do our best to answer your questions.
 
 ### Validation
 
