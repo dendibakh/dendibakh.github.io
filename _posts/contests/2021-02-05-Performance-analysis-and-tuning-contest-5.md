@@ -80,7 +80,7 @@ You are not allowed to modify the compilation flags, modify configuration files,
 
 This task is tough and you will want to cooperate with other participants. We created a discord channel to facilitate cooperation, and we will be answering all questions there. Join the channel using this [link](https://discord.gg/VjACqGzHgS).
 
-The target configuration for this challenge is TODO (Denis: let's take a newer CPU and also include for example ARM on Raspberry PI) Skylake CPU (e.g. Intel Core i7-6700) + 64-bit Linux (e.g. Ubuntu 20.04) + Clang 10. Although you are free to use whatever environment you have access to. It's fine if you solve the challenge on Intel, AMD, or ARM CPU. Also, you can do your experiments on Windows[^1] or Mac since `cmake` is used for building the benchmark. The reason why we define the target configuration is to have a unified way to assess all the submissions. In the end, it is not about getting the best score, but about practicing performance optimizations.
+The target configuration for this challenge is Intel(R) Core(TM) i5-8259U CPU @ 2.30GHz, 6MB L3-cache + 8GB RAM  + 64-bit Ubuntu 20.04 + Clang C++ compiler version 12.0. Although you are free to use whatever environment you have access to. It's fine if you solve the challenge on other Intel, AMD, or ARM CPU. Also, you can do your experiments on Windows[^1] or Mac. The reason why we define the target configuration is to have a unified way to assess all the submissions. In the end, it is not about getting the best score, but about practicing performance optimizations.
 
 ## Couple of hints
 
@@ -201,7 +201,7 @@ TODO
 
 > We will not use submissions for any commercial purposes. However, a good and maintainable solution can be merged back to Kaldi source tree.
 
-The baseline we will be measuring against is TODO (Which CPU. Maybe add ARM Raspberry Pi as well) with 64-bit Linux and Clang 10 compiler used with options `-ffast-math -O3 -march=core-avx2`.
+The baseline we will be measuring against is Intel(R) Core(TM) i5-8259U CPU @ 2.30GHz, 6MB L3-cache + 8GB RAM  + 64-bit Ubuntu 20.04 + Clang C++ compiler version 12.0 with options `-ffast-math -O3 -march=core-avx2`.
 
 We conduct performance challenges via Denis' mailing list, so it's a good idea to [subscribe](https://mailchi.mp/4eb73720aafe/easyperf) (if you haven't already) if you would like to submit your solution. The benchmark consists of a single file, so you can just send the modified `canny_source.c` source file via email to [Ivica](https://johnysswlab.com/contact/) or [Denis](https://easyperf.net/contact/). The general rules and guidelines for submissions are described [here]({{ site.url }}/blog/2019/02/02/Performance-optimization-contest#q7-how-should-the-submission-look-like). We also ask you to provide a textual description of all the transformations you have made. It will be much easier for us to analyze your submission. 
 
