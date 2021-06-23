@@ -73,6 +73,8 @@ When you profile the example, you will notice that a lof time is spent in `sgemm
 To limit the scope of the changes, you are allowed to:
 * Modify only files: `lattice-faster-decoder.cc` and `lattice-faster-decoder.h`, files which are part of kaldi
 * You are allowed to introduce new `.h` files, but not new `.cc` files (you will need this if you want to introduce a custom allocator or custom data structures)
+* You are not allowed to spawn additional thread to offload the work. Neither OpenMP, nor POSIX threads nor `std::thread`. All the work needs to be done in a single thread with no help from the outside.
+
 
 You are not allowed to modify the compilation flags, modify configuration files, etc. Please note that this rule is not written in stone, if you believe that for good performance it is necessary to change other files as well, let us know and we can agree to change this rule.
 
