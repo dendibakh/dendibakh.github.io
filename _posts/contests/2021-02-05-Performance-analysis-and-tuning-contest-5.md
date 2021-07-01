@@ -19,6 +19,8 @@ In the essence, Kaldi takes an input model and recorded speech and then it conve
 
 ## Quickstart
 
+### On Linux
+
 Here are instructions on how to build Kaldi on Linux. To download and build kaldi for the first time do the following:
 
 ```bash
@@ -44,6 +46,10 @@ $ make -j8
 
 The first time you build kaldi it can take a lot of time to compile everything, so it is a good idea to let it compile and go do something else. Later, when doing incremental builds, just run `make -j8`. If you added or removed headers (changed dependencies), you should also run `make depend -j8` before `make -j8`.
 
+### On Windows
+
+TODO, add instructions for Windows.
+
 ## Downloading and running the benchmark
 
 Under the assumption you are in `kaldi/src` directory, to download the test you will do the following;
@@ -57,14 +63,10 @@ To run the benchmark, execute:
 
 ```bash
 $ cd test-speed
-../online2bin/online2-wav-nnet3-latgen-faster --word-symbol-table=graph/words.txt --config=conf/model.conf am/final.mdl graph/HCLG.fst ark:test.utt2spk scp:test.scp ark:/dev/null
+$ ../online2bin/online2-wav-nnet3-latgen-faster --word-symbol-table=graph/words.txt --config=conf/model.conf am/final.mdl graph/HCLG.fst ark:test.utt2spk scp:test.scp ark,t:output-baseline.txt
 ```
 
-To verify the result of the change:
-
-```bash
-TODO
-```
+This creates the file called `output-baseline.txt`. You will later use this file to compare your changes against it to make sure there are no functional regressions. 
 
 ## Rules of the game
 
@@ -193,9 +195,15 @@ If you feel you're stuck, don't hesitate to ask questions or look for support on
 
 ### Validation
 
-The results must match the baseline. There shouldn't be any memory leaks (check with gperftools). To compare to the baseline, run:
+The results must match the baseline. There shouldn't be any memory leaks (check with gperftools). To compare against the baseline, run:
 
-TODO
+```bash
+$ ../online2bin/online2-wav-nnet3-latgen-faster --word-symbol-table=graph/words.txt --config=conf/model.conf am/final.mdl graph/HCLG.fst ark:test.utt2spk scp:test.scp ark,t:output.txt
+$ diff output-baseline.txt output.txt
+```
+
+In the case you didn't make any mistakes in your modifications, files `output-baseline.txt` and `output.txt` should be identical and `diff` won't print anything. If they are different, then there is a bug.
+
 
 ### Submissions
 
