@@ -24,6 +24,7 @@ In the essence, Kaldi takes an input model and recorded speech and then it conve
 Here are instructions on how to build Kaldi on Linux. To download and build kaldi for the first time do the following:
 
 ```bash
+$ sudo apt install automake autoconf sox libtool subversion gfortran python
 $ git clone https://github.com/kaldi-asr/kaldi.git
 $ cd kaldi
 $ git checkout ca6d133262aa183b23f6daba48995bd7576fb572
@@ -36,7 +37,7 @@ $ make PREFIX=`pwd` install
 $ cd ../../src/
 $ ./configure --shared --openblas-root=../tools/OpenBLAS/
 ```
-The configure script generates the file called `kaldi.mk`. Open the file, find the line that starts with `CXXFLAGS`, and replace default optimization level `-O1` with `-O3`,
+The configure script generates the file called `kaldi.mk`. Open the file, find the line that starts with `CXXFLAGS`, and replace default optimization level `-O1` with `-O3`.
 
 ```bash
 $ make clean -j8
