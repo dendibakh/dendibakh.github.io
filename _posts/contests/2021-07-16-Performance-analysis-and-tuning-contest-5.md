@@ -138,7 +138,7 @@ The baseline we will be measuring against is Intel(R) Core(TM) i5-8259U CPU @ 2.
 
 We conduct performance challenges via Denis' mailing list, so it's a good idea to [subscribe](https://mailchi.mp/4eb73720aafe/easyperf) (if you haven't already) to get updates about the challenge and submit your solution. Send your patch(es) via email both to [Ivica](https://johnysswlab.com/contact/) and [Denis](https://easyperf.net/contact/). The general rules and guidelines for submissions are described [here]({{ site.url }}/blog/2019/02/02/Performance-optimization-contest#q7-how-should-the-submission-look-like). We also ask you to provide a textual description of all the transformations you have made. It will be much easier for us to analyze your submission. 
 
-**We are collecting submissions until 8th August 2021.**
+**We are collecting submissions until 29th August 2021.**
 
 ## P.S. Spread the word
 
