@@ -11,24 +11,41 @@ categories: [twitter-spaces]
 
 In this short blog post I decided to capture the most important highlights from all the Twitter Spaces conversations that I had during the year 2021. Some of those are not exact quotes, but rather my interpretation of their thoughts, I hope they call me out when I misinterpreted something. In no particular order:
 
-1. 
 Daniel Lemire:
-"Benchmarking should become as common as unit tests."
-"Think about SW performance from the first principles. Ask yourself: how fast my code COULD run."
+"Benchmarking should become as common as unit tests." Think about SW performance from the first principles. Ask yourself: how fast my code COULD run."
 
-Low-latency industries (high-frequence trading, real-time robotics) fight hard the fact that most of HW and SW components are build around maximizing throughput, not latency. Mark Dawson
+Nadav Rotem:
+"Right now LLVM compiler optimizes C++ as if it was C (pointers all over the place)." We could benefit from capturing high-level language semantics as well.
 
-Nadav Rotem - how important perf is for Facebook.
-"Right now LLVM compiler optimizes C++ as if it was C, pointers all over the place. We need to capture high-level language semantics as well." Nadav Rotem.
+Mark Dawson:
+Low-latency industries (high-frequence trading, real-time robotics) fight hard the fact that most of HW and SW components are build around maximizing throughput, not latency. 
 
-Memory bottlenecks are the most common performance issue in modern SW. Ivica Bogosavljevic
+Ivica Bogosavljevic:
+"Memory bottlenecks are the most common performance issue in modern SW."
 
-"I predict that performance optimization and efficiency in the cloud is going to be way more important 5 years down the line and 10 years down the line to the point where we will eventually have the equivalent of the C-level executive in organizations that’s responsible for the efficient delivery of digital goods." - Thomas Dullien
+Thomas Dullien:
+"I predict that performance optimization and efficiency in the cloud is going to be way more important 5-10 years down the line to the point where we will eventually have the equivalent of the C-level executive in organizations that’s responsible for the efficient delivery of digital goods."
 
+Tomer Morad:
+"The world doesn't like to do SW performance tuning". Systems should be able to tune themselves automatically.
 
+James Reinders:
+"Parallelism is in data." A better algorithm is better than a better HW :) . "SW libraries should be heterogeneous from the start". "We all will be heterogeneous devs in 10 years from now". 
+
+Arnaldo Carvalho De Melo:
+"BPF is eating the world".
+
+Bryan Cantrill:
+"People serious about SW do their own HW." The future is in HW/SW co-designed open platforms.
+
+Andrey Akinshin:
+There is no universal benchmarking method/approach that can be applied everywhere. Benchmarking very much depends on your business goals.
+
+## Tools that we were talking about:
 OxideComputer -
 Prodfiler - 
 Concertio -
+SYCL - 
 
 If you were my guest and you don't see yourself in this list, sorry, I haven't save the notes for every episode, so it's hard for me to recover everything. Sorry about that.
 
