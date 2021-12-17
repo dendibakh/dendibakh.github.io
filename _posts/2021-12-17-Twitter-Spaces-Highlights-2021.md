@@ -9,7 +9,7 @@ categories: [twitter-spaces]
 
 ------
 
-In this short blog post, I decided to capture the most important highlights (for me) from all the Twitter Spaces conversations that I had during the year 2021. Some of those are not exact quotes, but rather my interpretation of their thoughts (I hope they call me out if skrewed up). Everything in this post is in chronological order as episodes were coming out. Recordings of all the episodes are available on my [youtube](https://www.youtube.com/playlist?list=PLRWO2AL1QAV4WK6O6cxyjWVJvbUVVLrQk) channel (sorry about the mediocre audio quality).
+In this short blog post, I decided to capture the most important highlights (for me) from all the Twitter Spaces conversations that I had during the year 2021. Some of those are not exact quotes, but rather my interpretation of their thoughts (I hope they call me out if I skrewed it up). Everything in this post is in chronological order as episodes were coming out. Recordings of all the episodes are available on my [youtube](https://www.youtube.com/playlist?list=PLRWO2AL1QAV4WK6O6cxyjWVJvbUVVLrQk) channel (sorry about the mediocre audio quality).
 
 **Daniel Lemire:**
 - *"Benchmarking should become as common as unit tests."*
