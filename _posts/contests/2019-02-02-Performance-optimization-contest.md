@@ -120,7 +120,9 @@ Information presented in llvm documentation: [Benchmarking tips](https://llvm.or
 
 ### List of contest editions
 
-- [Contest #1]({{ site.url }}/blog/2019/02/16/Performance-optimization-contest-1) - 16 Feb 2019.
-- [Contest #2]({{ site.url }}/blog/2019/04/10/Performance-analysis-and-tuning-contest-2) - 10 Apr 2019.
-- [Contest #3]({{ site.url }}/blog/2019/05/28/Performance-analysis-and-tuning-contest-3) - 28 May 2019.
-- [Contest #4]({{ site.url }}/blog/2021/02/05/Performance-analysis-and-tuning-contest-4) - 05 Feb 2021.
+- [Contest #1]({{ site.url }}/blog/2019/02/16/Performance-optimization-contest-1) - Feb 2019.
+- [Contest #2]({{ site.url }}/blog/2019/04/10/Performance-analysis-and-tuning-contest-2) - Apr 2019.
+- [Contest #3]({{ site.url }}/blog/2019/05/28/Performance-analysis-and-tuning-contest-3) - May 2019.
+- [Contest #4]({{ site.url }}/blog/2021/02/05/Performance-analysis-and-tuning-contest-4) - Feb 2021.
+- [Contest #5]({{ site.url }}/blog/2021/07/16/Performance-analysis-and-tuning-contest-5) - June 2021.
+- [Contest #6]({{ site.url }}/blog/2022/05/28/Performance-analysis-and-tuning-contest-6) - May 2022.
