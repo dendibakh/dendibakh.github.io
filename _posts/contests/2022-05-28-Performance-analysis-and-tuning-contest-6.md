@@ -28,20 +28,22 @@ Yay! I have prizes!
 
 Note that to receive your prize you must have a Paypal account. Crypto transaction in the same $ equivalent is also an option. For those who are interested, I fund it from the money I get from my [Patreon](https://www.patreon.com/dendibakh) and [Github](https://github.com/sponsors/dendibakh) sponsors.
 
-Also, to everyone in the US who would be able to break the "100 seconds" mark, I will send a signed [book](https://amzn.to/3sYxx1P) "Performance Analysis and Tuning on Modern CPUs" that I've written. Currently, the baseline code runs at 183 seconds on the `Linux+Intel` target machine and at 141 seconds on `Windows+AMD`.
+Also, to everyone in the US who would be able to break the "100 seconds" mark, I will send a signed [book](https://amzn.to/3sYxx1P) "Performance Analysis and Tuning on Modern CPUs" that I've written. Currently, the baseline code runs at 183 seconds on the `Linux+Intel` target machine and at 141 seconds[^1] on `Windows+AMD`.
 
 ## Target configuration
 
 Target configurations for this challenge are:
 
 - Intel Core i5-8259U CPU @ 2.30GHz Base (3.80GHz Turbo),  6MB L3-cache,  8GB RAM, 64-bit Ubuntu 20.04,     Clang C++ compiler version 14.0.
-- AMD Ryzen 7 3700X 8Core @ 3.60GHz Base (4.40GHz Turbo), 32MB L3-cache, 64GB RAM, Windows 11 Version 21H2, Clang C++ compiler version 14.0.
+- AMD Ryzen 7 3700X 8Core @ 3.60GHz Base (4.40GHz Turbo), 32MB L3-cache, 64GB RAM, Windows 11 Version 21H2, Clang C++ compiler version 14.0. Thanks to Mansur for providing this machine for the challenge.
 
 You don't have to have those exact configurations. Feel free to use whatever machine you have access to. It's fine if you solve the challenge on another Intel, AMD, or even ARM CPUs. You can do your experiments on Mac as well. The reason why I define the target configuration is to have a unified way to assess all the submissions.
 
 ## Submissions
 
 **I'm waiting for your submissions until June 30th 2022.**
+
+The best score will be determined as the lowest average time measured on the two target machines.
 
 The general rules and guidelines for submissions are described [here]({{ site.url }}/blog/2019/02/02/Performance-optimization-contest#q7-how-should-the-submission-look-like). Send your patch(es) via email to [me](https://easyperf.net/contact/) with the subject "PerfChallenge6-Solution". Do not open pull requests as other participants will see your solution.
 
@@ -58,3 +60,5 @@ If you know someone who might be interested in participating in this challenge, 
 I'm open to your comments and suggestions. Especially if you have a proposal for a benchmark for the next edition of the challenge, please let us know.
 
 Finally, if you like such puzzles you can also check out my free online course "Performance Ninja" [here](https://github.com/dendibakh/perf-ninja). We have many small lab assignments dedicated to certain low-level performance optimization.
+
+[^1]: This measurement was done on Linux (AMD machine is in dual boot). There must be some issue with running it on Windows, which shows 220 seconds. We are looking into this.
