@@ -28,7 +28,7 @@ Yay! I have prizes!
 
 Note that to receive your prize you must have a Paypal account. Crypto transaction in the same $ equivalent is also an option. For those who are interested, I fund it from the money I get from my [Patreon](https://www.patreon.com/dendibakh) and [Github](https://github.com/sponsors/dendibakh) sponsors.
 
-Also, to everyone in the US who would be able to break the "100 seconds" mark, I will send a signed [book](https://amzn.to/3sYxx1P) "Performance Analysis and Tuning on Modern CPUs" that I've written. Currently, the baseline code runs at 183 seconds on the `Linux+Intel` target machine and at 141 seconds[^1] on `Windows+AMD`.
+Also, to everyone in the US who would be able to break the "100 seconds" mark, I will send a signed [book](https://amzn.to/3sYxx1P) "Performance Analysis and Tuning on Modern CPUs" that I've written. Currently, the baseline code runs at 164 seconds on the `Linux+Intel` target machine and at 141 seconds[^1] on `Windows+AMD`.
 
 ## Target configuration
 
