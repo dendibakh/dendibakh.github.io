@@ -34,8 +34,21 @@ Also, to everyone in the US who would be able to break the "100 seconds" mark, I
 
 Target configurations for this challenge are:
 
-- Intel Core i5-8259U CPU @ 2.30GHz Base (3.80GHz Turbo),  6MB L3-cache,  8GB RAM, 64-bit Ubuntu 20.04,     Clang C++ compiler version 14.0.
-- AMD Ryzen 7 3700X 8Core @ 3.60GHz Base (4.40GHz Turbo), 32MB L3-cache, 64GB RAM, Windows 11 Version 21H2, Clang C++ compiler version 14.0. Thanks to Mansur for providing this machine for the challenge.
+**Intel + Linux:**
+- Intel Core i5-8259U CPU @ 2.30GHz Base (3.80GHz Turbo),  6MB L3-cache
+- 8GB RAM
+- 256GB NVME INTEL SSDPEKKW256G8
+- 64-bit Ubuntu 20.04
+- Clang C++ compiler version 14.0.
+
+**AMD + Win:**
+- AMD Ryzen 7 3700X 8Core @ 3.60GHz Base (4.40GHz Turbo), 32MB L3-cache
+- 64GB RAM
+- ADATA XPG SX8200 Pro 1TB 3D NAND NVMe SSD
+- Windows 11 Version 21H2
+- Clang C++ compiler version 14.0.
+
+Thanks to Mansur for providing AMD machine for the challenge.
 
 You don't have to have those exact configurations. Feel free to use whatever machine you have access to. It's fine if you solve the challenge on another Intel, AMD, or even ARM CPUs. You can do your experiments on Mac as well. The reason why I define the target configuration is to have a unified way to assess all the submissions.
 
