@@ -38,7 +38,7 @@ Target configurations for this challenge are:
 - Intel Core i5-8259U CPU @ 2.30GHz Base (3.80GHz Turbo),  6MB L3-cache
 - 16GB RAM
 - 256GB NVME INTEL SSDPEKKW256G8
-- 64-bit Ubuntu 20.04
+- 64-bit Ubuntu 20.04, kernel version 5.13.0-27
 - Clang C++ compiler version 14.0.
 
 **AMD + Win:**
