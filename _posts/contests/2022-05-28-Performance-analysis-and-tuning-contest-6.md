@@ -74,4 +74,43 @@ I'm open to your comments and suggestions. Especially if you have a proposal for
 
 Finally, if you like such puzzles you can also check out my free online course "Performance Ninja" [here](https://github.com/dendibakh/perf-ninja). We have many small lab assignments dedicated to certain low-level performance optimization.
 
+## UPD: July 20th, 2022: results
+
+Thanks to everyone who participated in this challenge and sent me their solutions! And of course, congratulations to the winners! I determined the best solutions based on the maximum `(Linux speedup + Windows speedup)`.
+
+```
+|     Name                    |  Solution Linux (sec) |     Linux speedup    | Solution Windows (sec)  |     Windows speedup    |
+|-----------------------------|-----------------------|----------------------|-------------------------|------------------------|
+|     Robert Burke            |     13                |     12.5x            |     16                  |     13.7x              |
+|     Stellaris62             |     25                |     6.5x             |     27                  |     8.1x               |
+|     Andrey Evstyukhin       |     47                |     3.5x             |     55                  |     4x                 |
+|     Jakub Gałecki           |     52                |     3.1x             |     55                  |     4x                 |
+|     Mansur Mavliutov        |     52                |     3.1x             |     59                  |     3.7x               |
+|     Adam Richardson         |     44                |     3.7x             |     77                  |     2.8x               |
+|     Franek Korta            |     64                |     2.5x             |     83                  |     2.6x               |
+|     Alexey Shmelev          |     82                |     2x               |     96                  |     2.3x               |
+|     Adam Folwarczny         |     94                |     1.7              |     85                  |     2.6x               |
+|     Ole Schulz-Trieglaff    |     103               |     1.6x             |     210                 |     1.1x               |
+```
+
+I'm very impressed with the solutions I've received! For me, it's just another confirmation against a popular belief that "most software is optimal by default". I think that most existing SW is far from optimal and sometimes the headroom is huge, as we showed in this challenge (>10x).
+
+Here is the recording of our summary Zoom call, where we explored all the optimizations that were found during this challenge.
+([Youtube](https://www.youtube.com/watch?v=R_yX0XjdSBY)) ([Slides](https://docs.google.com/presentation/d/16M90It8nOK-Oiy7j9Kw27o9boLFwr6GFy55XFVzaAVA/edit?usp=sharing))
+
+Some of the techniques that we showcased:
+- `mmap` file into the address space of the process
+- SIMD-based word parsing
+- Use large pages for mitigating DTLB misses when accessing hash table entries
+- Prefetching hash table entries
+- and many others
+
+Even if you haven't participated, I still encourage you to watch the recording as we tried to make it useful even for people not familiar with the challenge.
+
+With this, I officially declare Performance Challenge #6 closed. :)
+
+If you have ideas for future performance tuning challenges, please share them with me.
+
+---
+
 [^1]: This measurement was done on Linux (AMD machine is in dual boot). There must be some issue with running it on Windows, which shows 220 seconds. We are looking into this.
