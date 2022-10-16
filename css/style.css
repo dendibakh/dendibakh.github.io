@@ -53,6 +53,17 @@ ul.contestlist li {line-height: 30px; }
     margin: 0 auto;
     width: 10%;
 }
+.center-image-width-15
+{
+    margin: 0 auto;
+    display: block;
+    width: 15%;
+}
+.center-image-width-15-no-block
+{
+    margin: 0 auto;
+    width: 15%;
+}
 .center-image-width-20
 {
     margin: 0 auto;
