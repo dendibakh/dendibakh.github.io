@@ -64,7 +64,7 @@ Let’s expand on each of those categories.
 * *Definition*: How well instructions progress through the CPU pipeline. This includes fetching, discovering independent instructions (aka “extracting parallelism”), and issuing and executing instructions in parallel. The width of a CPU pipeline characterizes how many independent instructions it can execute per cycle.
 * *Ideal*: From the HW side, the ideal is to have an infinite-wide microarchitecture with unlimited OOO capacity and an infinite number of execution units. (Impossible to reach in practice). From the SW side, the ideal is when an application reaches the maximum theoretical throughput of a machine (aka roofline).
 * *Worst*: Algorithms with a very low Instruction Level Parallelism (ILP), that underutilize the computing capabilities of a machine.
-* *Current*: Stalls frequently occur as a lack of some execution resources. It is very hard to predict which resource in a CPU pipeline will be a bottleneck for a certain application. Collecting CPU counters will give you some insight, but a more general recommendation would be to use [Top-Down Analysis](TODO: Link).
+* *Current*: Stalls frequently occur as a lack of some execution resources. It is very hard to predict which resource in a CPU pipeline will be a bottleneck for a certain application. Collecting CPU counters will give you some insight, but a more general recommendation would be to use [Top-Down Analysis]({{ site.url }}/blog/2019/02/09/Top-Down-performance-analysis-methodology).
 OOO machines are very good at extracting parallelism, although there are blind spots. They can easily catch “local” parallelism within a mid-size loop or function, but can’t find global parallelism, for example:
 
   ```cpp
@@ -89,7 +89,7 @@ OOO machines are very good at extracting parallelism, although there are blind s
   
   There is a revolutionary idea called PIM (Processing-In-Memory), which moves some computations (for example, memset, memcpy) closer to where the data is stored. Ideas range from specialized accelerators to direct in-DRAM computing. The main roadblock here is that it requires a new programming model for such devices thus rewriting the application’s code. [[PIM](https://arxiv.org/pdf/2105.03814.pdf)]
   
-  Also, there are a few ideas for more intelligent HW prefetching. For example: [Pythia] uses reinforcement learning to find patterns in past memory request addresses to generate prefetch requests, [Hermes] tries to predict which memory accesses will miss in caches and initiates DRAM access early. 
+  Also, there are a few ideas for more intelligent HW prefetching. For example: [[Pythia](https://dl.acm.org/doi/10.1145/3466752.3480114)] uses reinforcement learning to find patterns in past memory request addresses to generate prefetch requests, [[Hermes](https://arxiv.org/pdf/2209.00188v2.pdf)] tries to predict which memory accesses will miss in caches and initiates DRAM access early. 
 
 ### Data Dependency Chains
 
