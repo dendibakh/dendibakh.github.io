@@ -4,7 +4,7 @@ title: Four Cornerstones of CPU Performance.
 categories: [performance analysis, microarchitecture]
 ---
 
-![](/img/posts/FourPerfCorners/front.png){: .center-image-width-80 }
+![](/img/posts/FourPerfCorners/Front.png){: .center-image-width-80 }
 
 **Contents:**
 * TOC
