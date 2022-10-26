@@ -27,7 +27,7 @@ Let's jump straight into it. At the CPU level, performance of any application is
 
 <img align="right" src="/img/posts/FourPerfCorners/PredOfCode.png" class="center-image-width-15">
 
-Think about it like this. First, modern CPUs always try to predict what code will be executed next (“predictability of code”). In that sense, a CPU core always looks ahead of execution, into the future. Correct predictions greatly improve execution as it allows a CPU to make forward profress without having results of previous instructions available. However, bad speculation often incurs costly performance penalties.
+Think about it like this. First, modern CPUs always try to predict what code will be executed next (“predictability of code”). In that sense, a CPU core always looks ahead of execution, into the future. Correct predictions greatly improve execution as it allows a CPU to make forward progress without having results of previous instructions available. However, bad speculation often incurs costly performance penalties.
 
 <img align="left" src="/img/posts/FourPerfCorners/ExecTput.png" class="center-image-width-20">
 
