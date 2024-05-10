@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Memory Profiling Part 4. Memory Footprint Case Study
-categories: [performance analysis]
+categories: [performance analysis, book chapters]
 ---
 
 ------

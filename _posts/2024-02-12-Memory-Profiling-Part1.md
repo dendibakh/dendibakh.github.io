@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Memory Profiling Part 1. Introduction
-categories: [performance analysis]
+categories: [performance analysis, book chapters]
 ---
 
 ------

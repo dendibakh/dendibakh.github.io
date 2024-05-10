@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Memory Profiling Part 5. Data Locality and Reuse Distances
-categories: [performance analysis]
+categories: [performance analysis, book chapters]
 ---
 
 ------

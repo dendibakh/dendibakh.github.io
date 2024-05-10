@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Memory Profiling Part 3. Memory Footprint with SDE
-categories: [performance analysis]
+categories: [performance analysis, book chapters]
 ---
 
 ------

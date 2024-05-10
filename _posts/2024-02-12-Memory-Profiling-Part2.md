@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Memory Profiling Part 2. Memory Usage Case Study
-categories: [performance analysis]
+categories: [performance analysis, book chapters]
 ---
 
 ------
