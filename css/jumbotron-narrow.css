@@ -34,7 +34,7 @@ body {
 /* Customize container */
 @media (min-width: 768px) {
   .container {
-    max-width: 90ch;
+    max-width: 100ch;
   }
 }
 .container-narrow > hr {
