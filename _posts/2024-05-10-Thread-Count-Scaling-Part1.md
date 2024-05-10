@@ -31,7 +31,7 @@ Estimated reading time: 25 mins. TLDR; jump straight to the [summary]({{ site.ur
 
 - Part 1: Introduction (this article).
 - Part 2: [Blender and Clang]({{ site.url }}/blog/2024/05/10/Thread-Count-Scaling-Part2).
-- Part 3: [Zstd]({{ site.url }}/blog/2024/05/10/Thread-Count-Scaling-Part3).
+- Part 3: [Zstandard]({{ site.url }}/blog/2024/05/10/Thread-Count-Scaling-Part3).
 - Part 4: [CloverLeaf and CPython]({{ site.url }}/blog/2024/05/10/Thread-Count-Scaling-Part4).
 - Part 5: [Summary]({{ site.url }}/blog/2024/05/10/Thread-Count-Scaling-Part5).
 

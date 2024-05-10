@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Thread Count Scaling Part 3. Zstd
+title: Thread Count Scaling Part 3. Zstandard
 categories: [performance analysis, book chapters]
 ---
 
@@ -16,7 +16,7 @@ categories: [performance analysis, book chapters]
 
 - Part 1: [Introduction]({{ site.url }}/blog/2024/05/10/Thread-Count-Scaling-Part1).
 - Part 2: [Blender and Clang]({{ site.url }}/blog/2024/05/10/Thread-Count-Scaling-Part2).
-- Part 3: Zstd (this article).
+- Part 3: Zstandard (this article).
 - Part 4: [CloverLeaf and CPython]({{ site.url }}/blog/2024/05/10/Thread-Count-Scaling-Part4).
 - Part 5: [Summary]({{ site.url }}/blog/2024/05/10/Thread-Count-Scaling-Part5).
 

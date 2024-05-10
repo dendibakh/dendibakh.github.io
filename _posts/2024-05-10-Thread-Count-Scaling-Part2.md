@@ -16,7 +16,7 @@ categories: [performance analysis, book chapters]
 
 - Part 1: [Introduction]({{ site.url }}/blog/2024/05/10/Thread-Count-Scaling-Part1).
 - Part 2: Blender and Clang  (this article).
-- Part 3: [Zstd]({{ site.url }}/blog/2024/05/10/Thread-Count-Scaling-Part3).
+- Part 3: [Zstandard]({{ site.url }}/blog/2024/05/10/Thread-Count-Scaling-Part3).
 - Part 4: [CloverLeaf and CPython]({{ site.url }}/blog/2024/05/10/Thread-Count-Scaling-Part4).
 - Part 5: [Summary]({{ site.url }}/blog/2024/05/10/Thread-Count-Scaling-Part5).
 
