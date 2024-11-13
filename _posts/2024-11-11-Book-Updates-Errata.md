@@ -14,7 +14,7 @@ I will use this page to provide updates and errata for the second edition of my 
 
 ### Updates and General Information 
 
-11-Nov-2024: The book is now available on [Amazon](Link).
+11-Nov-2024: The book is now available on [Amazon](https://amzn.to/4fsroBs).
 
 ------
 
