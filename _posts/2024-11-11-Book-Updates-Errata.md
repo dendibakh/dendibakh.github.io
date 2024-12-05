@@ -16,6 +16,10 @@ I will use this page to provide updates and errata for the second edition of my 
 
 11-Nov-2024: The book is now available on [Amazon](https://amzn.to/4fsroBs).
 
+22-Nov-2024: [Hardcover](https://amzn.to/3ZGNgmQ) and [Kindle](https://amzn.to/3VrD3Zc) versions are available.
+
+03-Dec-2024: The PDF version is available for downloading from [GitHub](https://github.com/dendibakh/perf-book/releases/tag/2.0_release).
+
 ------
 
 ### Errata
