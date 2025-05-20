@@ -31,3 +31,5 @@ I will use this page to provide updates and errata for the second edition of my 
 24-Dec-2024: Bad image formatting in Appendix: some images cover the text.
 
 24-Dec-2024: The following link on page 332 (Appendix C, Intel PT) is outdated: https://sites.google.com/site/intelptmicrotutorial/.
+
+20-May-2025: The following link in the footnote on page 252 ("HFSort in LLD") is broken: https://github.com/llvm-project/lld/blob/master/ELF/CallGraphSort.cpp. Here is the correct link: https://github.com/llvm/llvm-project/blob/main/lld/ELF/CallGraphSort.cpp.
