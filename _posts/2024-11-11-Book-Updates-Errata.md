@@ -33,3 +33,13 @@ I will use this page to provide updates and errata for the second edition of my 
 24-Dec-2024: The following link on page 332 (Appendix C, Intel PT) is outdated: https://sites.google.com/site/intelptmicrotutorial/.
 
 20-May-2025: The following link in the footnote on page 252 ("HFSort in LLD") is broken: https://github.com/llvm-project/lld/blob/master/ELF/CallGraphSort.cpp. Here is the correct link: https://github.com/llvm/llvm-project/blob/main/lld/ELF/CallGraphSort.cpp.
+
+06-Jun-2025: Figure 3.13 is incorrect; the bits in the figure sum up to 73 (16 + 9 + 9 + 9 + 9 + 21) while they should sum up to 64.
+
+| [![](/img/posts/book_errata/HugePageVirtualAddress_old.png){: .center-image-width-100 }]({{ site.url }}/img/posts/book_errata/HugePageVirtualAddress_old.png) | 
+|:--:| 
+| *OLD: Figure 3.13: Virtual address that points within a 2MB page.* |
+
+| [![](/img/posts/book_errata/HugePageVirtualAddress_new.png){: .center-image-width-100 }]({{ site.url }}/img/posts/book_errata/HugePageVirtualAddress_new.png) | 
+|:--:| 
+| *NEW: Figure 3.13: Virtual address that points within a 2MB page.* |
