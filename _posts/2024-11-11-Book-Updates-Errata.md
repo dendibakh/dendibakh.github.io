@@ -47,3 +47,5 @@ See a list of opened [Github Issues](https://github.com/dendibakh/perf-book/issu
 | [![](/img/posts/book_errata/HugePageVirtualAddress_new.png){: .center-image-width-100 }]({{ site.url }}/img/posts/book_errata/HugePageVirtualAddress_new.png) | 
 |:--:| 
 | *NEW: Figure 3.13: Virtual address that points within a 2MB page.* |
+
+09-Jun-2025: Error in Section 5.5 "The Roofline Performance Model": peak memory bandwidth should be in GB, not in GiB.
