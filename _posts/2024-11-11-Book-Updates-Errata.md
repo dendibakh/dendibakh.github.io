@@ -49,3 +49,5 @@ See a list of opened [Github Issues](https://github.com/dendibakh/perf-book/issu
 | *NEW: Figure 3.13: Virtual address that points within a 2MB page.* |
 
 09-Jun-2025: Error in Section 5.5 "The Roofline Performance Model": peak memory bandwidth should be in GB, not in GiB.
+
+22-Jul-2025: Error in Section 8.4 "Transparent Huge Pages" on page 203: in listing 8.8, the `mmap` call won't fail (unless it can't find a _4KB_ chunk), so it's inaccurate to say that `mmap` will fail if it can't find a 2MB chunk. The `mmap` call doesn't demand a huge page, so it'll default to being a regular-sized page. The following `madvise` call is only a suggestion and the kernel doesn't have to honour it, so that would return `0` (success) whether there's any contiguous 2MB chunk or not.
