@@ -26,6 +26,8 @@ I will use this page to provide updates and errata for the second edition of my 
 
 See a list of opened [Github Issues](https://github.com/dendibakh/perf-book/issues).
 
+_Note: The page numbers in the printed and PDF versions of the book differ by one. If you can't find the referenced text on the given page, try checking the page before or after._
+
 22-Nov-2024: A couple of readers of the paperback version have reported that there are some blurry pages and some pages have purple-ish text color (instead of black). I acknowledge this issue and I'm trying to fix it. The hardcover version (with premium color printing) seems not to have this problem. It turns out to be an issue with the LaTeX to PDF conversion. Some details are here: https://www.kdpcommunity.com/s/question/0D7at0000022jCnCAI.
 
 24-Dec-2024: The following link on page 253 (Chapter 11, PGO) is outdated: https://github.com/google/llvm-propeller/blob/plo-dev/Propeller_RFC.pdf, use the following link instead: https://dl.acm.org/doi/abs/10.1145/3575693.3575727.
@@ -51,3 +53,5 @@ See a list of opened [Github Issues](https://github.com/dendibakh/perf-book/issu
 09-Jun-2025: Error in Section 5.5 "The Roofline Performance Model": peak memory bandwidth should be in GB, not in GiB.
 
 22-Jul-2025: Error in Section 8.4 "Transparent Huge Pages" on page 203: in listing 8.8, the `mmap` call won't fail (unless it can't find a _4KB_ chunk), so it's inaccurate to say that `mmap` will fail if it can't find a 2MB chunk. The `mmap` call doesn't demand a huge page, so it'll default to being a regular-sized page. The following `madvise` call is only a suggestion and the kernel doesn't have to honour it, so that would return `0` (success) whether there's any contiguous 2MB chunk or not.
+
+23-Jul-2025: Error in Section 12.3.1 "Avoid Minor Page Faults" on page 274: "The very first write to a newly allocated page triggers a minor page fault, a hardware interrupt that is handled by the OS." Page fault is not a hardware interrupt. It should be written as "[..] page fault, a hardware exception that is [..]"
