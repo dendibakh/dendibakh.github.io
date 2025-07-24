@@ -52,6 +52,8 @@ _Note: The page numbers in the printed and PDF versions of the book differ by on
 
 09-Jun-2025: Error in Section 5.5 "The Roofline Performance Model": peak memory bandwidth should be in GB, not in GiB.
 
-22-Jul-2025: Error in Section 8.4 "Transparent Huge Pages" on page 203: in listing 8.8, the `mmap` call won't fail (unless it can't find a _4KB_ chunk), so it's inaccurate to say that `mmap` will fail if it can't find a 2MB chunk. The `mmap` call doesn't demand a huge page, so it'll default to being a regular-sized page. The following `madvise` call is only a suggestion and the kernel doesn't have to honour it, so that would return `0` (success) whether there's any contiguous 2MB chunk or not.
+22-Jul-2025: Error in Section 8.4 "Transparent Huge Pages" on page 203: in Listing 8.8, the `mmap` call won't fail (unless it can't find a _4KB_ chunk), so it's inaccurate to say that `mmap` will fail if it can't find a 2MB chunk. The `mmap` call doesn't demand a huge page, so it'll default to being a regular-sized page. The following `madvise` call is only a suggestion and the kernel doesn't have to honour it, so that would return `0` (success) whether there's any contiguous 2MB chunk or not.
 
 23-Jul-2025: Error in Section 12.3.1 "Avoid Minor Page Faults" on page 274: "The very first write to a newly allocated page triggers a minor page fault, a hardware interrupt that is handled by the OS." Page fault is not a hardware interrupt. It should be written as "[..] page fault, a hardware exception that is [..]"
+
+24-Jul-2025: Error in Section 8.4.2 "Transparent Huge Pages" on page 203 in Listing 8.8: `PROT_READ | PROT_WRITE | PROT_EXEC` - this makes the pages readable, writeable and executable. Considering modern exploitation techniques, `PROT_EXEC` should be excluded since a user has no intention to execute code from the allocated pages.
